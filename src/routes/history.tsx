@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Eras, SectionTitle, Timeline, pageWrap } from "@/components/site";
+import { Approaches, Eras, SectionTitle, Timeline, pageWrap } from "@/components/site";
 
 export const Route = createFileRoute("/history")({
   head: () => ({
@@ -14,6 +14,10 @@ export const Route = createFileRoute("/history")({
     <div className={`${pageWrap} py-16`}>
       <SectionTitle eyebrow="История ИИ" title="Путешествие сквозь девять десятилетий" text="Каждая карточка раскрывается — нажмите «Подробнее»." />
       <Timeline />
+      <div className="mt-24">
+        <SectionTitle eyebrow="Как развивался ИИ" title="От правил к обучению и генерации" />
+        <Approaches />
+      </div>
       <div className="mt-24">
         <SectionTitle eyebrow="Эпохи" title="Четыре эпохи развития" />
         <Eras />
