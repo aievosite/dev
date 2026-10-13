@@ -1,24 +1,66 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import neural from "@/assets/neural.jpg";
+import { Eras, SectionTitle, Sources, Timeline, pageWrap } from "@/components/site";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "AI: Эволюция интеллекта — история искусственного интеллекта" },
+      { name: "description", content: "От машины Тьюринга до генеративного ИИ 2026 года: ключевые вехи истории искусственного интеллекта." },
+      { property: "og:title", content: "AI: Эволюция интеллекта" },
+      { property: "og:description", content: "Интерактивная хронология истории искусственного интеллекта." },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <>
+      <section className={`${pageWrap} grid items-center gap-10 py-16 md:grid-cols-2 md:py-24`}>
+        <div>
+          <p className="mb-5 text-xs font-semibold uppercase tracking-[0.25em] text-primary">1936 — 2026</p>
+          <h1 className="text-4xl font-semibold leading-[1.1] md:text-5xl lg:text-6xl">
+            От первых алгоритмов до <span className="text-gradient">искусственного интеллекта</span> будущего
+          </h1>
+          <p className="mt-6 max-w-lg text-lg text-muted-foreground">
+            Мы собрали самые важные вехи истории ИИ — идеи, программы и открытия, которые за девяносто лет превратили математическую абстракцию в технологию, меняющую мир.
+          </p>
+          <a href="#timeline" className="mt-8 inline-flex rounded-full bg-gradient-accent px-7 py-3.5 font-semibold text-primary-foreground shadow-glow transition hover:opacity-90">
+            Исследовать историю
+          </a>
+        </div>
+        <div className="relative">
+          <div className="absolute inset-10 rounded-full bg-gradient-accent opacity-20 blur-3xl" aria-hidden />
+          <img src={neural} alt="Абстрактная нейронная сеть в форме мозга" width={1024} height={1024} className="relative animate-float rounded-full mix-blend-screen" />
+        </div>
+      </section>
+
+      <section id="timeline" className={`${pageWrap} scroll-mt-24 py-16`}>
+        <SectionTitle eyebrow="Хронология" title="Девять событий, которые определили историю ИИ" text="Нажмите «Подробнее», чтобы узнать больше о каждой вехе." />
+        <Timeline />
+      </section>
+
+      <section className={`${pageWrap} py-16`}>
+        <SectionTitle eyebrow="Эпохи" title="Четыре эпохи развития" />
+        <Eras />
+      </section>
+
+      <section className={`${pageWrap} py-16`}>
+        <div className="glass-card relative overflow-hidden p-10 text-center md:p-16">
+          <div className="absolute inset-0 bg-gradient-accent opacity-10" aria-hidden />
+          <h2 className="relative text-2xl font-semibold md:text-4xl">Насколько хорошо ты знаешь историю ИИ?</h2>
+          <p className="relative mt-4 text-muted-foreground">Шесть вопросов — проверьте себя за пару минут.</p>
+          <Link to="/quiz" className="relative mt-8 inline-flex rounded-full bg-gradient-accent px-7 py-3.5 font-semibold text-primary-foreground">
+            Пройти викторину
+          </Link>
+        </div>
+      </section>
+
+      <section className={`${pageWrap} py-16`}>
+        <SectionTitle eyebrow="Достоверность" title="Источники" />
+        <Sources />
+      </section>
+    </>
   );
 }
