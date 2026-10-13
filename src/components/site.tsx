@@ -132,7 +132,7 @@ export function Quiz() {
         <button onClick={() => { setIdx(0); setScore(0); setPicked(null); }} className="mt-6 rounded-full bg-gradient-accent px-6 py-3 text-sm font-semibold text-primary-foreground">Пройти ещё раз</button>
       </div>
     );
-  const q = quiz[idx];
+  const q = quiz[idx]!;
   return (
     <div className="glass-card p-6 md:p-8">
       <p className="text-xs uppercase tracking-widest text-primary">Вопрос {idx + 1} из {quiz.length}</p>
