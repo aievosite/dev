@@ -1,10 +1,11 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { milestones, eras, quiz, approaches, primarySources, explanatorySources, type Milestone, type Source } from "@/lib/content";
+import { milestones, periods, eras, quiz, approaches, primarySources, explanatorySources, type Milestone, type Source } from "@/lib/content";
 
 const nav = [
   { to: "/", label: "Главная" },
   { to: "/history", label: "История ИИ" },
+  { to: "/tools", label: "Нейросети и ИИ-инструменты" },
   { to: "/quiz", label: "Викторина" },
   { to: "/sources", label: "Источники" },
 ] as const;
@@ -17,7 +18,7 @@ export function Header() {
         <Link to="/" className="font-display text-sm font-semibold tracking-widest">
           AI <span className="text-gradient">/ ЭВОЛЮЦИЯ</span>
         </Link>
-        <nav className="hidden items-center gap-7 md:flex" aria-label="Основная навигация">
+        <nav className="hidden items-center gap-6 lg:flex" aria-label="Основная навигация">
           {nav.map((n) => (
             <Link key={n.to} to={n.to} className="text-sm text-muted-foreground transition-colors hover:text-foreground" activeProps={{ className: "text-foreground" }} activeOptions={{ exact: true }}>
               {n.label}
@@ -28,13 +29,13 @@ export function Header() {
           <Link to="/history" className="hidden rounded-full bg-gradient-accent px-5 py-2 text-sm font-semibold text-primary-foreground transition hover:opacity-90 sm:inline-flex">
             Начать путешествие
           </Link>
-          <button className="rounded-md border px-3 py-2 text-sm md:hidden" onClick={() => setOpen(!open)} aria-expanded={open} aria-label="Меню">
+          <button className="rounded-md border px-3 py-2 text-sm lg:hidden" onClick={() => setOpen(!open)} aria-expanded={open} aria-label="Меню">
             ☰
           </button>
         </div>
       </div>
       {open && (
-        <nav className="flex flex-col gap-1 border-t px-5 py-3 md:hidden">
+        <nav className="flex flex-col gap-1 border-t px-5 py-3 lg:hidden">
           {nav.map((n) => (
             <Link key={n.to} to={n.to} onClick={() => setOpen(false)} className="py-2 text-muted-foreground hover:text-foreground">
               {n.label}
@@ -84,7 +85,7 @@ function Article({ m, onClose }: { m: Milestone; onClose: () => void }) {
   }, [onClose]);
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center bg-background/80 backdrop-blur-sm animate-in fade-in sm:items-center sm:p-6" onClick={onClose}>
-      <article role="dialog" aria-modal="true" aria-labelledby="art-title" onClick={(e) => e.stopPropagation()} className="glass-card max-h-[92vh] w-full max-w-2xl overflow-y-auto rounded-b-none p-6 text-left sm:rounded-b-xl md:p-10">
+      <article role="dialog" aria-modal="true" aria-labelledby="art-title" onClick={(e) => e.stopPropagation()} className="glass-card article-scroll max-h-[92vh] w-full max-w-2xl overflow-y-auto rounded-b-none p-6 text-left sm:rounded-b-xl md:p-10">
         <div className="flex items-start justify-between gap-4">
           <div>
             <p className="font-display text-2xl font-semibold text-gradient">{m.year}</p>
@@ -110,20 +111,16 @@ function Article({ m, onClose }: { m: Milestone; onClose: () => void }) {
   );
 }
 
-function TimelineItem({ m, i }: { m: Milestone; i: number }) {
+function TimelineItem({ m }: { m: Milestone }) {
   const [open, setOpen] = useState(false);
-  const left = i % 2 === 0;
   return (
-    <li className="relative md:grid md:grid-cols-2 md:gap-12">
-      <span className="absolute left-0 top-6 h-3 w-3 -translate-x-1/2 rounded-full bg-gradient-accent shadow-glow md:left-1/2" aria-hidden />
-      <div className={`ml-6 md:ml-0 ${left ? "md:col-start-1 md:text-right" : "md:col-start-2"}`}>
-        <article className="glass-card p-6 transition hover:shadow-glow">
-          <p className="font-display text-2xl font-semibold text-gradient">{m.year}</p>
-          <h3 className="mt-2 text-lg font-medium">{m.title}</h3>
-          <p className="mt-2 text-sm text-muted-foreground">{m.short}</p>
-          <button onClick={() => setOpen(true)} className="mt-4 text-sm font-semibold text-primary hover:underline">Подробнее</button>
-        </article>
-      </div>
+    <li>
+      <article className="glass-card flex h-full flex-col border-l-2 border-l-primary/60 p-5 transition hover:shadow-glow">
+        <p className="font-display text-xl font-semibold text-gradient">{m.year}</p>
+        <h4 className="mt-1.5 font-medium">{m.title}</h4>
+        <p className="mt-1.5 flex-1 text-sm text-muted-foreground">{m.short}</p>
+        <button onClick={() => setOpen(true)} className="mt-3 self-start text-sm font-semibold text-primary hover:underline">Подробнее</button>
+      </article>
       {open && <Article m={m} onClose={() => setOpen(false)} />}
     </li>
   );
@@ -131,9 +128,29 @@ function TimelineItem({ m, i }: { m: Milestone; i: number }) {
 
 export function Timeline() {
   return (
-    <ol className="relative space-y-8 before:absolute before:inset-y-0 before:left-0 before:w-px before:bg-border md:before:left-1/2">
-      {milestones.map((m, i) => <TimelineItem key={m.year} m={m} i={i} />)}
-    </ol>
+    <div>
+      <nav aria-label="Периоды истории" className="sticky top-[65px] z-30 -mx-5 mb-10 flex gap-2 overflow-x-auto bg-background/85 px-5 py-3 backdrop-blur-md">
+        {periods.map((p) => (
+          <a key={p.id} href={`#period-${p.id}`} className="shrink-0 rounded-full border px-4 py-2 text-sm text-muted-foreground transition hover:border-primary hover:text-foreground">
+            {p.label} <span className="text-xs opacity-70">{p.range}</span>
+          </a>
+        ))}
+      </nav>
+      <div className="space-y-12">
+        {periods.map((p, i) => (
+          <section key={p.id} id={`period-${p.id}`} className="scroll-mt-40 md:grid md:grid-cols-[200px_1fr] md:gap-8">
+            <header className="mb-4 md:mb-0">
+              <p className="font-display text-sm text-muted-foreground/50">0{i + 1}</p>
+              <h3 className="mt-1 text-lg font-semibold">{p.label}</h3>
+              <p className="text-sm text-primary">{p.range}</p>
+            </header>
+            <ol className="grid gap-4 sm:grid-cols-2">
+              {milestones.slice(p.from, p.to).map((m) => <TimelineItem key={m.year} m={m} />)}
+            </ol>
+          </section>
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -165,7 +182,7 @@ export function Approaches() {
       <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         {approaches.map((a, i) => (
           <article key={a.title} className="glass-card p-6">
-            <p className="text-xs font-semibold uppercase tracking-widest text-primary">Подход {i + 1}</p>
+            <p className="text-xs font-semibold uppercase tracking-widest text-primary">Этап {i + 1}</p>
             <h3 className="mt-2 text-lg font-medium">{a.title}</h3>
             <p className="mt-3 text-sm leading-relaxed text-foreground/90">{a.how}</p>
             <p className="mt-3 text-sm text-muted-foreground"><span className="text-foreground">Пример: </span>{a.example}</p>
@@ -177,7 +194,7 @@ export function Approaches() {
         ))}
       </div>
       <p className="mt-8 max-w-3xl text-sm text-muted-foreground">
-        Эти подходы не отделены друг от друга жёсткими границами: глубокие нейросети — разновидность машинного обучения, генеративные модели построены на глубоких сетях, а современные системы нередко сочетают обученные модели с явными правилами и поиском.
+        Эти этапы — не простая смена технологий, при которой старое исчезает. Подходы сосуществуют: правила и поиск по-прежнему используются там, где нужна точность и объяснимость, глубокие нейросети — разновидность машинного обучения, а генеративные модели построены на глубоких сетях.
       </p>
     </div>
   );
@@ -235,25 +252,38 @@ function SourceList({ items }: { items: Source[] }) {
   );
 }
 
-export function Sources() {
+export function Sources({ defaultOpen = false }: { defaultOpen?: boolean }) {
+  const [open, setOpen] = useState(defaultOpen);
   return (
-    <div className="space-y-12">
-      <div className="grid gap-10 lg:grid-cols-2">
-        <div>
-          <h3 className="mb-1 text-sm font-semibold uppercase tracking-widest text-primary">Первоисточники</h3>
-          <p className="mb-4 text-sm text-muted-foreground">Оригинальные научные статьи и документы.</p>
-          <SourceList items={primarySources} />
-        </div>
-        <div>
-          <h3 className="mb-1 text-sm font-semibold uppercase tracking-widest text-violet">Пояснительные материалы</h3>
-          <p className="mb-4 text-sm text-muted-foreground">Ресурсы институтов и энциклопедий.</p>
-          <SourceList items={explanatorySources} />
-        </div>
+    <div className="space-y-8">
+      <div className="glass-card flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between">
+        <p className="text-sm text-muted-foreground">
+          {primarySources.length} первоисточников и {explanatorySources.length} пояснительных материалов: научные статьи, документы и ресурсы институтов.
+        </p>
+        <button onClick={() => setOpen(!open)} aria-expanded={open} aria-controls="sources-list" className="shrink-0 rounded-full border border-primary px-5 py-2 text-sm font-semibold text-primary transition hover:bg-primary/10">
+          {open ? "Скрыть источники" : "Показать источники"}
+        </button>
       </div>
-      <div className="glass-card space-y-3 p-5 text-sm text-muted-foreground">
-        <p>Тексты на сайте — авторские пересказы, а не цитаты. Цифры (счёт матчей, доли ошибок, число параметров) приведены по первоисточникам и официальным материалам.</p>
-        <p>Сведения о 2025–2026 годах описывают направления развития; конкретные заявления компаний стоит проверять по свежим независимым источникам.</p>
-      </div>
+      {open && (
+        <div id="sources-list" className="space-y-10 animate-in fade-in">
+          <div className="grid gap-10 lg:grid-cols-2">
+            <div>
+              <h3 className="mb-1 text-sm font-semibold uppercase tracking-widest text-primary">Первоисточники</h3>
+              <p className="mb-4 text-sm text-muted-foreground">Оригинальные научные статьи и документы.</p>
+              <SourceList items={primarySources} />
+            </div>
+            <div>
+              <h3 className="mb-1 text-sm font-semibold uppercase tracking-widest text-violet">Пояснительные материалы</h3>
+              <p className="mb-4 text-sm text-muted-foreground">Ресурсы институтов и энциклопедий.</p>
+              <SourceList items={explanatorySources} />
+            </div>
+          </div>
+          <div className="glass-card space-y-3 p-5 text-sm text-muted-foreground">
+            <p>Тексты на сайте — авторские пересказы, а не цитаты. Цифры (счёт матчей, доли ошибок, число параметров) приведены по первоисточникам и официальным материалам.</p>
+            <p>Сведения о 2025–2026 годах описывают направления развития; конкретные заявления компаний стоит проверять по свежим независимым источникам.</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

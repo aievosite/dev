@@ -92,3 +92,9 @@
 
 @keyframes float-slow { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-12px) } }
 @utility animate-float { animation: float-slow 7s ease-in-out infinite; }
+
+.article-scroll { scrollbar-width: thin; scrollbar-color: #343B4A #080B14; }
+.article-scroll::-webkit-scrollbar { width: 7px; }
+.article-scroll::-webkit-scrollbar-track { background: #080B14; border-radius: 7px; }
+.article-scroll::-webkit-scrollbar-thumb { background: #343B4A; border-radius: 7px; }
+.article-scroll::-webkit-scrollbar-thumb:hover { background: #398BFF; }

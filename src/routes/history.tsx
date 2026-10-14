@@ -15,7 +15,7 @@ export const Route = createFileRoute("/history")({
       <SectionTitle eyebrow="История ИИ" title="Путешествие сквозь девять десятилетий" text="Каждая карточка раскрывается — нажмите «Подробнее»." />
       <Timeline />
       <div className="mt-24">
-        <SectionTitle eyebrow="Как развивался ИИ" title="От правил к обучению и генерации" />
+        <SectionTitle eyebrow="Как развивался ИИ" title="Шесть этапов развития ИИ" />
         <Approaches />
       </div>
       <div className="mt-24">
