@@ -42,7 +42,7 @@ function Index() {
       </section>
 
       <section className={`${pageWrap} py-16`}>
-        <SectionTitle eyebrow="Как развивался ИИ" title="От правил к обучению и генерации" text="Пять подходов, которые сменяли и дополняли друг друга." />
+        <SectionTitle eyebrow="Как развивался ИИ" title="Шесть этапов развития ИИ" text="Главные идеи, которые связывают историю с современными ИИ-инструментами." />
         <Approaches />
       </section>
 
@@ -63,7 +63,7 @@ function Index() {
       </section>
 
       <section className={`${pageWrap} py-16`}>
-        <SectionTitle eyebrow="Достоверность" title="Источники" />
+        <SectionTitle eyebrow="Достоверность" title="Источники и литература" />
         <Sources />
       </section>
     </>

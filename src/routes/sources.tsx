@@ -12,8 +12,8 @@ export const Route = createFileRoute("/sources")({
   }),
   component: () => (
     <div className={`${pageWrap} py-16`}>
-      <SectionTitle eyebrow="Источники" title="Откуда эта информация" />
-      <Sources />
+      <SectionTitle eyebrow="Источники" title="Источники и литература" />
+      <Sources defaultOpen />
     </div>
   ),
 });
