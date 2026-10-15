@@ -29,10 +29,10 @@ function About() {
       <h1 className="text-3xl font-semibold leading-tight md:text-4xl">Ефимов Никита</h1>
       <p className="mt-3 text-muted-foreground">Ученик 11 «А» класса МБОУ СОШ № 72 г. Хабаровска</p>
       <div className="mt-10 grid items-start gap-5 md:grid-cols-2">
-        {sections.map((s) => (
-          <section key={s.h} className="glass-card p-6 md:p-7">
+        {sections.map((s, i) => (
+          <section key={s.h} className={`glass-card p-6 md:p-7${i === sections.length - 1 ? " md:col-span-2" : ""}`}>
             <h2 className="text-xs font-semibold uppercase tracking-widest text-primary">{s.h}</h2>
-            <p className="mt-3 leading-relaxed text-foreground/90">{s.p}</p>
+            <p className={`mt-3 leading-relaxed text-foreground/90${i === sections.length - 1 ? " md:max-w-3xl" : ""}`}>{s.p}</p>
           </section>
         ))}
         <section className="glass-card border-l-2 border-l-primary p-6 md:col-span-2 md:p-7">
