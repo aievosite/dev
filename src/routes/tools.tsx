@@ -1,5 +1,6 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
+import type { Tool } from "@/lib/tools";
 import { SectionTitle, pageWrap } from "@/components/site";
 import { toolCategories, tools } from "@/lib/tools";
 
@@ -27,6 +28,7 @@ function ToolsPage() {
 
   return (
     <div className={`${pageWrap} py-16`}>
+      <Link to="/" className="mb-8 inline-flex text-sm font-semibold text-primary hover:underline">← На главную</Link>
       <SectionTitle eyebrow="Современность" title="Нейросети и ИИ-инструменты" text="Практический путеводитель: какой инструмент подходит для учёбы, исследований, программирования и творчества. Обратите внимание: одни продукты — это модели, другие — приложения или платформы, которые дают доступ к одной или нескольким моделям." />
 
       <div className="space-y-4">
@@ -54,7 +56,7 @@ function ToolsPage() {
           {list.map((t) => (
             <article key={t.name} className="glass-card flex flex-col p-6 transition hover:shadow-glow">
               <p className="text-xs font-semibold uppercase tracking-widest text-primary">{t.category}</p>
-              <h3 className="mt-2 text-xl font-semibold">{t.name}</h3>
+              <div className="mt-3 flex items-center gap-3"><ToolLogo t={t} /><h3 className="text-xl font-semibold">{t.name}</h3></div>
               <p className="mt-1 text-xs text-muted-foreground">{t.kind}</p>
               <p className="mt-4 text-sm leading-relaxed text-foreground/90">{t.what}</p>
               <dl className="mt-4 flex-1 space-y-3 border-t pt-4 text-sm">
@@ -69,5 +71,21 @@ function ToolsPage() {
       )}
       <p className="mt-10 text-sm text-muted-foreground">Возможности, тарифы и доступность сервисов часто меняются — уточняйте актуальные условия на официальных сайтах.</p>
     </div>
+  );
+}
+
+const logoDomain: Record<string, string> = { YandexGPT: "ya.ru", "Google Veo": "deepmind.google", "Google Gemini": "gemini.google.com" };
+
+function ToolLogo({ t }: { t: Tool }) {
+  const [failed, setFailed] = useState(false);
+  const domain = logoDomain[t.name] ?? (t.url ? new URL(t.url).hostname : "");
+  return (
+    <span className="grid h-12 w-12 shrink-0 place-items-center overflow-hidden rounded-full border bg-card">
+      {domain && !failed ? (
+        <img src={`https://www.google.com/s2/favicons?domain=${domain}&sz=128`} alt={`Логотип ${t.name}`} width={30} height={30} loading="lazy" onError={() => setFailed(true)} className="h-7 w-7 object-contain" />
+      ) : (
+        <span className="text-sm font-semibold text-gradient">{t.name.slice(0, 2)}</span>
+      )}
+    </span>
   );
 }

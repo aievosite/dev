@@ -52,6 +52,16 @@ function Index() {
       </section>
 
       <section className={`${pageWrap} py-16`}>
+        <div className="glass-card relative overflow-hidden p-10 md:p-14">
+          <div className="absolute inset-0 bg-gradient-accent opacity-10" aria-hidden />
+          <p className="relative text-xs font-semibold uppercase tracking-[0.25em] text-primary">Современность</p>
+          <h2 className="relative mt-3 text-2xl font-semibold md:text-4xl">Нейросети и ИИ-инструменты</h2>
+          <p className="relative mt-4 max-w-2xl text-muted-foreground">Познакомьтесь с ИИ-инструментами для учёбы, исследований, программирования и творчества: 21 сервис с описанием задач, преимуществ и ограничений.</p>
+          <Link to="/tools" className="relative mt-8 inline-flex rounded-full bg-gradient-accent px-7 py-3.5 font-semibold text-primary-foreground shadow-glow transition hover:opacity-90">Открыть каталог →</Link>
+        </div>
+      </section>
+
+      <section className={`${pageWrap} py-16`}>
         <div className="glass-card relative overflow-hidden p-10 text-center md:p-16">
           <div className="absolute inset-0 bg-gradient-accent opacity-10" aria-hidden />
           <h2 className="relative text-2xl font-semibold md:text-4xl">Насколько хорошо ты знаешь историю ИИ?</h2>
