@@ -7,6 +7,7 @@ const nav = [
   { to: "/history", label: "История ИИ" },
   { to: "/tools", label: "Нейросети и ИИ-инструменты" },
   { to: "/quiz", label: "Викторина" },
+  { to: "/about", label: "Об авторе" },
 ] as const;
 
 export function smoothScrollTo(id: string, duration = 750) {
