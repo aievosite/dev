@@ -18,10 +18,10 @@ function Index() {
   const goTimeline = useGoToTimeline();
   return (
     <>
-      <section className={`${pageWrap} grid items-center gap-10 py-12 md:py-16 md:grid-cols-2 md:py-24`}>
-        <div>
+      <section className={`${pageWrap} grid items-center gap-10 py-12 md:grid-cols-12 md:py-16 md:py-24`}>
+        <div className="md:col-span-7">
           <p className="mb-5 text-xs font-semibold uppercase tracking-[0.25em] text-primary">1936 — 2026</p>
-          <h1 className="text-4xl font-semibold leading-[1.1] md:text-5xl lg:text-6xl">
+          <h1 className="text-4xl font-semibold leading-tight md:text-5xl">
             От первых алгоритмов до <span className="text-gradient">искусственного интеллекта</span> будущего
           </h1>
           <p className="mt-6 max-w-lg text-lg text-muted-foreground">
@@ -31,9 +31,11 @@ function Index() {
             Исследовать историю
           </a>
         </div>
-        <div className="relative">
-          <div className="absolute inset-10 rounded-full bg-gradient-accent opacity-20 blur-3xl" aria-hidden />
-          <img src={neural} alt="Абстрактная нейронная сеть в форме мозга" width={1024} height={1024} className="relative animate-float rounded-full hero-blend" />
+        <div className="relative md:col-span-5">
+          <div className="max-w-md ml-auto relative">
+            <div className="absolute inset-10 rounded-full bg-gradient-accent opacity-20 blur-3xl" aria-hidden />
+            <img src={neural} alt="Абстрактная нейронная сеть в форме мозга" width={1024} height={1024} className="relative animate-float rounded-full hero-blend w-full h-auto" />
+          </div>
         </div>
       </section>
 
