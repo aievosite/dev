@@ -18,7 +18,7 @@ function Index() {
   const goTimeline = useGoToTimeline();
   return (
     <>
-      <section className={`${pageWrap} grid items-center gap-8 py-12 md:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] md:gap-12 md:py-20`}>
+      <section className={`${pageWrap} grid grid-cols-1 items-center gap-8 py-12 md:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] md:gap-12 md:py-20`}>
         <div className="relative z-10 min-w-0">
           <p className="mb-5 text-xs font-semibold uppercase tracking-[0.25em] text-primary">1936 — 2026</p>
           <h1 className="text-3xl font-semibold leading-[1.15] [overflow-wrap:anywhere] sm:text-4xl lg:text-5xl xl:text-[3.4rem]">
