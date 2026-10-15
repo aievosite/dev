@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import neural from "@/assets/neural.jpg";
-import { Approaches, Eras, SectionTitle, Timeline, pageWrap } from "@/components/site";
+import { Approaches, Eras, SectionTitle, Timeline, pageWrap, useGoToTimeline } from "@/components/site";
+import { gallery } from "@/lib/images";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -15,43 +16,55 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const goTimeline = useGoToTimeline();
   return (
     <>
-      <section className={`${pageWrap} grid items-center gap-10 py-16 md:grid-cols-2 md:py-24`}>
+      <section className={`${pageWrap} grid items-center gap-10 py-12 md:py-16 md:grid-cols-2 md:py-24`}>
         <div>
           <p className="mb-5 text-xs font-semibold uppercase tracking-[0.25em] text-primary">1936 — 2026</p>
           <h1 className="text-4xl font-semibold leading-[1.1] md:text-5xl lg:text-6xl">
             От первых алгоритмов до <span className="text-gradient">искусственного интеллекта</span> будущего
           </h1>
           <p className="mt-6 max-w-lg text-lg text-muted-foreground">
-            Мы собрали самые важные вехи истории ИИ — идеи, программы и открытия, которые за девяносто лет превратили математическую абстракцию в технологию, меняющую мир.
+            От первых алгоритмов до генеративных нейросетей. Десятилетия открытий и технологических прорывов.
           </p>
-          <a href="#timeline" className="mt-8 inline-flex rounded-full bg-gradient-accent px-7 py-3.5 font-semibold text-primary-foreground shadow-glow transition hover:opacity-90">
+          <a href="#timeline" onClick={goTimeline} className="mt-8 inline-flex rounded-full bg-gradient-accent px-7 py-3.5 font-semibold text-primary-foreground shadow-glow transition hover:opacity-90">
             Исследовать историю
           </a>
         </div>
         <div className="relative">
           <div className="absolute inset-10 rounded-full bg-gradient-accent opacity-20 blur-3xl" aria-hidden />
-          <img src={neural} alt="Абстрактная нейронная сеть в форме мозга" width={1024} height={1024} className="relative animate-float rounded-full mix-blend-screen" />
+          <img src={neural} alt="Абстрактная нейронная сеть в форме мозга" width={1024} height={1024} className="relative animate-float rounded-full hero-blend" />
         </div>
       </section>
 
-      <section id="timeline" className={`${pageWrap} scroll-mt-24 py-16`}>
+      <section id="timeline" className={`${pageWrap} scroll-mt-24 py-12 md:py-16`}>
         <SectionTitle eyebrow="Хронология" title="Девять этапов, которые определили историю ИИ" text="Нажмите «Подробнее», чтобы открыть подробную статью о каждом этапе." />
         <Timeline />
       </section>
 
-      <section className={`${pageWrap} py-16`}>
+      <section className={`${pageWrap} py-8`} aria-label="Галерея истории">
+        <div className="grid gap-3 sm:grid-cols-3">
+          {gallery.map((g) => (
+            <figure key={g.src} className="group relative overflow-hidden rounded-xl border bg-muted">
+              <img src={g.src} alt={g.alt} loading="lazy" className="aspect-[4/3] w-full object-cover grayscale-[30%] transition duration-500 group-hover:grayscale-0" />
+              <figcaption className="absolute inset-x-0 bottom-0 bg-background/80 px-3 py-2 text-xs text-muted-foreground backdrop-blur-sm">{g.caption}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      <section className={`${pageWrap} py-12 md:py-16`}>
         <SectionTitle eyebrow="Как развивался ИИ" title="Шесть этапов развития ИИ" text="Главные идеи, которые связывают историю с современными ИИ-инструментами." />
         <Approaches />
       </section>
 
-      <section className={`${pageWrap} py-16`}>
+      <section className={`${pageWrap} py-12 md:py-16`}>
         <SectionTitle eyebrow="Эпохи" title="Четыре эпохи развития" />
         <Eras />
       </section>
 
-      <section className={`${pageWrap} py-16`}>
+      <section className={`${pageWrap} py-12 md:py-16`}>
         <div className="glass-card relative overflow-hidden p-10 md:p-14">
           <div className="absolute inset-0 bg-gradient-accent opacity-10" aria-hidden />
           <p className="relative text-xs font-semibold uppercase tracking-[0.25em] text-primary">Современность</p>
@@ -61,7 +74,7 @@ function Index() {
         </div>
       </section>
 
-      <section className={`${pageWrap} py-16`}>
+      <section className={`${pageWrap} py-12 md:py-16`}>
         <div className="glass-card relative overflow-hidden p-10 text-center md:p-16">
           <div className="absolute inset-0 bg-gradient-accent opacity-10" aria-hidden />
           <h2 className="relative text-2xl font-semibold md:text-4xl">Насколько хорошо ты знаешь историю ИИ?</h2>
