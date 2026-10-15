@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import neural from "@/assets/neural.jpg";
 import { Approaches, Eras, SectionTitle, Timeline, pageWrap, useGoToTimeline } from "@/components/site";
-import { gallery } from "@/lib/images";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -41,17 +40,6 @@ function Index() {
       <section id="timeline" className={`${pageWrap} scroll-mt-24 py-12 md:py-16`}>
         <SectionTitle eyebrow="Хронология" title="Девять этапов, которые определили историю ИИ" text="Нажмите «Подробнее», чтобы открыть подробную статью о каждом этапе." />
         <Timeline />
-      </section>
-
-      <section className={`${pageWrap} py-8`} aria-label="Галерея истории">
-        <div className="grid gap-3 sm:grid-cols-3">
-          {gallery.map((g) => (
-            <figure key={g.src} className="group relative overflow-hidden rounded-xl border bg-muted">
-              <img src={g.src} alt={g.alt} loading="lazy" className="aspect-[4/3] w-full object-cover grayscale-[30%] transition duration-500 group-hover:grayscale-0" />
-              <figcaption className="absolute inset-x-0 bottom-0 bg-background/80 px-3 py-2 text-xs text-muted-foreground backdrop-blur-sm">{g.caption}</figcaption>
-            </figure>
-          ))}
-        </div>
       </section>
 
       <section className={`${pageWrap} py-12 md:py-16`}>
