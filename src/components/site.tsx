@@ -28,7 +28,24 @@ export function smoothScrollTo(id: string, duration = 750) {
   requestAnimationFrame(step);
 }
 
+export function scrollToTop(duration = 650) {
+  const startY = window.scrollY;
+  if (startY <= 1 || window.matchMedia("(prefers-reduced-motion: reduce)").matches) { window.scrollTo(0, 0); return; }
+  const root = document.documentElement;
+  const prev = root.style.scrollBehavior;
+  root.style.scrollBehavior = "auto";
+  const t0 = performance.now();
+  const ease = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+  const step = (now: number) => {
+    const t = Math.min(1, (now - t0) / duration);
+    window.scrollTo(0, startY * (1 - ease(t)));
+    if (t < 1) requestAnimationFrame(step); else { window.scrollTo(0, 0); root.style.scrollBehavior = prev; }
+  };
+  requestAnimationFrame(step);
+}
+
 export function useGoToTimeline() {
+
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const navigate = useNavigate();
   return (e?: { preventDefault: () => void }) => {
@@ -65,9 +82,10 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4">
-        <Link to="/" className="font-display text-sm font-semibold tracking-widest">
+        <Link to="/" aria-label="В начало страницы" onClick={(e) => { e.preventDefault(); scrollToTop(); }} className="font-display text-sm font-semibold tracking-widest">
           AI <span className="text-gradient">/ ЭВОЛЮЦИЯ</span>
         </Link>
+
         <nav className="hidden items-center gap-6 lg:flex" aria-label="Основная навигация">
           {nav.map((n) => (
             <Link key={n.to} to={n.to} className="text-sm text-muted-foreground transition-colors hover:text-foreground" activeProps={{ className: "text-foreground" }} activeOptions={{ exact: true }}>
