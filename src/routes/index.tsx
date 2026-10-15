@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import neural from "@/assets/neural.jpg";
-import { Approaches, Eras, SectionTitle, Sources, Timeline, pageWrap } from "@/components/site";
+import { Approaches, Eras, SectionTitle, Timeline, pageWrap } from "@/components/site";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -70,11 +70,6 @@ function Index() {
             Пройти викторину
           </Link>
         </div>
-      </section>
-
-      <section className={`${pageWrap} py-16`}>
-        <SectionTitle eyebrow="Достоверность" title="Источники и литература" />
-        <Sources />
       </section>
     </>
   );
