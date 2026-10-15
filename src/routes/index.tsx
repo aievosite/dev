@@ -19,7 +19,7 @@ function Index() {
   return (
     <>
       <section className={`${pageWrap} grid items-center gap-10 py-12 md:py-16 md:grid-cols-2 md:py-24`}>
-        <div className="relative z-10">
+        <div>
           <p className="mb-5 text-xs font-semibold uppercase tracking-[0.25em] text-primary">1936 — 2026</p>
           <h1 className="text-4xl font-semibold leading-[1.1] md:text-5xl lg:text-6xl">
             От первых алгоритмов до <span className="text-gradient">искусственного интеллекта</span> будущего

@@ -133,4 +133,7 @@
 
 body, .glass-card, header, nav, button, input, a { transition: background-color 250ms ease, color 250ms ease, border-color 250ms ease; }
 .hero-blend { mix-blend-mode: screen; }
-.light .hero-blend { mix-blend-mode: normal; }
+.light .hero-blend {
+  content: url("./assets/neural-light.png");
+  mix-blend-mode: multiply;
+}
