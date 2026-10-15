@@ -1,13 +1,12 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { milestones, periods, eras, quiz, approaches, primarySources, explanatorySources, type Milestone, type Source } from "@/lib/content";
+import { milestones, periods, eras, quiz, approaches, type Milestone } from "@/lib/content";
 
 const nav = [
   { to: "/", label: "Главная" },
   { to: "/history", label: "История ИИ" },
   { to: "/tools", label: "Нейросети и ИИ-инструменты" },
   { to: "/quiz", label: "Викторина" },
-  { to: "/sources", label: "Источники" },
 ] as const;
 
 export function Header() {
@@ -156,14 +155,30 @@ export function Timeline() {
 
 function EraCard({ e, i }: { e: (typeof eras)[number]; i: number }) {
   const [open, setOpen] = useState(false);
+  const id = `era-more-${i}`;
   return (
-    <article className="glass-card flex flex-col p-6">
+    <article
+      tabIndex={0}
+      role="button"
+      aria-expanded={open}
+      aria-controls={id}
+      aria-label={`${e.title}: ${open ? "свернуть" : "показать подробности"}`}
+      onClick={() => setOpen((v) => !v)}
+      onKeyDown={(ev) => { if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); setOpen((v) => !v); } }}
+      onPointerEnter={(ev) => ev.pointerType === "mouse" && setOpen(true)}
+      onPointerLeave={(ev) => ev.pointerType === "mouse" && setOpen(false)}
+      className="glass-card flex cursor-pointer flex-col p-6 outline-none transition-shadow hover:shadow-glow focus-visible:ring-2 focus-visible:ring-primary"
+    >
       <p className="font-display text-4xl font-semibold text-muted-foreground/40">0{i + 1}</p>
       <p className="mt-4 text-xs uppercase tracking-widest text-primary">{e.period}</p>
       <h3 className="mt-2 text-lg font-medium">{e.title}</h3>
       <p className="mt-3 text-sm text-muted-foreground">{e.text}</p>
-      {open && <ul className="mt-4 space-y-2 border-t pt-4 text-sm animate-in fade-in">{e.more.map((t) => <li key={t} className="leading-relaxed text-foreground/90">— {t}</li>)}</ul>}
-      <button onClick={() => setOpen(!open)} aria-expanded={open} className="mt-4 self-start text-sm font-semibold text-primary hover:underline">{open ? "Свернуть" : "Читать далее"}</button>
+      <div id={id} className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out ${open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
+        <ul className="space-y-2 overflow-hidden text-sm">
+          <li className="mt-4 border-t pt-4" aria-hidden />
+          {e.more.map((t) => <li key={t} className="leading-relaxed text-foreground/90">— {t}</li>)}
+        </ul>
+      </div>
     </article>
   );
 }
@@ -237,55 +252,5 @@ export function Quiz() {
   );
 }
 
-function SourceList({ items }: { items: Source[] }) {
-  return (
-    <ol className="space-y-4">
-      {items.map((s) => (
-        <li key={s.url} className="glass-card p-5">
-          <a href={s.url} target="_blank" rel="noopener noreferrer" className="font-medium hover:text-primary">{s.name} ↗</a>
-          <p className="mt-1 text-sm text-foreground/80">{s.meta}</p>
-          <p className="mt-2 text-sm text-muted-foreground">{s.note}</p>
-          <p className="mt-2 break-all text-xs text-muted-foreground/70">{s.url}</p>
-        </li>
-      ))}
-    </ol>
-  );
-}
-
-export function Sources({ defaultOpen = false }: { defaultOpen?: boolean }) {
-  const [open, setOpen] = useState(defaultOpen);
-  return (
-    <div className="space-y-8">
-      <div className="glass-card flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-sm text-muted-foreground">
-          {primarySources.length} первоисточников и {explanatorySources.length} пояснительных материалов: научные статьи, документы и ресурсы институтов.
-        </p>
-        <button onClick={() => setOpen(!open)} aria-expanded={open} aria-controls="sources-list" className="shrink-0 rounded-full border border-primary px-5 py-2 text-sm font-semibold text-primary transition hover:bg-primary/10">
-          {open ? "Скрыть источники" : "Показать источники"}
-        </button>
-      </div>
-      {open && (
-        <div id="sources-list" className="space-y-10 animate-in fade-in">
-          <div className="grid gap-10 lg:grid-cols-2">
-            <div>
-              <h3 className="mb-1 text-sm font-semibold uppercase tracking-widest text-primary">Первоисточники</h3>
-              <p className="mb-4 text-sm text-muted-foreground">Оригинальные научные статьи и документы.</p>
-              <SourceList items={primarySources} />
-            </div>
-            <div>
-              <h3 className="mb-1 text-sm font-semibold uppercase tracking-widest text-violet">Пояснительные материалы</h3>
-              <p className="mb-4 text-sm text-muted-foreground">Ресурсы институтов и энциклопедий.</p>
-              <SourceList items={explanatorySources} />
-            </div>
-          </div>
-          <div className="glass-card space-y-3 p-5 text-sm text-muted-foreground">
-            <p>Тексты на сайте — авторские пересказы, а не цитаты. Цифры (счёт матчей, доли ошибок, число параметров) приведены по первоисточникам и официальным материалам.</p>
-            <p>Сведения о 2025–2026 годах описывают направления развития; конкретные заявления компаний стоит проверять по свежим независимым источникам.</p>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
 
 export const pageWrap = "mx-auto max-w-6xl px-5";
