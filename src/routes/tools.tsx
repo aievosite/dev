@@ -82,7 +82,7 @@ function ToolLogo({ t }: { t: Tool }) {
   return (
     <span className="grid h-12 w-12 shrink-0 place-items-center overflow-hidden rounded-full border bg-card">
       {domain && !failed ? (
-        <img src={`https://www.google.com/s2/favicons?domain=${domain}&sz=128`} alt={`Логотип ${t.name}`} width={30} height={30} loading="lazy" onError={() => setFailed(true)} className="h-7 w-7 rounded-lg object-contain" />
+        <img src={`https://www.google.com/s2/favicons?domain=${domain}&sz=128`} alt={`Логотип ${t.name}`} width={30} height={30} loading="lazy" onError={() => setFailed(true)} className="h-7 w-7 rounded-[8px] object-contain" />
       ) : (
         <span className="text-sm font-semibold text-gradient">{t.name.slice(0, 2)}</span>
       )}
