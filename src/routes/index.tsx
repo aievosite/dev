@@ -22,7 +22,7 @@ function Index() {
         <div>
           <p className="mb-5 text-xs font-semibold uppercase tracking-[0.25em] text-primary">1936 — 2026</p>
           <h1 className="text-4xl font-semibold leading-[1.1] md:text-5xl lg:text-6xl">
-            От первых алгоритмов до <span>искусственного интеллекта</span> будущего
+            От первых алгоритмов до <span className="text-gradient">искусственного интеллекта</span> будущего
           </h1>
           <p className="mt-6 max-w-lg text-lg text-muted-foreground">
             От первых алгоритмов до генеративных нейросетей. Десятилетия открытий и технологических прорывов.
