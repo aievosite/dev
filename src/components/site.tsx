@@ -1,5 +1,4 @@
 import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
-import { milestonePhotos } from "@/lib/images";
 import { useEffect, useState } from "react";
 import { milestones, periods, eras, quiz, approaches, type Milestone } from "@/lib/content";
 
@@ -145,12 +144,6 @@ function Article({ m, onClose }: { m: Milestone; onClose: () => void }) {
           </div>
           <button onClick={onClose} aria-label="Закрыть" className="rounded-full border px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground">✕</button>
         </div>
-        {milestonePhotos[m.year] && (
-          <figure className="mt-6 overflow-hidden rounded-lg border bg-muted">
-            <img src={milestonePhotos[m.year]!.src} alt={milestonePhotos[m.year]!.alt} loading="lazy" className="max-h-72 w-full object-contain" />
-            <figcaption className="px-3 py-2 text-xs text-muted-foreground">{milestonePhotos[m.year]!.caption}</figcaption>
-          </figure>
-        )}
         <div className="mt-6 space-y-6">
           {m.sections.map((s) => (
             <section key={s.h}>
@@ -174,10 +167,7 @@ function TimelineItem({ m }: { m: Milestone }) {
   return (
     <li>
       <article className="glass-card flex h-full flex-col border-l-2 border-l-primary/60 p-5 transition hover:shadow-glow">
-        <div className="flex items-start justify-between gap-3">
-          <p className="font-display text-xl font-semibold text-gradient">{m.year}</p>
-          {milestonePhotos[m.year] && <img src={milestonePhotos[m.year]!.src.replace(/width=\d+/, "width=160")} alt="" aria-hidden loading="lazy" className="h-12 w-12 shrink-0 rounded-lg border object-cover" />}
-        </div>
+        <p className="font-display text-xl font-semibold text-gradient">{m.year}</p>
         <h4 className="mt-1.5 font-medium">{m.title}</h4>
         <p className="mt-1.5 flex-1 text-sm text-muted-foreground">{m.short}</p>
         <button onClick={() => setOpen(true)} className="mt-3 self-start text-sm font-semibold text-primary hover:underline">Подробнее</button>
