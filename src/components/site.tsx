@@ -1,4 +1,5 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
+import { milestonePhotos } from "@/lib/images";
 import { useEffect, useState } from "react";
 import { milestones, periods, eras, quiz, approaches, type Milestone } from "@/lib/content";
 
@@ -9,8 +10,59 @@ const nav = [
   { to: "/quiz", label: "Викторина" },
 ] as const;
 
+export function smoothScrollTo(id: string, duration = 750) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const startY = window.scrollY;
+  const targetY = el.getBoundingClientRect().top + startY - 80;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { window.scrollTo(0, targetY); return; }
+  const root = document.documentElement;
+  const prev = root.style.scrollBehavior;
+  root.style.scrollBehavior = "auto";
+  const t0 = performance.now();
+  const ease = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+  const step = (now: number) => {
+    const t = Math.min(1, (now - t0) / duration);
+    window.scrollTo(0, startY + (targetY - startY) * ease(t));
+    if (t < 1) requestAnimationFrame(step); else root.style.scrollBehavior = prev;
+  };
+  requestAnimationFrame(step);
+}
+
+export function useGoToTimeline() {
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const navigate = useNavigate();
+  return (e?: { preventDefault: () => void }) => {
+    e?.preventDefault();
+    if (pathname === "/") smoothScrollTo("timeline");
+    else navigate({ to: "/" }).then(() => setTimeout(() => smoothScrollTo("timeline"), 80));
+  };
+}
+
+function ThemeToggle() {
+  const [light, setLight] = useState(false);
+  useEffect(() => setLight(document.documentElement.classList.contains("light")), []);
+  const toggle = () => {
+    const next = !light;
+    setLight(next);
+    document.documentElement.classList.toggle("light", next);
+    try { localStorage.setItem("theme", next ? "light" : "dark"); } catch {}
+  };
+  const label = light ? "Включить тёмную тему" : "Включить светлую тему";
+  return (
+    <button onClick={toggle} aria-label={label} title={label} className="grid h-9 w-9 place-items-center rounded-full border bg-card text-foreground transition hover:border-primary hover:text-primary">
+      {light ? (
+        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" /></svg>
+      ) : (
+        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" /></svg>
+      )}
+    </button>
+  );
+}
+
 export function Header() {
   const [open, setOpen] = useState(false);
+  const goTimeline = useGoToTimeline();
   return (
     <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4">
@@ -25,9 +77,10 @@ export function Header() {
           ))}
         </nav>
         <div className="flex items-center gap-2">
-          <Link to="/history" className="hidden rounded-full bg-gradient-accent px-5 py-2 text-sm font-semibold text-primary-foreground transition hover:opacity-90 sm:inline-flex">
+          <a href="/#timeline" onClick={goTimeline} className="hidden rounded-full bg-gradient-accent px-5 py-2 text-sm font-semibold text-primary-foreground transition hover:opacity-90 sm:inline-flex">
             Начать путешествие
-          </Link>
+          </a>
+          <ThemeToggle />
           <button className="rounded-md border px-3 py-2 text-sm lg:hidden" onClick={() => setOpen(!open)} aria-expanded={open} aria-label="Меню">
             ☰
           </button>
@@ -92,6 +145,12 @@ function Article({ m, onClose }: { m: Milestone; onClose: () => void }) {
           </div>
           <button onClick={onClose} aria-label="Закрыть" className="rounded-full border px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground">✕</button>
         </div>
+        {milestonePhotos[m.year] && (
+          <figure className="mt-6 overflow-hidden rounded-lg border bg-muted">
+            <img src={milestonePhotos[m.year]!.src} alt={milestonePhotos[m.year]!.alt} loading="lazy" className="max-h-72 w-full object-contain" />
+            <figcaption className="px-3 py-2 text-xs text-muted-foreground">{milestonePhotos[m.year]!.caption}</figcaption>
+          </figure>
+        )}
         <div className="mt-6 space-y-6">
           {m.sections.map((s) => (
             <section key={s.h}>
@@ -115,7 +174,10 @@ function TimelineItem({ m }: { m: Milestone }) {
   return (
     <li>
       <article className="glass-card flex h-full flex-col border-l-2 border-l-primary/60 p-5 transition hover:shadow-glow">
-        <p className="font-display text-xl font-semibold text-gradient">{m.year}</p>
+        <div className="flex items-start justify-between gap-3">
+          <p className="font-display text-xl font-semibold text-gradient">{m.year}</p>
+          {milestonePhotos[m.year] && <img src={milestonePhotos[m.year]!.src.replace(/width=\d+/, "width=160")} alt="" aria-hidden loading="lazy" className="h-12 w-12 shrink-0 rounded-lg border object-cover" />}
+        </div>
         <h4 className="mt-1.5 font-medium">{m.title}</h4>
         <p className="mt-1.5 flex-1 text-sm text-muted-foreground">{m.short}</p>
         <button onClick={() => setOpen(true)} className="mt-3 self-start text-sm font-semibold text-primary hover:underline">Подробнее</button>
@@ -153,41 +215,23 @@ export function Timeline() {
   );
 }
 
-function EraCard({ e, i }: { e: (typeof eras)[number]; i: number }) {
-  const [open, setOpen] = useState(false);
-  const id = `era-more-${i}`;
-  return (
-    <article
-      tabIndex={0}
-      role="button"
-      aria-expanded={open}
-      aria-controls={id}
-      aria-label={`${e.title}: ${open ? "свернуть" : "показать подробности"}`}
-      onClick={() => setOpen((v) => !v)}
-      onKeyDown={(ev) => { if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); setOpen((v) => !v); } }}
-      onPointerEnter={(ev) => ev.pointerType === "mouse" && setOpen(true)}
-      onPointerLeave={(ev) => ev.pointerType === "mouse" && setOpen(false)}
-      className="glass-card flex cursor-pointer flex-col p-6 outline-none transition-shadow hover:shadow-glow focus-visible:ring-2 focus-visible:ring-primary"
-    >
-      <p className="font-display text-4xl font-semibold text-muted-foreground/40">0{i + 1}</p>
-      <p className="mt-4 text-xs uppercase tracking-widest text-primary">{e.period}</p>
-      <h3 className="mt-2 text-lg font-medium">{e.title}</h3>
-      <p className="mt-3 text-sm text-muted-foreground">{e.text}</p>
-      <div id={id} className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out ${open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
-        <ul className="space-y-2 overflow-hidden text-sm">
-          <li className="mt-4 border-t pt-4" aria-hidden />
-          {e.more.map((t) => <li key={t} className="leading-relaxed text-foreground/90">— {t}</li>)}
-        </ul>
-      </div>
-    </article>
-  );
-}
-
 export function Eras() {
   return (
-    <div className="grid items-start gap-5 sm:grid-cols-2 lg:grid-cols-4">
-      {eras.map((e, i) => <EraCard key={e.title} e={e} i={i} />)}
-    </div>
+    <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {eras.map((e, i) => (
+        <li key={e.title} className="glass-card flex flex-col p-5 md:p-6">
+          <div className="flex items-baseline gap-3">
+            <span className="font-display text-2xl font-semibold text-muted-foreground/40">0{i + 1}</span>
+            <span className="text-xs uppercase tracking-widest text-primary">{e.period}</span>
+          </div>
+          <h3 className="mt-2 text-lg font-medium">{e.title}</h3>
+          <p className="mt-2 text-sm text-muted-foreground">{e.text}</p>
+          <ul className="mt-4 space-y-2 border-t pt-4 text-sm">
+            {e.more.map((t) => <li key={t} className="leading-relaxed text-foreground/90">— {t}</li>)}
+          </ul>
+        </li>
+      ))}
+    </ol>
   );
 }
 

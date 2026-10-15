@@ -56,6 +56,38 @@
   --ring: oklch(0.68 0.17 250);
   --gradient-accent: linear-gradient(120deg, var(--primary), var(--violet));
   --shadow-glow: 0 0 60px -15px color-mix(in oklab, var(--primary) 50%, transparent);
+  --scroll-track: #0B0F1A;
+  --scroll-thumb: #343B4A;
+  --scroll-thumb-hover: #4A5366;
+  color-scheme: dark;
+}
+
+.light {
+  --background: oklch(0.975 0.008 260);
+  --foreground: oklch(0.2 0.03 265);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.2 0.03 265);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.2 0.03 265);
+  --primary: oklch(0.55 0.19 255);
+  --primary-foreground: oklch(0.99 0 0);
+  --violet: oklch(0.52 0.22 295);
+  --secondary: oklch(0.94 0.015 260);
+  --secondary-foreground: oklch(0.2 0.03 265);
+  --muted: oklch(0.94 0.015 260);
+  --muted-foreground: oklch(0.45 0.03 260);
+  --accent: oklch(0.92 0.025 260);
+  --accent-foreground: oklch(0.2 0.03 265);
+  --destructive: oklch(0.55 0.22 25);
+  --success: oklch(0.55 0.15 160);
+  --border: oklch(0.2 0.03 265 / 12%);
+  --input: oklch(0.2 0.03 265 / 15%);
+  --ring: oklch(0.55 0.19 255);
+  --shadow-glow: 0 10px 40px -15px color-mix(in oklab, var(--primary) 40%, transparent);
+  --scroll-track: oklch(0.95 0.01 260);
+  --scroll-thumb: oklch(0.78 0.02 260);
+  --scroll-thumb-hover: oklch(0.65 0.03 260);
+  color-scheme: light;
 }
 
 @utility text-gradient {
@@ -93,9 +125,12 @@
 @keyframes float-slow { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-12px) } }
 @utility animate-float { animation: float-slow 7s ease-in-out infinite; }
 
-* { scrollbar-width: thin; scrollbar-color: #343B4A #0B0F1A; }
+* { scrollbar-width: thin; scrollbar-color: var(--scroll-thumb) var(--scroll-track); }
 *::-webkit-scrollbar { width: 8px; height: 6px; }
-*::-webkit-scrollbar-track { background: #0B0F1A; }
-*::-webkit-scrollbar-thumb { background: #343B4A; border-radius: 8px; }
-*::-webkit-scrollbar-thumb:hover { background: #4A5366; }
-*:hover { scrollbar-color: #4A5366 #0B0F1A; }
+*::-webkit-scrollbar-track { background: var(--scroll-track); }
+*::-webkit-scrollbar-thumb { background: var(--scroll-thumb); border-radius: 8px; }
+*::-webkit-scrollbar-thumb:hover { background: var(--scroll-thumb-hover); }
+
+body, .glass-card, header, nav, button, input, a { transition: background-color 250ms ease, color 250ms ease, border-color 250ms ease; }
+.hero-blend { mix-blend-mode: screen; }
+.light .hero-blend { mix-blend-mode: normal; }
