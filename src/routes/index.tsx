@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import neural from "@/assets/neural.jpg";
+import neural from "@/assets/neural-brain.png";
 import { Approaches, Eras, SectionTitle, Timeline, pageWrap, useGoToTimeline } from "@/components/site";
 
 export const Route = createFileRoute("/")({
@@ -18,10 +18,10 @@ function Index() {
   const goTimeline = useGoToTimeline();
   return (
     <>
-      <section className={`${pageWrap} grid items-center gap-10 py-12 md:py-16 md:grid-cols-2 md:py-24`}>
-        <div>
+      <section className={`${pageWrap} grid grid-cols-1 items-center gap-8 py-12 md:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] md:gap-12 md:py-20`}>
+        <div className="relative z-10 min-w-0">
           <p className="mb-5 text-xs font-semibold uppercase tracking-[0.25em] text-primary">1936 — 2026</p>
-          <h1 className="text-4xl font-semibold leading-[1.1] md:text-5xl lg:text-6xl">
+          <h1 className="text-3xl font-semibold leading-[1.15] [overflow-wrap:anywhere] sm:text-4xl lg:text-5xl xl:text-[3.4rem]">
             От первых алгоритмов до <span className="text-gradient">искусственного интеллекта</span> будущего
           </h1>
           <p className="mt-6 max-w-lg text-lg text-muted-foreground">
@@ -31,9 +31,9 @@ function Index() {
             Исследовать историю
           </a>
         </div>
-        <div className="relative">
-          <div className="absolute inset-10 rounded-full bg-gradient-accent opacity-20 blur-3xl" aria-hidden />
-          <img src={neural} alt="Абстрактная нейронная сеть в форме мозга" width={1024} height={1024} className="relative animate-float rounded-full hero-blend" />
+        <div className="relative mx-auto w-full max-w-[280px] sm:max-w-sm md:max-w-md">
+          <div className="absolute inset-[20%] rounded-full bg-gradient-accent opacity-25 blur-3xl" aria-hidden />
+          <img src={neural} alt="Абстрактная нейронная сеть в форме мозга" width={1024} height={1024} className="relative h-auto w-full animate-float" />
         </div>
       </section>
 
