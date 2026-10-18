@@ -1,5 +1,8 @@
 import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
+import { Button } from "@/components/ui/button";
+import { useModalPageLock } from "@/hooks/use-modal-page-lock";
 import { milestones, periods, eras, quiz, approaches, type Milestone } from "@/lib/content";
 import { EventImage, type HistoricalImage } from "@/components/event-image";
 
@@ -155,21 +158,40 @@ export function SectionTitle({ eyebrow, title, text }: { eyebrow: string; title:
 }
 
 function Article({ m, image, showImage, onClose }: { m: Milestone; image?: HistoricalImage | undefined; showImage?: boolean; onClose: () => void }) {
+  useModalPageLock();
+  const dialogRef = useRef<HTMLElement>(null);
   useEffect(() => {
-    const k = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    const previousFocus = document.activeElement;
+    dialogRef.current?.focus({ preventScroll: true });
+    const k = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+      if (e.key !== "Tab") return;
+      const dialog = dialogRef.current;
+      if (!dialog) return;
+      const focusable = Array.from(dialog.querySelectorAll<HTMLElement>('button, a[href], [tabindex="0"]'));
+      const first = focusable[0];
+      const last = focusable.at(-1);
+      if (e.shiftKey && (document.activeElement === first || document.activeElement === dialog)) {
+        e.preventDefault(); last?.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault(); first?.focus();
+      }
+    };
     document.addEventListener("keydown", k);
-    document.body.style.overflow = "hidden";
-    return () => { document.removeEventListener("keydown", k); document.body.style.overflow = ""; };
+    return () => {
+      document.removeEventListener("keydown", k);
+      if (previousFocus instanceof HTMLElement) previousFocus.focus({ preventScroll: true });
+    };
   }, [onClose]);
-  return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center bg-background/80 backdrop-blur-sm animate-in fade-in sm:items-center sm:p-6" onClick={onClose}>
-      <article role="dialog" aria-modal="true" aria-labelledby="art-title" onClick={(e) => e.stopPropagation()} className="glass-card article-scroll max-h-[92vh] w-full max-w-2xl overflow-y-auto rounded-b-none p-6 text-left sm:rounded-b-xl md:p-10">
+  return createPortal(
+    <div className="event-modal-overlay fixed inset-x-0 top-0 z-50 flex items-end justify-center bg-background/80 backdrop-blur-sm animate-in fade-in sm:items-center" onClick={onClose}>
+      <article ref={dialogRef} tabIndex={-1} role="dialog" aria-modal="true" aria-labelledby="art-title" onClick={(e) => e.stopPropagation()} className="glass-card event-modal article-scroll min-h-0 w-full max-w-2xl overflow-y-auto rounded-b-none p-6 text-left outline-none sm:rounded-b-xl md:p-10">
         <div className="flex items-start justify-between gap-4">
-          <div>
+          <div className="min-w-0">
             <p className="font-display text-2xl font-semibold text-gradient">{m.year}</p>
             <h3 id="art-title" className="mt-2 text-2xl font-semibold">{m.title}</h3>
           </div>
-          <button onClick={onClose} aria-label="Закрыть" className="rounded-full border px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground">✕</button>
+          <Button variant="ghost" onClick={onClose} aria-label="Закрыть" className="event-modal-close h-auto shrink-0 rounded-full border px-3 py-1.5 text-sm text-muted-foreground hover:bg-transparent hover:text-foreground">✕</Button>
         </div>
         {showImage && <EventImage key={m.year} image={image} />}
         <div className="mt-6 space-y-6">
@@ -186,7 +208,7 @@ function Article({ m, image, showImage, onClose }: { m: Milestone; image?: Histo
           </div>
         </div>
       </article>
-    </div>
+    </div>, document.body
   );
 }
 
