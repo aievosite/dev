@@ -9,6 +9,8 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "От машины Тьюринга до генеративного ИИ 2026 года: ключевые вехи истории искусственного интеллекта." },
       { property: "og:title", content: "AI: Эволюция интеллекта" },
       { property: "og:description", content: "Интерактивная хронология истории искусственного интеллекта." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Index,

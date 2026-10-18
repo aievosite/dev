@@ -8,6 +8,8 @@ export const Route = createFileRoute("/quiz")({
       { name: "description", content: "Проверьте свои знания истории искусственного интеллекта в короткой викторине." },
       { property: "og:title", content: "Викторина: насколько хорошо ты знаешь историю ИИ?" },
       { property: "og:description", content: "Шесть вопросов об истории искусственного интеллекта." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: () => (
