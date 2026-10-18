@@ -136,16 +136,28 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  body { animation: none; }
+  body, body::before { animation: none; }
 }
 
-/* Mobile Safari does not reliably paint fixed body backgrounds. These
-   full-page ellipses keep the same glow continuous, without repeated tiles. */
+/* Mobile: keep the glow in the viewport corner like desktop. iOS Safari does
+   not paint fixed body backgrounds, so paint it on a fixed ::before layer. */
 @media (hover: none) and (pointer: coarse), (max-width: 767px) {
   body {
-    background-attachment: scroll;
-    background-image: radial-gradient(ellipse 65% 100% at 0% 65%, var(--background-glow-violet), transparent 75%),
-      radial-gradient(ellipse 50% 100% at 0% 35%, var(--background-glow-blue), transparent 80%);
+    background-image: none;
+    animation: none;
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: 0% 100%;
+    background-image: radial-gradient(ellipse 65% 55% at 0% 100%, var(--background-glow-violet), transparent 75%),
+      radial-gradient(ellipse 50% 45% at 0% 80%, var(--background-glow-blue), transparent 80%);
+    animation: background-glow-drift 20s ease-in-out infinite;
   }
 }
 
