@@ -1,4 +1,4 @@
 # Tasks
-- [x] Find authentic, readable replacements for AlexNet, full Transformer, and a Russian AI conversation.
-- [x] Replace only these three images and their accurate source credits.
-- [x] Verify the three dialogs and preserve the other six images and educational content.
+- [ ] Find a verified 2017–2021 LLM photograph and a sharp, readable Russian GigaChat conversation.
+- [ ] Replace only these two images and source credits, preserving all other content and images.
+- [ ] Verify both dialogs and image loading, readability, aspect ratio, and unchanged site behavior.
