@@ -230,7 +230,7 @@ function TimelineItem({ m, images }: { m: Milestone; images?: Record<string, His
 export function Timeline({ images }: { images?: Record<string, HistoricalImage> } = {}) {
   return (
     <div>
-      <nav aria-label="Периоды истории" className="sticky top-[65px] z-30 -mx-5 mb-10 flex gap-2 overflow-x-auto bg-background/85 px-5 py-3 backdrop-blur-md">
+      <nav aria-label="Периоды истории" className="sticky top-[65px] z-30 -mx-5 mb-10 flex gap-2 overflow-x-auto bg-transparent px-5 py-3">
         {periods.map((p) => (
           <a key={p.id} href={`#period-${p.id}`} className="shrink-0 rounded-full border px-4 py-2 text-sm text-muted-foreground transition hover:border-primary hover:text-foreground">
             {p.label} <span className="text-xs opacity-70">{p.range}</span>
