@@ -86,8 +86,8 @@
   --input: oklch(0.2 0.03 265 / 15%);
   --ring: oklch(0.55 0.19 255);
   --shadow-glow: 0 10px 40px -15px color-mix(in oklab, var(--primary) 40%, transparent);
-  --background-glow-violet: color-mix(in oklab, var(--violet) 8.75%, transparent);
-  --background-glow-blue: color-mix(in oklab, var(--primary) 7.5%, transparent);
+  --background-glow-violet: color-mix(in oklab, var(--violet) 20%, transparent);
+  --background-glow-blue: color-mix(in oklab, var(--primary) 16%, transparent);
   --scroll-track: oklch(0.95 0.01 260);
   --scroll-thumb: oklch(0.78 0.02 260);
   --scroll-thumb-hover: oklch(0.65 0.03 260);
