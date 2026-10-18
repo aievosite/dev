@@ -5,8 +5,8 @@ import ibm7090 from "@/assets/history/ibm7090-console.jpg.asset.json";
 import vax from "@/assets/history/vax-equipment.jpg.asset.json";
 import deepBlue from "@/assets/history/deepblue-match-1997.jpg.asset.json";
 import alexnet from "@/assets/history/alexnet-imagenet-original-figures.jpg.asset.json";
-import transformer from "@/assets/history/transformer-original-architecture.jpg.asset.json";
-import gigachat from "@/assets/history/gigachat-russian-conversation.jpg.asset.json";
+import transformer from "@/assets/history/openai-language-model-team-2020.jpg.asset.json";
+import gigachat from "@/assets/history/gigachat-official-short-russian-dialogue.jpg.asset.json";
 import type { HistoricalImage } from "@/components/event-image";
 
 export const historyImages: Record<string, HistoricalImage> = {
@@ -54,14 +54,14 @@ export const historyImages: Record<string, HistoricalImage> = {
   },
   "2017–2021": {
     src: transformer.url,
-    alt: "Полная архитектура Transformer с encoder и decoder слева, схемы внимания справа: оригинальные рисунки 1 и 2 из Attention Is All You Need, 2017 год",
-    credit: "Transformer: полная архитектура encoder–decoder и внимание · рисунки 1 и 2 статьи · A. Vaswani и соавторы · 2017 · компоновка оригинальных рисунков",
-    sourceUrl: "https://arxiv.org/pdf/1706.03762",
+    alt: "Команда OpenAI, включая авторов GPT-2 Алека Рэдфорда, Джеффа Ву и Илью Суцкевера; подлинная фотография, опубликованная MIT Technology Review в феврале 2020 года",
+    credit: "Команда OpenAI, включая создателей GPT-2 · опубликовано 17 февраля 2020 · фото © Christie Hemm Klok / MIT Technology Review · кадрировано",
+    sourceUrl: "https://www.technologyreview.com/2020/02/17/844721/ai-openai-moonshot-elon-musk-sam-altman-greg-brockman-messy-secretive-reality/",
   },
   "2022–2026": {
     src: gigachat.url,
-    alt: "Настоящий интерфейс GigaChat от Сбера: пользователь просит рассказать об ассистенте, нейросеть отвечает; вопрос и ответ на русском языке",
-    credit: "Русскоязычный диалог в GigaChat от Сбера · скриншот: GigaChat / Skillbox Media · 7 августа 2025",
-    sourceUrl: "https://skillbox.ru/media/code/nejroset-gigachat-kak-polzovatsya/",
+    alt: "Официальный скриншот GigaChat: короткий русский вопрос «Каков вкус любви?» и полный ответ «Любовь не имеет вкуса. Это чувство, которое люди испытывают к другим людям, животным или вещам»",
+    credit: "Короткий русский диалог в GigaChat · Сбер / ГигаЧат · официальная база знаний · кадрировано без увеличения исходника",
+    sourceUrl: "https://giga.chat/help/articles/how-to-start-work-with-gigachat",
   },
 };
