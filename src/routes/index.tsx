@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import neural from "@/assets/neural.jpg";
+import { historyImages } from "@/lib/history-images";
 import { Approaches, Eras, SectionTitle, Timeline, pageWrap, useGoToTimeline } from "@/components/site";
 
 export const Route = createFileRoute("/")({
@@ -41,7 +42,7 @@ function Index() {
 
       <section id="timeline" className={`${pageWrap} scroll-mt-24 py-12 md:py-16`}>
         <SectionTitle eyebrow="Хронология" title="Девять этапов, которые определили историю ИИ" text="Нажмите «Подробнее», чтобы открыть подробную статью о каждом этапе." />
-        <Timeline />
+        <Timeline images={historyImages} />
       </section>
 
       <section className={`${pageWrap} py-12 md:py-16`}>
