@@ -139,6 +139,52 @@
   body { animation: none; }
 }
 
+/* Mobile Safari does not reliably paint fixed body backgrounds. These
+   full-page ellipses keep the same glow continuous, without repeated tiles. */
+@media (hover: none) and (pointer: coarse), (max-width: 767px) {
+  body {
+    background-attachment: scroll;
+    background-image: radial-gradient(ellipse 65% 100% at 0% 65%, var(--background-glow-violet), transparent 75%),
+      radial-gradient(ellipse 50% 100% at 0% 35%, var(--background-glow-blue), transparent 80%);
+  }
+}
+
+.event-modal-overlay {
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+.event-modal {
+  max-height: 92vh;
+  max-height: 92dvh;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  overflow-wrap: anywhere;
+  padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+  padding-left: max(1.5rem, env(safe-area-inset-left));
+  padding-right: max(1.5rem, env(safe-area-inset-right));
+}
+.event-modal-close { position: relative; }
+.event-modal-close::after {
+  content: "";
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+@media (min-width: 640px) {
+  .event-modal-overlay {
+    padding: max(1.5rem, env(safe-area-inset-top)) max(1.5rem, env(safe-area-inset-right)) max(1.5rem, env(safe-area-inset-bottom)) max(1.5rem, env(safe-area-inset-left));
+  }
+  .event-modal { max-height: min(92dvh, 100%); }
+}
+@media (min-width: 768px) {
+  .event-modal { padding: 2.5rem; }
+}
+
 @keyframes float-slow { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-12px) } }
 @utility animate-float { animation: float-slow 7s ease-in-out infinite; }
 
