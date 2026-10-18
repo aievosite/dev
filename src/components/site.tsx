@@ -80,10 +80,17 @@ function ThemeToggle() {
 export function Header() {
   const [open, setOpen] = useState(false);
   const goTimeline = useGoToTimeline();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const navigate = useNavigate();
+  const goHome = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    if (pathname === "/") scrollToTop();
+    else navigate({ to: "/" }).then(() => setTimeout(() => scrollToTop(0), 80));
+  };
   return (
     <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4">
-        <Link to="/" aria-label="В начало страницы" onClick={(e) => { e.preventDefault(); scrollToTop(); }} className="font-display text-sm font-semibold tracking-widest">
+        <Link to="/" aria-label="На главную страницу" onClick={goHome} className="font-display text-sm font-semibold tracking-widest">
           AI <span className="text-gradient">/ ЭВОЛЮЦИЯ</span>
         </Link>
 
