@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import type { Tool } from "@/lib/tools";
 import { SectionTitle, pageWrap } from "@/components/site";
@@ -28,7 +28,6 @@ function ToolsPage() {
 
   return (
     <div className={`${pageWrap} py-16`}>
-      <Link to="/" className="mb-8 inline-flex text-sm font-semibold text-primary hover:underline">← На главную</Link>
       <SectionTitle eyebrow="Современность" title="Нейросети и ИИ-инструменты" text="Практический путеводитель: какой инструмент подходит для учёбы, исследований, программирования и творчества. Обратите внимание: одни продукты — это модели, другие — приложения или платформы, которые дают доступ к одной или нескольким моделям." />
 
       <div className="space-y-4">
