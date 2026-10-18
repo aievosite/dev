@@ -56,6 +56,8 @@
   --ring: oklch(0.68 0.17 250);
   --gradient-accent: linear-gradient(120deg, var(--primary), var(--violet));
   --shadow-glow: 0 0 60px -15px color-mix(in oklab, var(--primary) 50%, transparent);
+  --background-glow-violet: color-mix(in oklab, var(--violet) 28%, transparent);
+  --background-glow-blue: color-mix(in oklab, var(--primary) 20%, transparent);
   --scroll-track: #0B0F1A;
   --scroll-thumb: #343B4A;
   --scroll-thumb-hover: #4A5366;
@@ -84,6 +86,8 @@
   --input: oklch(0.2 0.03 265 / 15%);
   --ring: oklch(0.55 0.19 255);
   --shadow-glow: 0 10px 40px -15px color-mix(in oklab, var(--primary) 40%, transparent);
+  --background-glow-violet: color-mix(in oklab, var(--violet) 7%, transparent);
+  --background-glow-blue: color-mix(in oklab, var(--primary) 6%, transparent);
   --scroll-track: oklch(0.95 0.01 260);
   --scroll-thumb: oklch(0.78 0.02 260);
   --scroll-thumb-hover: oklch(0.65 0.03 260);
@@ -115,11 +119,24 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
-    background-image: radial-gradient(ellipse 60% 40% at 80% 0%, color-mix(in oklab, var(--violet) 14%, transparent), transparent),
-      radial-gradient(ellipse 50% 40% at 0% 20%, color-mix(in oklab, var(--primary) 10%, transparent), transparent);
+    background-image: radial-gradient(ellipse 65% 55% at 0% 100%, var(--background-glow-violet), transparent 75%),
+      radial-gradient(ellipse 50% 45% at 0% 80%, var(--background-glow-blue), transparent 80%);
     background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: 0% 100%;
+    animation: background-glow-drift 20s ease-in-out infinite;
   }
   h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.02em; }
+}
+
+@keyframes background-glow-drift {
+  0%, 100% { background-position: 0% 100%; background-size: 100% 100%; }
+  50% { background-position: 4% 96%; background-size: 108% 106%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body { animation: none; }
 }
 
 @keyframes float-slow { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-12px) } }

@@ -11,3 +11,4 @@
 
 - Keep the original hero image for dark mode; apply its background-only light variant through the light-theme CSS selector so geometry and dark-mode rendering remain unchanged.
 - Store verified historical image metadata separately from educational text and render it through one shared EventImage component, enabled explicitly by the history route, to keep source credits and sizing consistent without changing other sections.
+- Implement the ambient site background only through the existing body gradients and theme tokens, with a reduced-motion override, so no content layers or interactions change.
