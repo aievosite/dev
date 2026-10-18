@@ -4,9 +4,9 @@ import ibm704 from "@/assets/history/ibm704-1957.jpg.asset.json";
 import ibm7090 from "@/assets/history/ibm7090-console.jpg.asset.json";
 import vax from "@/assets/history/vax-equipment.jpg.asset.json";
 import deepBlue from "@/assets/history/deepblue-match-1997.jpg.asset.json";
-import alexnet from "@/assets/history/alexnet-figure2-landscape.jpg.asset.json";
-import transformer from "@/assets/history/transformer-attention-landscape.jpg.asset.json";
-import chatgpt from "@/assets/history/chatgpt-interface.jpg.asset.json";
+import alexnet from "@/assets/history/alexnet-imagenet-original-figures.jpg.asset.json";
+import transformer from "@/assets/history/transformer-original-architecture.jpg.asset.json";
+import gigachat from "@/assets/history/gigachat-russian-conversation.jpg.asset.json";
 import type { HistoricalImage } from "@/components/event-image";
 
 export const historyImages: Record<string, HistoricalImage> = {
@@ -48,20 +48,20 @@ export const historyImages: Record<string, HistoricalImage> = {
   },
   "2012": {
     src: alexnet.url,
-    alt: "Оригинальная схема архитектуры AlexNet, рисунок 2 из статьи Крижевского, Суцкевера и Хинтона 2012 года",
-    credit: "AlexNet: рисунок 2 оригинальной статьи · A. Krizhevsky, I. Sutskever, G. Hinton · NeurIPS, 2012 · фрагмент страницы",
+    alt: "Архитектура AlexNet и цветные примеры классификации и поиска похожих изображений ImageNet: оригинальные рисунки 2 и 4 из статьи 2012 года; примеры ILSVRC-2010",
+    credit: "AlexNet: архитектура и примеры ImageNet (ILSVRC-2010) · рисунки 2 и 4 статьи · A. Krizhevsky, I. Sutskever, G. Hinton · NeurIPS, 2012 · компоновка оригинальных рисунков",
     sourceUrl: "https://proceedings.neurips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf",
   },
   "2017–2021": {
     src: transformer.url,
-    alt: "Scaled Dot-Product Attention и Multi-Head Attention — оригинальные схемы механизма внимания Transformer, рисунок 2 из Attention Is All You Need, 2017 год",
-    credit: "Transformer: механизм внимания, рисунок 2 оригинальной статьи · A. Vaswani и соавторы · 2017 · фрагмент страницы",
+    alt: "Полная архитектура Transformer с encoder и decoder слева, схемы внимания справа: оригинальные рисунки 1 и 2 из Attention Is All You Need, 2017 год",
+    credit: "Transformer: полная архитектура encoder–decoder и внимание · рисунки 1 и 2 статьи · A. Vaswani и соавторы · 2017 · компоновка оригинальных рисунков",
     sourceUrl: "https://arxiv.org/pdf/1706.03762",
   },
   "2022–2026": {
-    src: chatgpt.url,
-    alt: "Подлинный снимок интерфейса ChatGPT с диалогом на испанском языке, 3 января 2023 года",
-    credit: "Интерфейс ChatGPT, 3 января 2023 · OpenAI · Wikimedia Commons · общественное достояние · кадрировано",
-    sourceUrl: "https://commons.wikimedia.org/wiki/File:ChatGPT_OpenAI_example_in_Spanish.png",
+    src: gigachat.url,
+    alt: "Настоящий интерфейс GigaChat от Сбера: пользователь просит рассказать об ассистенте, нейросеть отвечает; вопрос и ответ на русском языке",
+    credit: "Русскоязычный диалог в GigaChat от Сбера · скриншот: GigaChat / Skillbox Media · 7 августа 2025",
+    sourceUrl: "https://skillbox.ru/media/code/nejroset-gigachat-kak-polzovatsya/",
   },
 };
