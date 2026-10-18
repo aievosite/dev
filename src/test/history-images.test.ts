@@ -9,6 +9,7 @@ describe("Historical image coverage", () => {
     expect(images.every((image) => Boolean(image?.src && image.alt && image.sourceUrl))).toBe(true);
     expect(new Set(images.map((image) => image?.src)).size).toBe(9);
     for (const image of images) {
+      if (!image) throw new Error("Missing historical image");
       expect(new URL(image.sourceUrl).protocol).toBe("https:");
       expect(image.src.startsWith("/__l5e/assets-v1/")).toBe(true);
     }

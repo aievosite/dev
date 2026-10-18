@@ -154,7 +154,7 @@ export function SectionTitle({ eyebrow, title, text }: { eyebrow: string; title:
   );
 }
 
-function Article({ m, image, showImage, onClose }: { m: Milestone; image?: HistoricalImage; showImage?: boolean; onClose: () => void }) {
+function Article({ m, image, showImage, onClose }: { m: Milestone; image?: HistoricalImage | undefined; showImage?: boolean; onClose: () => void }) {
   useEffect(() => {
     const k = (e: KeyboardEvent) => e.key === "Escape" && onClose();
     document.addEventListener("keydown", k);
@@ -190,7 +190,7 @@ function Article({ m, image, showImage, onClose }: { m: Milestone; image?: Histo
   );
 }
 
-function TimelineItem({ m, images }: { m: Milestone; images?: Record<string, HistoricalImage> }) {
+function TimelineItem({ m, images }: { m: Milestone; images?: Record<string, HistoricalImage> | undefined }) {
   const [open, setOpen] = useState(false);
   return (
     <li>

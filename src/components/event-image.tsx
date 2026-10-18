@@ -7,7 +7,7 @@ export type HistoricalImage = {
   sourceUrl: string;
 };
 
-export function EventImage({ image }: { image?: HistoricalImage }) {
+export function EventImage({ image }: { image?: HistoricalImage | undefined }) {
   const [failed, setFailed] = useState(false);
   return (
     <figure className="mt-6">
