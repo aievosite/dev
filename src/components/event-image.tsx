@@ -16,7 +16,7 @@ export function EventImage({ image }: { image?: HistoricalImage | undefined }) {
           <img
             src={image.src}
             alt={image.alt}
-            className="block h-full w-full object-contain"
+            className="block h-full w-full object-cover"
             onError={() => setFailed(true)}
           />
         )}

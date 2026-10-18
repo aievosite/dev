@@ -1,4 +1,4 @@
 # Tasks
-- [x] Find and verify authentic images for all nine history events.
-- [x] Add uniform images and source credits only to history event dialogs.
-- [x] Verify all dialogs, image loading, both themes, and mobile layout.
+- [x] Verify landscape, event-specific sources for all nine history images.
+- [x] Replace unsuitable images and fill the existing 16:9 frames without losing important details.
+- [x] Inspect every dialog in both themes and across desktop, tablet, and mobile.
