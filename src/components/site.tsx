@@ -1,6 +1,7 @@
 import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { milestones, periods, eras, quiz, approaches, type Milestone } from "@/lib/content";
+import { EventImage, type HistoricalImage } from "@/components/event-image";
 
 const nav = [
   { to: "/", label: "Главная" },
@@ -153,7 +154,7 @@ export function SectionTitle({ eyebrow, title, text }: { eyebrow: string; title:
   );
 }
 
-function Article({ m, onClose }: { m: Milestone; onClose: () => void }) {
+function Article({ m, image, showImage, onClose }: { m: Milestone; image?: HistoricalImage | undefined; showImage?: boolean; onClose: () => void }) {
   useEffect(() => {
     const k = (e: KeyboardEvent) => e.key === "Escape" && onClose();
     document.addEventListener("keydown", k);
@@ -170,6 +171,7 @@ function Article({ m, onClose }: { m: Milestone; onClose: () => void }) {
           </div>
           <button onClick={onClose} aria-label="Закрыть" className="rounded-full border px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground">✕</button>
         </div>
+        {showImage && <EventImage key={m.year} image={image} />}
         <div className="mt-6 space-y-6">
           {m.sections.map((s) => (
             <section key={s.h}>
@@ -188,7 +190,7 @@ function Article({ m, onClose }: { m: Milestone; onClose: () => void }) {
   );
 }
 
-function TimelineItem({ m }: { m: Milestone }) {
+function TimelineItem({ m, images }: { m: Milestone; images?: Record<string, HistoricalImage> | undefined }) {
   const [open, setOpen] = useState(false);
   return (
     <li>
@@ -198,12 +200,12 @@ function TimelineItem({ m }: { m: Milestone }) {
         <p className="mt-1.5 flex-1 text-sm text-muted-foreground">{m.short}</p>
         <button onClick={() => setOpen(true)} className="mt-3 self-start text-sm font-semibold text-primary hover:underline">Подробнее</button>
       </article>
-      {open && <Article m={m} onClose={() => setOpen(false)} />}
+      {open && <Article m={m} image={images?.[m.year]} showImage={images !== undefined} onClose={() => setOpen(false)} />}
     </li>
   );
 }
 
-export function Timeline() {
+export function Timeline({ images }: { images?: Record<string, HistoricalImage> } = {}) {
   return (
     <div>
       <nav aria-label="Периоды истории" className="sticky top-[65px] z-30 -mx-5 mb-10 flex gap-2 overflow-x-auto bg-background/85 px-5 py-3 backdrop-blur-md">
@@ -222,7 +224,7 @@ export function Timeline() {
               <p className="text-sm text-primary">{p.range}</p>
             </header>
             <ol className="grid gap-4 sm:grid-cols-2">
-              {milestones.slice(p.from, p.to).map((m) => <TimelineItem key={m.year} m={m} />)}
+              {milestones.slice(p.from, p.to).map((m) => <TimelineItem key={m.year} m={m} images={images} />)}
             </ol>
           </section>
         ))}
