@@ -118,13 +118,6 @@
   border-left: 3px solid var(--primary);
   border-radius: var(--radius-xl);
 }
-/* Home call-to-action block: card shell with a clearly visible accent outline. */
-@utility cta-panel {
-  background: linear-gradient(140deg, color-mix(in oklab, var(--primary) 9%, var(--card)), color-mix(in oklab, var(--violet) 5%, var(--card)));
-  border: 1px solid color-mix(in oklab, var(--primary) 45%, var(--border));
-  border-radius: var(--radius-xl);
-  box-shadow: 0 20px 45px -30px color-mix(in oklab, var(--primary) 70%, transparent);
-}
 /* Final conclusion card: dark shell, restrained accent outline, compact inner spacing. */
 @utility conclusion-card {
   background: linear-gradient(140deg, color-mix(in oklab, var(--primary) 10%, var(--card)), var(--card) 65%);
