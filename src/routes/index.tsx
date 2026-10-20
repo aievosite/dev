@@ -1,8 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
 import neural from "@/assets/neural.jpg";
 import { historyImages } from "@/lib/history-images";
-import { Button } from "@/components/ui/button";
 import { Approaches, Eras, SectionTitle, Timeline, pageWrap, useGoToTimeline } from "@/components/site";
 import { AiToday } from "@/components/ai-today";
 
@@ -64,16 +62,9 @@ function Index() {
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-primary">Викторина</p>
           <h2 className="mt-3 text-2xl font-semibold">Насколько хорошо ты знаешь историю ИИ?</h2>
           <p className="mt-3 text-muted-foreground">Шесть вопросов — проверьте себя за пару минут.</p>
-          <div className="mt-7 flex flex-wrap items-center gap-x-7 gap-y-1">
-            <Link to="/quiz" className="inline-flex rounded-full bg-gradient-accent px-7 py-3.5 font-semibold text-primary-foreground shadow-glow transition hover:opacity-90">
-              Пройти викторину
-            </Link>
-            <Button asChild variant="link" className="h-auto min-h-11 max-w-full whitespace-normal px-0 py-2 text-left text-sm">
-              <Link to="/quiz">
-                Перейти к викторине по истории ИИ <ArrowRight aria-hidden="true" />
-              </Link>
-            </Button>
-          </div>
+          <Link to="/quiz" className="mt-7 inline-flex rounded-full bg-gradient-accent px-7 py-3.5 font-semibold text-primary-foreground shadow-glow transition hover:opacity-90">
+            Пройти викторину
+          </Link>
         </div>
       </section>
     </>
