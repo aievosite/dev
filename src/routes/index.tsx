@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import neural from "@/assets/neural.jpg";
 import { historyImages } from "@/lib/history-images";
 import { Approaches, Eras, SectionTitle, Timeline, pageWrap, useGoToTimeline } from "@/components/site";
@@ -8,9 +8,9 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "AI: Эволюция интеллекта — история искусственного интеллекта" },
-      { name: "description", content: "История искусственного интеллекта, его возможности и ограничения сегодня, каталог 21 ИИ-инструмента и викторина." },
+      { name: "description", content: "История искусственного интеллекта, его возможности и ограничения сегодня и каталог 21 ИИ-инструмента." },
       { property: "og:title", content: "AI: Эволюция интеллекта" },
-      { property: "og:description", content: "От истории ИИ к современным применениям, агентам и практическим инструментам — с викториной для проверки знаний." },
+      { property: "og:description", content: "От истории ИИ к современным применениям, агентам и практическим инструментам." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -58,7 +58,7 @@ function Index() {
       <AiToday />
 
       <section className={`${pageWrap} py-12 md:py-16`}>
-        <div className="conclusion-card max-w-3xl p-7 md:p-9">
+        <div className="conclusion-card p-7 md:p-9">
           <h2 className="text-2xl font-semibold tracking-tight md:text-4xl">
             Искусственный интеллект <span className="text-gradient">меняет мир</span>
           </h2>
@@ -68,17 +68,6 @@ function Index() {
           <p className="mt-4 text-lg font-medium leading-relaxed text-foreground">
             Поэтому важно понимать, как устроены эти системы, и осознанно решать, каким из их ответов можно доверять.
           </p>
-        </div>
-      </section>
-
-      <section className={`${pageWrap} py-12 md:py-16`}>
-        <div className="cta-panel max-w-3xl p-7 md:p-9">
-          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-primary">Викторина</p>
-          <h2 className="mt-3 text-2xl font-semibold">Насколько хорошо ты знаешь историю ИИ?</h2>
-          <p className="mt-3 text-foreground/85">Шесть вопросов — проверьте себя за пару минут.</p>
-          <Link to="/quiz" className="mt-7 inline-flex rounded-full bg-gradient-accent px-7 py-3.5 font-semibold text-primary-foreground shadow-glow transition hover:opacity-90">
-            Пройти викторину
-          </Link>
         </div>
       </section>
     </>

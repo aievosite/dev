@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Button } from "@/components/ui/button";
 import { useModalPageLock } from "@/hooks/use-modal-page-lock";
-import { milestones, periods, eras, quiz, approaches, type Milestone } from "@/lib/content";
+import { milestones, periods, eras, approaches, type Milestone } from "@/lib/content";
 import { EventImage, type HistoricalImage } from "@/components/event-image";
 import { EraImage } from "@/components/era-image";
 import { eraImages } from "@/lib/era-images";
@@ -12,7 +12,6 @@ const nav = [
   { to: "/", label: "Главная" },
   { to: "/history", label: "История ИИ" },
   { to: "/tools", label: "Нейросети и ИИ-инструменты" },
-  { to: "/quiz", label: "Викторина" },
   { to: "/about", label: "Об авторе" },
 ] as const;
 
@@ -304,43 +303,5 @@ export function Approaches() {
     </div>
   );
 }
-
-export function Quiz() {
-  const [idx, setIdx] = useState(0);
-  const [picked, setPicked] = useState<number | null>(null);
-  const [score, setScore] = useState(0);
-  const done = idx >= quiz.length;
-  if (done)
-    return (
-      <div className="glass-card p-8 text-center">
-        <p className="font-display text-5xl font-semibold text-gradient">{score} / {quiz.length}</p>
-        <p className="mt-4 text-muted-foreground">{score === quiz.length ? "Превосходно! Вы отлично знаете историю ИИ." : score >= quiz.length / 2 ? "Хороший результат! Загляните в хронологию, чтобы узнать больше." : "Есть куда расти — история ИИ ждёт вас."}</p>
-        <button onClick={() => { setIdx(0); setScore(0); setPicked(null); }} className="mt-6 rounded-full bg-gradient-accent px-6 py-3 text-sm font-semibold text-primary-foreground">Пройти ещё раз</button>
-      </div>
-    );
-  const q = quiz[idx]!;
-  return (
-    <div className="glass-card p-6 md:p-8">
-      <p className="text-xs uppercase tracking-widest text-primary">Вопрос {idx + 1} из {quiz.length}</p>
-      <h3 className="mt-3 text-xl font-medium">{q.q}</h3>
-      <div className="mt-6 grid gap-3">
-        {q.options.map((o, i) => {
-          const state = picked === null ? "border-border hover:border-primary" : i === q.answer ? "border-success bg-success/10" : i === picked ? "border-destructive bg-destructive/10" : "border-border opacity-60";
-          return (
-            <button key={o} disabled={picked !== null} onClick={() => { setPicked(i); if (i === q.answer) setScore((s) => s + 1); }} className={`rounded-lg border px-4 py-3 text-left text-sm transition ${state}`}>
-              {o}
-            </button>
-          );
-        })}
-      </div>
-      {picked !== null && (
-        <button onClick={() => { setIdx(idx + 1); setPicked(null); }} className="mt-6 rounded-full bg-gradient-accent px-6 py-3 text-sm font-semibold text-primary-foreground">
-          {idx + 1 === quiz.length ? "Узнать результат" : "Следующий вопрос"}
-        </button>
-      )}
-    </div>
-  );
-}
-
 
 export const pageWrap = "mx-auto max-w-6xl px-5";
