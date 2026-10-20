@@ -14,3 +14,4 @@
 - [x] Find a verified 2017–2021 LLM photograph and a sharp, readable Russian GigaChat conversation.
 - [x] Replace only these two images and source credits, preserving all other content and images.
 - [x] Verify both dialogs and image loading, readability, aspect ratio, and unchanged site behavior.- [x] Wrap "Будущее ИИ" in one outlined card with new two-paragraph text, transition sentence and small text link to /tools; verify desktop/mobile both themes.
+- [x] Balance the "Возможности"/"Ограничения" columns: four cards each, identical tight gaps, aligned bottoms, no empty space inside cards; verify desktop/mobile both themes.
