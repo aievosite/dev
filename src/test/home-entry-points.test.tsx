@@ -30,7 +30,7 @@ describe("Home page entry points", () => {
 
     expect(screen.getByRole("link", { name: "Пройти викторину" }).getAttribute("href")).toBe("/quiz");
 
-    const toolLinks = screen.getAllByRole("link", { name: "Нейросети и ИИ-инструменты" });
+    const toolLinks = screen.getAllByRole("link", { name: /нейросети и ии-инструменты/i });
     expect(toolLinks.length).toBe(2);
     for (const link of toolLinks) expect(link.getAttribute("href")).toBe("/tools");
   });
