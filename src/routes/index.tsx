@@ -59,10 +59,21 @@ function Index() {
 
       <AiToday />
 
-      <section id="quiz" className={`${pageWrap} scroll-mt-24 py-12 md:py-16`}>
-        <SectionTitle eyebrow="Викторина" title="Насколько хорошо ты знаешь историю ИИ?" text="Шесть вопросов — проверьте себя за пару минут." />
+      <section className={`${pageWrap} py-12 md:py-16`}>
         <div className="max-w-3xl">
-          <Quiz />
+          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-primary">Викторина</p>
+          <h2 className="mt-3 text-2xl font-semibold">Насколько хорошо ты знаешь историю ИИ?</h2>
+          <p className="mt-3 text-muted-foreground">Шесть вопросов — проверьте себя за пару минут.</p>
+          <div className="mt-7 flex flex-wrap items-center gap-x-7 gap-y-1">
+            <Link to="/quiz" className="inline-flex rounded-full bg-gradient-accent px-7 py-3.5 font-semibold text-primary-foreground shadow-glow transition hover:opacity-90">
+              Пройти викторину
+            </Link>
+            <Button asChild variant="link" className="h-auto min-h-11 max-w-full whitespace-normal px-0 py-2 text-left text-sm">
+              <Link to="/quiz">
+                Перейти к викторине по истории ИИ <ArrowRight aria-hidden="true" />
+              </Link>
+            </Button>
+          </div>
         </div>
       </section>
     </>
