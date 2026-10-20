@@ -56,8 +56,8 @@ export function AiToday() {
           <BlockHeading>Возможности и ограничения ИИ</BlockHeading>
           <div className="grid gap-6 md:grid-cols-2">
             <div>
-              <p className="mb-4 flex items-center gap-2.5 text-sm font-semibold uppercase tracking-wider text-success">
-                <span aria-hidden className="h-4 w-1 rounded-full bg-success/70" />
+              <p className="mb-4 flex items-center gap-2.5 text-lg font-semibold uppercase tracking-wider text-success">
+                <span aria-hidden className="h-5 w-1 rounded-full bg-success/70" />
                 Возможности
               </p>
               <div className="space-y-4">
@@ -70,8 +70,8 @@ export function AiToday() {
               </div>
             </div>
             <div>
-              <p className="mb-4 flex items-center gap-2.5 text-sm font-semibold uppercase tracking-wider text-destructive">
-                <span aria-hidden className="h-4 w-1 rounded-full bg-destructive/70" />
+              <p className="mb-4 flex items-center gap-2.5 text-lg font-semibold uppercase tracking-wider text-destructive">
+                <span aria-hidden className="h-5 w-1 rounded-full bg-destructive/70" />
                 Ограничения
               </p>
               <div className="space-y-4">
