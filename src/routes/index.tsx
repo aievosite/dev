@@ -1,15 +1,16 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import neural from "@/assets/neural.jpg";
 import { historyImages } from "@/lib/history-images";
-import { Approaches, Eras, SectionTitle, Timeline, pageWrap, useGoToTimeline } from "@/components/site";
+import { Approaches, Eras, Quiz, SectionTitle, Timeline, pageWrap, useGoToTimeline } from "@/components/site";
+import { AiToday } from "@/components/ai-today";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "AI: Эволюция интеллекта — история искусственного интеллекта" },
-      { name: "description", content: "От машины Тьюринга до генеративного ИИ 2026 года: ключевые вехи истории искусственного интеллекта." },
+      { name: "description", content: "История искусственного интеллекта, его возможности и ограничения сегодня, каталог 21 ИИ-инструмента и викторина." },
       { property: "og:title", content: "AI: Эволюция интеллекта" },
-      { property: "og:description", content: "Интерактивная хронология истории искусственного интеллекта." },
+      { property: "og:description", content: "От истории ИИ к современным применениям, агентам и практическим инструментам — с викториной для проверки знаний." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -43,11 +44,10 @@ function Index() {
       <section id="timeline" className={`${pageWrap} scroll-mt-24 py-12 md:py-16`}>
         <SectionTitle eyebrow="Хронология" title="Девять этапов, которые определили историю ИИ" text="Нажмите «Подробнее», чтобы открыть подробную статью о каждом этапе." />
         <Timeline images={historyImages} />
-      </section>
-
-      <section className={`${pageWrap} py-12 md:py-16`}>
-        <SectionTitle eyebrow="Как развивался ИИ" title="Шесть этапов развития ИИ" text="Главные идеи, которые связывают историю с современными ИИ-инструментами." />
-        <Approaches />
+        <div className="mt-24">
+          <SectionTitle eyebrow="Как развивался ИИ" title="Шесть этапов развития ИИ" text="Главные идеи, которые связывают историю с современными ИИ-инструментами." />
+          <Approaches />
+        </div>
       </section>
 
       <section className={`${pageWrap} py-12 md:py-16`}>
@@ -55,24 +55,12 @@ function Index() {
         <Eras />
       </section>
 
-      <section className={`${pageWrap} py-12 md:py-16`}>
-        <div className="glass-card relative overflow-hidden p-10 md:p-14">
-          <div className="absolute inset-0 bg-gradient-accent opacity-10" aria-hidden />
-          <p className="relative text-xs font-semibold uppercase tracking-[0.25em] text-primary">Современность</p>
-          <h2 className="relative mt-3 text-2xl font-semibold md:text-4xl">Нейросети и ИИ-инструменты</h2>
-          <p className="relative mt-4 max-w-2xl text-muted-foreground">Познакомьтесь с ИИ-инструментами для учёбы, исследований, программирования и творчества: 21 сервис с описанием задач, преимуществ и ограничений.</p>
-          <Link to="/tools" className="relative mt-8 inline-flex rounded-full bg-gradient-accent px-7 py-3.5 font-semibold text-primary-foreground shadow-glow transition hover:opacity-90">Открыть каталог →</Link>
-        </div>
-      </section>
+      <AiToday />
 
-      <section className={`${pageWrap} py-12 md:py-16`}>
-        <div className="glass-card relative overflow-hidden p-10 text-center md:p-16">
-          <div className="absolute inset-0 bg-gradient-accent opacity-10" aria-hidden />
-          <h2 className="relative text-2xl font-semibold md:text-4xl">Насколько хорошо ты знаешь историю ИИ?</h2>
-          <p className="relative mt-4 text-muted-foreground">Шесть вопросов — проверьте себя за пару минут.</p>
-          <Link to="/quiz" className="relative mt-8 inline-flex rounded-full bg-gradient-accent px-7 py-3.5 font-semibold text-primary-foreground">
-            Пройти викторину
-          </Link>
+      <section id="quiz" className={`${pageWrap} scroll-mt-24 py-12 md:py-16`}>
+        <SectionTitle eyebrow="Викторина" title="Насколько хорошо ты знаешь историю ИИ?" text="Шесть вопросов — проверьте себя за пару минут." />
+        <div className="max-w-3xl">
+          <Quiz />
         </div>
       </section>
     </>
