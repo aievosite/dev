@@ -11,7 +11,7 @@ describe("Preserved tools catalog", () => {
     expect(tools).toHaveLength(21);
     expect(container.querySelectorAll("article")).toHaveLength(21);
     for (const tool of tools) {
-      const heading = screen.getByRole("heading", { name: tool.name, exact: true });
+      const heading = screen.getByRole("heading", { name: tool.name });
       const card = heading.closest("article");
       expect(card).not.toBeNull();
       expect(card?.querySelector("a")?.getAttribute("href") ?? null).toBe(tool.url ?? null);
@@ -22,9 +22,9 @@ describe("Preserved tools catalog", () => {
     const { container } = render(<ToolsCatalog />);
     expect(toolCategories).toHaveLength(6);
     for (const category of toolCategories) {
-      fireEvent.click(screen.getByRole("button", { name: category, exact: true }));
+      fireEvent.click(screen.getByRole("button", { name: category }));
       expect(container.querySelectorAll("article")).toHaveLength(tools.filter((tool) => tool.category === category).length);
-      fireEvent.click(screen.getByRole("button", { name: "Все", exact: true }));
+      fireEvent.click(screen.getByRole("button", { name: "Все" }));
       expect(container.querySelectorAll("article")).toHaveLength(21);
     }
   });

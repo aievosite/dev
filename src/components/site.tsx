@@ -106,7 +106,7 @@ export function Header() {
 
         <nav className="hidden items-center gap-6 lg:flex" aria-label="Основная навигация">
           {nav.map((n) => (
-            <Link key={n.label} to={n.to} hash={"hash" in n ? n.hash : undefined} onClick={"hash" in n ? goTools : undefined} className="text-sm text-muted-foreground transition-colors hover:text-foreground" activeProps={{ className: "text-foreground" }} activeOptions={{ exact: true, includeHash: true }}>
+            <Link key={n.label} to={n.to} {...("hash" in n ? { hash: n.hash, onClick: goTools } : {})} className="text-sm text-muted-foreground transition-colors hover:text-foreground" activeProps={{ className: "text-foreground" }} activeOptions={{ exact: true, includeHash: true }}>
               {n.label}
             </Link>
           ))}
@@ -124,7 +124,7 @@ export function Header() {
       {open && (
         <nav className="flex flex-col gap-1 border-t px-5 py-3 lg:hidden">
           {nav.map((n) => (
-            <Link key={n.label} to={n.to} hash={"hash" in n ? n.hash : undefined} onClick={(event) => { setOpen(false); if ("hash" in n) goTools(event); }} className="py-2 text-muted-foreground hover:text-foreground">
+            <Link key={n.label} to={n.to} {...("hash" in n ? { hash: n.hash } : {})} onClick={(event) => { setOpen(false); if ("hash" in n) goTools(event); }} className="py-2 text-muted-foreground hover:text-foreground">
               {n.label}
             </Link>
           ))}
