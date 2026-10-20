@@ -1,4 +1,6 @@
 # Tasks
+- [x] Reorder home education, add balanced AI-today content, and move the unchanged catalog into it once.
+- [x] Replace catalog CTA with an in-section scroll link and verify navigation, catalog, quiz and preserved history on desktop/mobile in both themes.
 - [x] Add four verified authentic era-card images, preserving all existing content and event images.
 - [x] Verify era images on desktop and mobile in both themes.
 - [x] Fix historical dialogs for dynamic mobile viewports and preserve page scroll position.
