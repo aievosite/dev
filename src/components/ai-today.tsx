@@ -46,7 +46,7 @@ export function AiToday() {
           <div className="grid gap-5 md:grid-cols-2">
             {applications.map((item) => (
               <article key={item.title} className="glass-card min-w-0 p-6 transition hover:border-primary/50">
-                <h4 className="text-lg font-medium text-primary">{item.title}</h4>
+                <h4 className="text-2xl font-bold leading-tight tracking-tight text-primary md:text-3xl">{item.title}</h4>
                 <p className="mt-3 text-sm leading-relaxed text-foreground/90">{item.text}</p>
               </article>
             ))}
