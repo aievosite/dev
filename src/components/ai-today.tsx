@@ -12,7 +12,7 @@ const possibilities = [
   { title: "Быстрые объяснения и черновики", text: "ИИ быстро создаёт полезные объяснения, черновики текстов и идеи, с которых удобно начать работу." },
   { title: "Ускорение разработки", text: "ИИ-инструменты для программирования ускоряют создание кода и помогают быстрее доводить проекты до результата." },
   { title: "Анализ больших данных", text: "ИИ обрабатывает большие объёмы информации и находит в данных закономерности, которые трудно заметить вручную." },
-  { title: "Создание визуального контента", text: "ИИ способен создавать изображения по текстовому описанию, преобразовывать визуальные материалы и менять их стиль. Это расширяет возможности создания и редактирования графики без необходимости выполнять всю работу вручную." },
+  { title: "Создание визуального контента", text: "ИИ способен создавать изображения по текстовому описанию, преобразовывать визуальные материалы и менять их стиль." },
 ];
 
 const limitations = [
@@ -78,7 +78,7 @@ export function AiToday() {
                 {limitations.map((item) => (
                   <article key={item.title} className="glass-card min-w-0 border-l-2 border-l-destructive/50 p-5 transition hover:border-destructive/40">
                     <h4 className="text-base font-medium text-destructive">{item.title}</h4>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
+                    <p className="mt-2 text-sm leading-relaxed text-foreground/90">{item.text}</p>
                   </article>
                 ))}
               </div>
