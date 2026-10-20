@@ -58,10 +58,10 @@ function Index() {
       <AiToday />
 
       <section className={`${pageWrap} py-12 md:py-16`}>
-        <div className="max-w-3xl">
+        <div className="cta-panel max-w-3xl p-7 md:p-9">
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-primary">Викторина</p>
           <h2 className="mt-3 text-2xl font-semibold">Насколько хорошо ты знаешь историю ИИ?</h2>
-          <p className="mt-3 text-muted-foreground">Шесть вопросов — проверьте себя за пару минут.</p>
+          <p className="mt-3 text-foreground/85">Шесть вопросов — проверьте себя за пару минут.</p>
           <Link to="/quiz" className="mt-7 inline-flex rounded-full bg-gradient-accent px-7 py-3.5 font-semibold text-primary-foreground shadow-glow transition hover:opacity-90">
             Пройти викторину
           </Link>
