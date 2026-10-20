@@ -29,8 +29,8 @@ const future = [
 
 function BlockHeading({ children }: { children: string }) {
   return (
-    <h3 className="mb-6 flex items-center gap-3 text-2xl font-semibold">
-      <span aria-hidden className="h-7 w-1 shrink-0 rounded-full bg-gradient-accent" />
+    <h3 className="mb-6 flex items-center gap-3 text-3xl font-semibold leading-tight md:text-4xl">
+      <span aria-hidden className="h-8 w-1 shrink-0 rounded-full bg-gradient-accent md:h-9" />
       {children}
     </h3>
   );
