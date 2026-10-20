@@ -61,7 +61,7 @@ export function AiToday() {
               </p>
               <div className="flex flex-col gap-4 md:flex-1">
                 {possibilities.map((item) => (
-                  <article key={item.title} className="glass-card min-w-0 border-l-2 border-l-success/50 p-5 transition hover:border-success/40 md:grow">
+                  <article key={item.title} className="glass-card flex min-w-0 flex-col justify-center border-l-2 border-l-success/50 p-5 transition hover:border-success/40 md:grow">
                     <h4 className="text-base font-medium text-success">{item.title}</h4>
                     <p className="mt-2 text-sm leading-relaxed text-foreground/90">{item.text}</p>
                   </article>
