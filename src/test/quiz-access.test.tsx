@@ -12,7 +12,6 @@ async function renderHome() {
     routeTree,
     history: createMemoryHistory({ initialEntries: ["/"] }),
     context: { queryClient: new QueryClient() },
-    defaultPreload: "none",
   });
   await router.load();
   return render(<RouterProvider router={router} />);
