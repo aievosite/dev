@@ -186,12 +186,12 @@ function Article({ m, image, showImage, onClose }: { m: Milestone; image?: Histo
   return createPortal(
     <div className="event-modal-overlay fixed inset-x-0 top-0 z-50 flex items-end justify-center bg-background/80 backdrop-blur-sm animate-in fade-in sm:items-center" onClick={onClose}>
       <article ref={dialogRef} tabIndex={-1} role="dialog" aria-modal="true" aria-labelledby="art-title" onClick={(e) => e.stopPropagation()} className="glass-card event-modal article-scroll min-h-0 w-full max-w-2xl overflow-y-auto rounded-b-none p-6 text-left outline-none sm:rounded-b-xl md:p-10">
-        <div className="flex items-start justify-between gap-4">
-          <div className="min-w-0">
-            <p className="font-display text-2xl font-semibold text-gradient">{m.year}</p>
-            <h3 id="art-title" className="mt-2 text-2xl font-semibold">{m.title}</h3>
-          </div>
-          <Button variant="ghost" onClick={onClose} aria-label="Закрыть" className="event-modal-close h-auto shrink-0 rounded-full border px-3 py-1.5 text-sm text-muted-foreground hover:bg-transparent hover:text-foreground">✕</Button>
+        <div className="sticky top-0 z-10 flex h-0 justify-end">
+          <Button variant="ghost" onClick={onClose} aria-label="Закрыть" className="event-modal-close h-auto shrink-0 rounded-full border px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground">✕</Button>
+        </div>
+        <div className="min-w-0 pr-14">
+          <p className="font-display text-2xl font-semibold text-gradient">{m.year}</p>
+          <h3 id="art-title" className="mt-2 text-2xl font-semibold">{m.title}</h3>
         </div>
         {showImage && <EventImage key={m.year} image={image} />}
         <div className="mt-6 space-y-6">
