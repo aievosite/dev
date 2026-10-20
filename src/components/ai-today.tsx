@@ -22,9 +22,8 @@ const limitations = [
 ];
 
 const future = [
-  "Обычный диалоговый помощник отвечает на отдельный запрос. Агентный подход связывает несколько действий: система составляет план, использует разрешённые инструменты, оценивает промежуточный результат и продолжает работу. Такой подход уже применяется в некоторых продуктах, но не означает полной самостоятельности или безошибочности.",
-  "Например, ИИ-помощник в Cursor или агентный режим GitHub Copilot может помочь найти причину ошибки на сайте, изменить несколько файлов и запустить тесты. В Lovable можно описать новую страницу, посмотреть результат и попросить исправить форму или навигацию. Возможности зависят от продукта, режима и предоставленного доступа; изменения нужно проверять человеку.",
-  "В перспективе агенты могут брать на себя более длинные рабочие процессы и лучше согласовывать действия между инструментами. Это направление развития, а не обещание гарантированной автономности. Надёжность, защита данных и контроль доступа остаются важными задачами; значимые действия должны выполняться под человеческим контролем.",
+  "Обычный диалоговый помощник отвечает на отдельные запросы. Агентный подход позволяет системе последовательно выполнять несколько действий: составлять план, использовать доступные инструменты и учитывать промежуточные результаты. Возможности таких систем зависят от конкретного продукта и предоставленных ему прав.",
+  "Например, при разработке сайта ИИ-инструмент может предложить изменение интерфейса, помочь исправить ошибку или подготовить код для новой функции. Человек определяет задачу, оценивает результат и решает, какие изменения оставить.",
 ];
 
 function BlockHeading({ children }: { children: string }) {
@@ -86,18 +85,22 @@ export function AiToday() {
           </div>
           <p className="accent-panel mt-5 p-6 leading-relaxed text-foreground/90">Результаты ИИ следует проверять, особенно когда от точности зависят здоровье, безопасность, оценки или решения других людей. ИИ помогает в работе, но не снимает ответственности за её результат.</p>
         </div>
-        <div>
+        <div className="glass-card min-w-0 p-6 md:p-8">
           <BlockHeading>Будущее ИИ: от помощника к агенту</BlockHeading>
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <div className="space-y-4">
             {future.map((text, i) => (
-              <article key={i} className={`glass-card min-w-0 p-6 transition hover:border-primary/50 ${i === 2 ? "md:col-span-2 lg:col-span-1" : ""}`}>
-                <span aria-hidden className="mb-4 block h-0.5 w-8 rounded-full bg-gradient-accent" />
-                <p className="text-sm leading-relaxed text-foreground/90">{text}</p>
-              </article>
+              <p key={i} className="leading-relaxed text-foreground/90">{text}</p>
             ))}
           </div>
-          <Link to="/tools" className="mt-6 inline-flex rounded-full bg-gradient-accent px-7 py-3.5 font-semibold text-primary-foreground shadow-glow transition hover:opacity-90">
-            Нейросети и ИИ-инструменты
+          <p className="mt-6 border-t border-border/60 pt-6 text-sm leading-relaxed text-muted-foreground">
+            Хотите попробовать современные ИИ-инструменты на практике? Посмотрите, какие нейросети помогают работать с текстом, изображениями, поиском информации и программированием.
+          </p>
+          <Link
+            to="/tools"
+            className="group mt-3 inline-flex min-h-11 items-center gap-1.5 font-medium text-primary transition hover:text-violet"
+          >
+            Изучить нейросети и ИИ-инструменты
+            <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
           </Link>
         </div>
       </div>
