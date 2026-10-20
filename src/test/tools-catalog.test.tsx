@@ -14,7 +14,7 @@ describe("Preserved tools catalog", () => {
       const heading = screen.getByRole("heading", { name: tool.name, exact: true });
       const card = heading.closest("article");
       expect(card).not.toBeNull();
-      expect(card?.querySelector("a")?.getAttribute("href")).toBe(tool.url);
+      expect(card?.querySelector("a")?.getAttribute("href") ?? null).toBe(tool.url ?? null);
     }
   });
 
