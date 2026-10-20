@@ -54,13 +54,35 @@ export function AiToday() {
         </div>
         <div>
           <BlockHeading>Возможности и ограничения ИИ</BlockHeading>
-          <div className="grid gap-5 md:grid-cols-2">
-            {limitations.map((item) => (
-              <article key={item.title} className="glass-card min-w-0 p-6 transition hover:border-violet/50">
-                <h4 className="text-lg font-medium text-violet">{item.title}</h4>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
-              </article>
-            ))}
+          <div className="grid gap-6 md:grid-cols-2">
+            <div>
+              <p className="mb-4 flex items-center gap-2.5 text-sm font-semibold uppercase tracking-wider text-success">
+                <span aria-hidden className="h-4 w-1 rounded-full bg-success/70" />
+                Возможности
+              </p>
+              <div className="space-y-4">
+                {possibilities.map((item) => (
+                  <article key={item.title} className="glass-card min-w-0 border-l-2 border-l-success/50 p-5 transition hover:border-success/40">
+                    <h4 className="text-base font-medium text-success">{item.title}</h4>
+                    <p className="mt-2 text-sm leading-relaxed text-foreground/90">{item.text}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+            <div>
+              <p className="mb-4 flex items-center gap-2.5 text-sm font-semibold uppercase tracking-wider text-destructive">
+                <span aria-hidden className="h-4 w-1 rounded-full bg-destructive/70" />
+                Ограничения
+              </p>
+              <div className="space-y-4">
+                {limitations.map((item) => (
+                  <article key={item.title} className="glass-card min-w-0 border-l-2 border-l-destructive/50 p-5 transition hover:border-destructive/40">
+                    <h4 className="text-base font-medium text-destructive">{item.title}</h4>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
           </div>
           <p className="accent-panel mt-5 p-6 leading-relaxed text-foreground/90">Результаты ИИ следует проверять, особенно когда от точности зависят здоровье, безопасность, оценки или решения других людей. ИИ помогает в работе, но не снимает ответственности за её результат.</p>
         </div>
