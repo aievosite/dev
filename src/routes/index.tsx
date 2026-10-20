@@ -59,7 +59,7 @@ function Index() {
 
       <section className={`${pageWrap} py-12 md:py-16`}>
         <div className="conclusion-card max-w-3xl p-7 md:p-9">
-          <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
+          <h2 className="text-2xl font-semibold tracking-tight md:text-4xl">
             Искусственный интеллект <span className="text-gradient">меняет мир</span>
           </h2>
           <p className="mt-5 leading-relaxed text-foreground/90">
