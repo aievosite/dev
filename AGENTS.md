@@ -11,5 +11,6 @@
 
 - Keep the original hero image for dark mode; apply its background-only light variant through the light-theme CSS selector so geometry and dark-mode rendering remain unchanged.
 - Store verified historical image metadata separately from educational text and render it through one shared EventImage component, enabled explicitly by both home and history timelines, to keep their event dialogs and source credits consistent.
+- Keep era-card image assets and verified provenance in a separate era-image map keyed by era period; render them only in the shared Eras section so event-dialog imagery and educational content remain independent.
 - Implement the ambient site background only through the existing body gradients, the fixed mobile `body::before` layer and theme tokens, with a reduced-motion override, so no content layers or interactions change.
 - Render historical dialogs in a body portal with dynamic viewport sizing, safe-area spacing and reversible page scroll locking, so mobile browser toolbars and ancestor styles cannot clip them.
