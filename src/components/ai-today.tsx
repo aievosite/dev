@@ -59,9 +59,13 @@ export function AiToday() {
                 <span aria-hidden className="h-4 w-1 rounded-full bg-success/70" />
                 Возможности
               </p>
-              <div className="flex flex-col justify-between gap-4 md:flex-1">
+              <div className="flex flex-col gap-4 md:flex-1">
                 {possibilities.map((item) => (
-                  <article key={item.title} className="glass-card flex min-w-0 flex-col justify-center border-l-2 border-l-success/50 p-5 transition hover:border-success/40 md:max-h-44 md:grow">
+                  <article
+                    key={item.title}
+                    style={{ flexGrow: item.text.length, flexBasis: "auto" }}
+                    className="glass-card flex min-w-0 flex-col border-l-2 border-l-success/50 p-5 transition hover:border-success/40"
+                  >
                     <h4 className="text-base font-medium text-success">{item.title}</h4>
                     <p className="mt-2 text-sm leading-relaxed text-foreground/90">{item.text}</p>
                   </article>
