@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button";
 import { useModalPageLock } from "@/hooks/use-modal-page-lock";
 import { milestones, periods, eras, quiz, approaches, type Milestone } from "@/lib/content";
 import { EventImage, type HistoricalImage } from "@/components/event-image";
+import { EraImage } from "@/components/era-image";
+import { eraImages } from "@/lib/era-images";
 
 const nav = [
   { to: "/", label: "Главная" },
@@ -260,6 +262,7 @@ export function Eras() {
     <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {eras.map((e, i) => (
         <li key={e.title} className="glass-card flex flex-col p-5 md:p-6">
+          {eraImages[e.period] && <EraImage image={eraImages[e.period]} />}
           <div className="flex items-baseline gap-3">
             <span className="font-display text-2xl font-semibold text-muted-foreground/40">0{i + 1}</span>
             <span className="text-xs uppercase tracking-widest text-primary">{e.period}</span>
