@@ -177,7 +177,14 @@
   padding-left: max(1.5rem, env(safe-area-inset-left));
   padding-right: max(1.5rem, env(safe-area-inset-right));
 }
-.event-modal-close { position: relative; }
+.event-modal-close {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: color-mix(in oklab, var(--background) 45%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
 .event-modal-close::after {
   content: "";
   position: absolute;
