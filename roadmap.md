@@ -1,4 +1,6 @@
 # Tasks
+- [x] Add four verified authentic era-card images, preserving all existing content and event images.
+- [x] Verify era images on desktop and mobile in both themes.
 - [x] Fix historical dialogs for dynamic mobile viewports and preserve page scroll position.
 - [x] Make the mobile page background continuous without fixed background painting.
 - [x] Verify all dialogs, themes, navigation and responsive layouts in Chromium and WebKit; document real-device limits.
