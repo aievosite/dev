@@ -62,11 +62,11 @@ function Index() {
           <h2 className="text-2xl font-semibold tracking-tight md:text-4xl">
             Искусственный интеллект <span className="text-gradient">меняет мир</span>
           </h2>
-          <p className="mt-5 leading-relaxed text-foreground/90">
+          <p className="mt-5 text-lg leading-relaxed text-foreground/90">
             Восемьдесят лет назад искусственный интеллект был гипотезой о мыслящей машине, а сегодня это программы, которые пишут код, находят галактики в наблюдениях и объясняют сложные темы простыми словами. Они не отменяют работу человека — они забирают рутину и открывают доступ к задачам, на которые раньше уходили годы подготовки.
           </p>
-          <p className="mt-4 text-lg font-medium leading-relaxed text-foreground">
-            Поэтому важно понимать, как устроены эти системы, и осознанно решать, каким из их ответов можно доверять.
+          <p className="mt-4 text-lg font-medium leading-relaxed">
+            <span className="text-gradient">Поэтому важно понимать, как устроены эти системы, и осознанно решать, каким из их ответов можно доверять.</span>
           </p>
         </div>
       </section>
