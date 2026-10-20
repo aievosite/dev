@@ -1,7 +1,9 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowRight } from "lucide-react";
 import neural from "@/assets/neural.jpg";
 import { historyImages } from "@/lib/history-images";
-import { Approaches, Eras, Quiz, SectionTitle, Timeline, pageWrap, useGoToTimeline } from "@/components/site";
+import { Button } from "@/components/ui/button";
+import { Approaches, Eras, SectionTitle, Timeline, pageWrap, useGoToTimeline } from "@/components/site";
 import { AiToday } from "@/components/ai-today";
 
 export const Route = createFileRoute("/")({
