@@ -58,6 +58,20 @@ function Index() {
       <AiToday />
 
       <section className={`${pageWrap} py-12 md:py-16`}>
+        <div className="conclusion-card max-w-3xl p-7 md:p-9">
+          <h2 className="text-2xl font-semibold tracking-tight md:text-4xl">
+            Искусственный интеллект <span className="text-gradient">меняет мир</span>
+          </h2>
+          <p className="mt-5 leading-relaxed text-foreground/90">
+            Восемьдесят лет назад искусственный интеллект был гипотезой о мыслящей машине, а сегодня это программы, которые пишут код, находят галактики в наблюдениях и объясняют сложные темы простыми словами. Они не отменяют работу человека — они забирают рутину и открывают доступ к задачам, на которые раньше уходили годы подготовки.
+          </p>
+          <p className="mt-4 text-lg font-medium leading-relaxed text-foreground">
+            Поэтому важно понимать, как устроены эти системы, и осознанно решать, каким из их ответов можно доверять.
+          </p>
+        </div>
+      </section>
+
+      <section className={`${pageWrap} py-12 md:py-16`}>
         <div className="cta-panel max-w-3xl p-7 md:p-9">
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-primary">Викторина</p>
           <h2 className="mt-3 text-2xl font-semibold">Насколько хорошо ты знаешь историю ИИ?</h2>
