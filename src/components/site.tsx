@@ -187,7 +187,7 @@ function Article({ m, image, showImage, onClose }: { m: Milestone; image?: Histo
     <div className="event-modal-overlay fixed inset-x-0 top-0 z-50 flex items-end justify-center bg-background/80 backdrop-blur-sm animate-in fade-in sm:items-center" onClick={onClose}>
       <article ref={dialogRef} tabIndex={-1} role="dialog" aria-modal="true" aria-labelledby="art-title" onClick={(e) => e.stopPropagation()} className="glass-card event-modal article-scroll min-h-0 w-full max-w-2xl overflow-y-auto rounded-b-none p-6 text-left outline-none sm:rounded-b-xl md:p-10">
         <div className="sticky top-0 z-10 flex h-0 justify-end">
-          <Button variant="ghost" onClick={onClose} aria-label="Закрыть" className="event-modal-close h-auto shrink-0 rounded-full border px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground">✕</Button>
+          <Button variant="ghost" onClick={onClose} aria-label="Закрыть" className="event-modal-close size-11 shrink-0 rounded-full border p-0 text-base leading-none text-muted-foreground hover:text-foreground">✕</Button>
         </div>
         <div className="min-w-0 pr-14">
           <p className="font-display text-2xl font-semibold text-gradient">{m.year}</p>
