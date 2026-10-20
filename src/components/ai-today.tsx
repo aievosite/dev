@@ -8,10 +8,16 @@ const applications = [
   { title: "Программирование", text: "С помощью Cursor, GitHub Copilot и Lovable можно создавать фрагменты кода, исправлять ошибки и разрабатывать сайты по текстовому описанию. В Lovable пользователь формулирует задачу обычными словами, а платформа помогает создавать и изменять веб-приложение." },
 ];
 
+const possibilities = [
+  { title: "Быстрые объяснения и черновики", text: "ИИ быстро создаёт полезные объяснения, черновики текстов и идеи, с которых удобно начать работу." },
+  { title: "Ускорение разработки", text: "ИИ-инструменты для программирования ускоряют создание кода и помогают быстрее доводить проекты до результата." },
+  { title: "Анализ больших данных", text: "ИИ обрабатывает большие объёмы информации и находит в данных закономерности, которые трудно заметить вручную." },
+];
+
 const limitations = [
-  { title: "Скорость не гарантирует точность", text: "ИИ быстро создаёт полезные объяснения и черновики, но может уверенно выдавать неверные сведения, выдуманные факты или ссылки. Важные утверждения нужно сверять с надёжными первоисточниками." },
-  { title: "Готовый код требует проверки", text: "ИИ ускоряет разработку, но сгенерированный код может содержать ошибки и уязвимости. Необходимо проверять работу сайта, доступ к данным и безопасность, а не только его внешний вид." },
-  { title: "Результат зависит от данных и задачи", text: "ИИ обрабатывает большие объёмы информации, однако неполные, неточные или нерепрезентативные данные ухудшают ответ. Чёткий запрос помогает, но сам по себе не гарантирует правильный результат." },
+  { title: "Скорость не гарантирует точность", text: "ИИ может уверенно выдавать неверные сведения, выдуманные факты или ссылки. Важные утверждения нужно сверять с надёжными первоисточниками." },
+  { title: "Готовый код требует проверки", text: "Сгенерированный код может содержать ошибки и уязвимости. Необходимо проверять работу сайта, доступ к данным и безопасность, а не только его внешний вид." },
+  { title: "Результат зависит от данных и задачи", text: "Неполные, неточные или нерепрезентативные данные ухудшают ответ. Чёткий запрос помогает, но сам по себе не гарантирует правильный результат." },
   { title: "Ответственность остаётся у людей", text: "Использование ИИ затрагивает конфиденциальность, авторские права и предвзятость. Нельзя без разрешения загружать чужие личные данные; перед публикацией материалов важно проверить права и оценить, не воспроизводит ли результат несправедливые стереотипы." },
 ];
 
@@ -48,13 +54,35 @@ export function AiToday() {
         </div>
         <div>
           <BlockHeading>Возможности и ограничения ИИ</BlockHeading>
-          <div className="grid gap-5 md:grid-cols-2">
-            {limitations.map((item) => (
-              <article key={item.title} className="glass-card min-w-0 p-6 transition hover:border-violet/50">
-                <h4 className="text-lg font-medium text-violet">{item.title}</h4>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
-              </article>
-            ))}
+          <div className="grid gap-6 md:grid-cols-2">
+            <div>
+              <p className="mb-4 flex items-center gap-2.5 text-sm font-semibold uppercase tracking-wider text-success">
+                <span aria-hidden className="h-4 w-1 rounded-full bg-success/70" />
+                Возможности
+              </p>
+              <div className="space-y-4">
+                {possibilities.map((item) => (
+                  <article key={item.title} className="glass-card min-w-0 border-l-2 border-l-success/50 p-5 transition hover:border-success/40">
+                    <h4 className="text-base font-medium text-success">{item.title}</h4>
+                    <p className="mt-2 text-sm leading-relaxed text-foreground/90">{item.text}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+            <div>
+              <p className="mb-4 flex items-center gap-2.5 text-sm font-semibold uppercase tracking-wider text-destructive">
+                <span aria-hidden className="h-4 w-1 rounded-full bg-destructive/70" />
+                Ограничения
+              </p>
+              <div className="space-y-4">
+                {limitations.map((item) => (
+                  <article key={item.title} className="glass-card min-w-0 border-l-2 border-l-destructive/50 p-5 transition hover:border-destructive/40">
+                    <h4 className="text-base font-medium text-destructive">{item.title}</h4>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
           </div>
           <p className="accent-panel mt-5 p-6 leading-relaxed text-foreground/90">Результаты ИИ следует проверять, особенно когда от точности зависят здоровье, безопасность, оценки или решения других людей. ИИ помогает в работе, но не снимает ответственности за её результат.</p>
         </div>
