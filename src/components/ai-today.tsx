@@ -54,14 +54,14 @@ export function AiToday() {
         <div>
           <BlockHeading>Возможности и ограничения ИИ</BlockHeading>
           <div className="grid gap-6 md:grid-cols-2">
-            <div>
+            <div className="md:flex md:flex-col">
               <p className="mb-4 flex items-center gap-2.5 text-sm font-semibold uppercase tracking-wider text-success">
                 <span aria-hidden className="h-4 w-1 rounded-full bg-success/70" />
                 Возможности
               </p>
-              <div className="space-y-4">
+              <div className="flex flex-col justify-between gap-4 md:flex-1">
                 {possibilities.map((item) => (
-                  <article key={item.title} className="glass-card min-w-0 border-l-2 border-l-success/50 p-5 transition hover:border-success/40">
+                  <article key={item.title} className="glass-card flex min-w-0 flex-col justify-center border-l-2 border-l-success/50 p-5 transition hover:border-success/40 md:max-h-44 md:grow">
                     <h4 className="text-base font-medium text-success">{item.title}</h4>
                     <p className="mt-2 text-sm leading-relaxed text-foreground/90">{item.text}</p>
                   </article>
