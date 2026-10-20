@@ -1,7 +1,5 @@
-import { ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { SectionTitle, pageWrap, smoothScrollTo } from "@/components/site";
-import { ToolsCatalog } from "@/components/tools-catalog";
+import { Link } from "@tanstack/react-router";
+import { SectionTitle, pageWrap } from "@/components/site";
 
 const applications = [
   { title: "Медицина", text: "ИИ помогает анализировать медицинские изображения: например, отмечать подозрительные участки на рентгенограммах для проверки врачом. Он также может структурировать медицинскую информацию. Такие подсказки не заменяют диагноз: важные решения остаются за квалифицированными специалистами." },
@@ -52,15 +50,9 @@ export function AiToday() {
             <p>Например, ИИ-помощник в Cursor или агентный режим GitHub Copilot может помочь найти причину ошибки на сайте, изменить несколько файлов и запустить тесты. В Lovable можно описать новую страницу, посмотреть результат и попросить исправить форму или навигацию. Возможности зависят от продукта, режима и предоставленного доступа; изменения нужно проверять человеку.</p>
             <p>В перспективе агенты могут брать на себя более длинные рабочие процессы и лучше согласовывать действия между инструментами. Это направление развития, а не обещание гарантированной автономности. Надёжность, защита данных и контроль доступа остаются важными задачами; значимые действия должны выполняться под человеческим контролем.</p>
           </div>
-          <Button asChild variant="link" className="mt-5 h-auto min-h-11 max-w-full whitespace-normal px-0 py-2 text-left text-sm">
-            <a href="#ai-tools" onClick={(event) => { event.preventDefault(); smoothScrollTo("ai-tools"); }}>
-              Посмотреть нейросети и ИИ-инструменты <ArrowRight aria-hidden="true" />
-            </a>
-          </Button>
-        </div>
-        <div id="ai-tools" className="scroll-mt-24">
-          <h3 className="mb-5 text-2xl font-semibold">Нейросети и ИИ-инструменты</h3>
-          <ToolsCatalog />
+          <Link to="/tools" className="mt-6 inline-flex rounded-full bg-gradient-accent px-7 py-3.5 font-semibold text-primary-foreground shadow-glow transition hover:opacity-90">
+            Нейросети и ИИ-инструменты
+          </Link>
         </div>
       </div>
     </section>

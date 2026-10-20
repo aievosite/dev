@@ -1,5 +1,5 @@
 # Tasks
-- [x] Take the quiz out of the home page and reach it only from the quiz button, the text link and the top menu.
+- [x] Take the catalog out of the home page onto /tools, give it and the quiz matching buttons, and drop both text links.
 - [x] Reorder home education, add balanced AI-today content, and move the unchanged catalog into it once.
 - [x] Replace catalog CTA with an in-section scroll link and verify navigation, catalog, quiz and preserved history on desktop/mobile in both themes.
 - [x] Add four verified authentic era-card images, preserving all existing content and event images.
