@@ -18,28 +18,21 @@ async function renderAt(path: string) {
 }
 
 describe("Home page entry points", () => {
-  it("keeps the quiz and the tools catalog off the home page", async () => {
+  it("keeps the tools catalog off the home page", async () => {
     await renderAt("/");
 
-    expect(screen.queryByText(/Вопрос 1 из/)).toBeNull();
     expect(screen.queryByRole("searchbox")).toBeNull();
   });
 
-  it("reaches the quiz and the catalog from buttons that match the menu links", async () => {
+  it("reaches the catalog from a button that matches the menu link", async () => {
     await renderAt("/");
-
-    expect(screen.getByRole("link", { name: "Пройти викторину" }).getAttribute("href")).toBe("/quiz");
 
     const toolLinks = screen.getAllByRole("link", { name: /нейросети и ии-инструменты/i });
     expect(toolLinks.length).toBe(2);
     for (const link of toolLinks) expect(link.getAttribute("href")).toBe("/tools");
   });
 
-  it("runs the quiz on /quiz and the catalog on /tools", async () => {
-    const quiz = await renderAt("/quiz");
-    expect(quiz.container.textContent).toContain("Вопрос 1 из");
-    cleanup();
-
+  it("runs the catalog on /tools", async () => {
     const tools = await renderAt("/tools");
     expect(screen.getByRole("searchbox")).toBeInTheDocument();
     expect(tools.container.querySelectorAll("article")).toHaveLength(21);

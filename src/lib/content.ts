@@ -273,15 +273,6 @@ export const periods = [
   { id: "modern", label: "Современный ИИ", range: "2017–2026", from: 7, to: 9 },
 ];
 
-export const quiz = [
-  { q: "Кто предложил «игру в имитацию» в 1950 году?", options: ["Джон Маккарти", "Алан Тьюринг", "Марвин Минский", "Джозеф Вейценбаум"], answer: 1 },
-  { q: "Где впервые прозвучал термин «искусственный интеллект»?", options: ["В MIT", "В IBM", "В заявке на Дартмутский семинар", "В Стэнфорде"], answer: 2 },
-  { q: "Что имитировала самая известная версия ELIZA?", options: ["Шахматиста", "Психотерапевта", "Переводчика", "Учителя"], answer: 1 },
-  { q: "Кого победил Deep Blue в 1997 году?", options: ["Анатолия Карпова", "Магнуса Карлсена", "Гарри Каспарова", "Бобби Фишера"], answer: 2 },
-  { q: "Как называлась статья 2017 года о Transformer?", options: ["Attention Is All You Need", "Deep Learning", "Computing Machinery and Intelligence", "ImageNet"], answer: 0 },
-  { q: "Какое событие 2012 года связано с прорывом глубокого обучения?", options: ["Запуск ChatGPT", "Победа AlexNet в ImageNet", "Создание ELIZA", "Матч Deep Blue"], answer: 1 },
-];
-
 export type Source = { name: string; meta: string; url: string; note: string };
 
 export const primarySources: Source[] = [

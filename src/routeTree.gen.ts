@@ -12,7 +12,6 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as HistoryRouteImport } from './routes/history'
-import { Route as QuizRouteImport } from './routes/quiz'
 import { Route as ToolsRouteImport } from './routes/tools'
 
 const IndexRoute = IndexRouteImport.update({
@@ -30,11 +29,6 @@ const HistoryRoute = HistoryRouteImport.update({
   path: '/history',
   getParentRoute: () => rootRouteImport,
 } as any)
-const QuizRoute = QuizRouteImport.update({
-  id: '/quiz',
-  path: '/quiz',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ToolsRoute = ToolsRouteImport.update({
   id: '/tools',
   path: '/tools',
@@ -45,14 +39,12 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/history': typeof HistoryRoute
-  '/quiz': typeof QuizRoute
   '/tools': typeof ToolsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/history': typeof HistoryRoute
-  '/quiz': typeof QuizRoute
   '/tools': typeof ToolsRoute
 }
 export interface FileRoutesById {
@@ -60,22 +52,20 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/history': typeof HistoryRoute
-  '/quiz': typeof QuizRoute
   '/tools': typeof ToolsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/history' | '/quiz' | '/tools'
+  fullPaths: '/' | '/about' | '/history' | '/tools'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/history' | '/quiz' | '/tools'
-  id: '__root__' | '/' | '/about' | '/history' | '/quiz' | '/tools'
+  to: '/' | '/about' | '/history' | '/tools'
+  id: '__root__' | '/' | '/about' | '/history' | '/tools'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   HistoryRoute: typeof HistoryRoute
-  QuizRoute: typeof QuizRoute
   ToolsRoute: typeof ToolsRoute
 }
 
@@ -102,13 +92,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HistoryRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/quiz': {
-      id: '/quiz'
-      path: '/quiz'
-      fullPath: '/quiz'
-      preLoaderRoute: typeof QuizRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/tools': {
       id: '/tools'
       path: '/tools'
@@ -123,7 +106,6 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   HistoryRoute: HistoryRoute,
-  QuizRoute: QuizRoute,
   ToolsRoute: ToolsRoute,
 }
 export const routeTree = rootRouteImport

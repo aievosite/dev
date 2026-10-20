@@ -28,16 +28,14 @@ describe("Home conclusion section", () => {
     expect(container.textContent).not.toMatch(/главный вывод/i);
   });
 
-  it("sits immediately before the quiz call to action", async () => {
+  it("is the final section of the home page", async () => {
     await renderHome();
 
     const conclusionSection = screen
       .getByRole("heading", { name: /искусственный интеллект меняет мир/i })
       .closest("section");
-    const quizLink = screen.getByRole("link", { name: "Пройти викторину" });
-    const quizSection = quizLink.closest("section");
 
     expect(conclusionSection).not.toBeNull();
-    expect(conclusionSection?.nextElementSibling).toBe(quizSection);
+    expect(conclusionSection?.nextElementSibling).toBeNull();
   });
 });
