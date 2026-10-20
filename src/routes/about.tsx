@@ -30,7 +30,7 @@ function About() {
       <div className="mt-10 grid gap-5 md:grid-cols-2">
         {sections.map((s) => (
           <section key={s.h} className="glass-card p-6 md:p-7">
-            <h2 className="text-xs font-semibold uppercase tracking-widest text-primary">{s.h}</h2>
+            <h2 className="text-sm font-semibold uppercase tracking-widest text-primary">{s.h}</h2>
             <p className="mt-3 leading-relaxed text-foreground/90">{s.p}</p>
           </section>
         ))}
