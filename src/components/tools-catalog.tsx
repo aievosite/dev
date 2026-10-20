@@ -55,7 +55,6 @@ export function ToolsCatalog() {
           ))}
         </div>
       )}
-      <p className="mt-10 text-sm text-muted-foreground">Возможности, тарифы и доступность сервисов часто меняются — уточняйте актуальные условия на официальных сайтах.</p>
     </div>
   );
 }
