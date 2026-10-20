@@ -15,16 +15,31 @@ const limitations = [
   { title: "Ответственность остаётся у людей", text: "Использование ИИ затрагивает конфиденциальность, авторские права и предвзятость. Нельзя без разрешения загружать чужие личные данные; перед публикацией материалов важно проверить права и оценить, не воспроизводит ли результат несправедливые стереотипы." },
 ];
 
+const future = [
+  "Обычный диалоговый помощник отвечает на отдельный запрос. Агентный подход связывает несколько действий: система составляет план, использует разрешённые инструменты, оценивает промежуточный результат и продолжает работу. Такой подход уже применяется в некоторых продуктах, но не означает полной самостоятельности или безошибочности.",
+  "Например, ИИ-помощник в Cursor или агентный режим GitHub Copilot может помочь найти причину ошибки на сайте, изменить несколько файлов и запустить тесты. В Lovable можно описать новую страницу, посмотреть результат и попросить исправить форму или навигацию. Возможности зависят от продукта, режима и предоставленного доступа; изменения нужно проверять человеку.",
+  "В перспективе агенты могут брать на себя более длинные рабочие процессы и лучше согласовывать действия между инструментами. Это направление развития, а не обещание гарантированной автономности. Надёжность, защита данных и контроль доступа остаются важными задачами; значимые действия должны выполняться под человеческим контролем.",
+];
+
+function BlockHeading({ children }: { children: string }) {
+  return (
+    <h3 className="mb-6 flex items-center gap-3 text-2xl font-semibold">
+      <span aria-hidden className="h-7 w-1 shrink-0 rounded-full bg-gradient-accent" />
+      {children}
+    </h3>
+  );
+}
+
 export function AiToday() {
   return (
     <section id="ai-today" className={`${pageWrap} scroll-mt-24 py-12 md:py-16`}>
       <SectionTitle eyebrow="Современность" title="ИИ сегодня: возможности, ограничения и будущее" />
       <div className="space-y-14 md:space-y-16">
         <div>
-          <h3 className="mb-6 text-2xl font-semibold">Как ИИ меняет нашу жизнь</h3>
+          <BlockHeading>Как ИИ меняет нашу жизнь</BlockHeading>
           <div className="grid gap-5 md:grid-cols-2">
             {applications.map((item) => (
-              <article key={item.title} className="glass-card p-6">
+              <article key={item.title} className="glass-card min-w-0 p-6 transition hover:border-primary/50">
                 <h4 className="text-lg font-medium text-primary">{item.title}</h4>
                 <p className="mt-3 text-sm leading-relaxed text-foreground/90">{item.text}</p>
               </article>
@@ -32,23 +47,26 @@ export function AiToday() {
           </div>
         </div>
         <div>
-          <h3 className="mb-6 text-2xl font-semibold">Возможности и ограничения ИИ</h3>
+          <BlockHeading>Возможности и ограничения ИИ</BlockHeading>
           <div className="grid gap-5 md:grid-cols-2">
             {limitations.map((item) => (
-              <article key={item.title} className="glass-card p-6">
-                <h4 className="text-lg font-medium">{item.title}</h4>
+              <article key={item.title} className="glass-card min-w-0 p-6 transition hover:border-violet/50">
+                <h4 className="text-lg font-medium text-violet">{item.title}</h4>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
               </article>
             ))}
           </div>
-          <p className="mt-6 max-w-3xl border-l-2 border-primary pl-5 leading-relaxed text-foreground/90">Результаты ИИ следует проверять, особенно когда от точности зависят здоровье, безопасность, оценки или решения других людей. ИИ помогает в работе, но не снимает ответственности за её результат.</p>
+          <p className="accent-panel mt-5 p-6 leading-relaxed text-foreground/90">Результаты ИИ следует проверять, особенно когда от точности зависят здоровье, безопасность, оценки или решения других людей. ИИ помогает в работе, но не снимает ответственности за её результат.</p>
         </div>
-        <div className="max-w-3xl">
-          <h3 className="mb-6 text-2xl font-semibold">Будущее ИИ: от помощника к агенту</h3>
-          <div className="space-y-4 leading-relaxed text-foreground/90">
-            <p>Обычный диалоговый помощник отвечает на отдельный запрос. Агентный подход связывает несколько действий: система составляет план, использует разрешённые инструменты, оценивает промежуточный результат и продолжает работу. Такой подход уже применяется в некоторых продуктах, но не означает полной самостоятельности или безошибочности.</p>
-            <p>Например, ИИ-помощник в Cursor или агентный режим GitHub Copilot может помочь найти причину ошибки на сайте, изменить несколько файлов и запустить тесты. В Lovable можно описать новую страницу, посмотреть результат и попросить исправить форму или навигацию. Возможности зависят от продукта, режима и предоставленного доступа; изменения нужно проверять человеку.</p>
-            <p>В перспективе агенты могут брать на себя более длинные рабочие процессы и лучше согласовывать действия между инструментами. Это направление развития, а не обещание гарантированной автономности. Надёжность, защита данных и контроль доступа остаются важными задачами; значимые действия должны выполняться под человеческим контролем.</p>
+        <div>
+          <BlockHeading>Будущее ИИ: от помощника к агенту</BlockHeading>
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {future.map((text, i) => (
+              <article key={i} className={`glass-card min-w-0 p-6 transition hover:border-primary/50 ${i === 2 ? "md:col-span-2 lg:col-span-1" : ""}`}>
+                <span aria-hidden className="mb-4 block h-0.5 w-8 rounded-full bg-gradient-accent" />
+                <p className="text-sm leading-relaxed text-foreground/90">{text}</p>
+              </article>
+            ))}
           </div>
           <Link to="/tools" className="mt-6 inline-flex rounded-full bg-gradient-accent px-7 py-3.5 font-semibold text-primary-foreground shadow-glow transition hover:opacity-90">
             Нейросети и ИИ-инструменты

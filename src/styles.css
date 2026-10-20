@@ -111,6 +111,14 @@
   border: 1px solid var(--border);
   border-radius: var(--radius-xl);
 }
+/* Key-takeaway panel: same card shell, tinted with a restrained blue-purple accent. */
+@utility accent-panel {
+  background: linear-gradient(120deg, color-mix(in oklab, var(--primary) 12%, var(--card)), color-mix(in oklab, var(--violet) 7%, var(--card)));
+  border: 1px solid color-mix(in oklab, var(--primary) 26%, var(--border));
+  border-left: 3px solid var(--primary);
+  border-radius: var(--radius-xl);
+}
+
 
 @layer base {
   * { border-color: var(--color-border); }
