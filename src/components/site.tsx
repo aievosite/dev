@@ -130,7 +130,7 @@ export function Header() {
               {n.label}
             </Link>
           ))}
-          <a href="/#ai-today" onClick={(e) => { setOpen(false); goAiToday(e); }} className="py-2 text-muted-foreground hover:text-foreground">
+          <a href="/#ai-today" onClick={(e) => { e.preventDefault(); setOpen(false); setTimeout(() => goAiToday(), 80); }} className="py-2 text-muted-foreground hover:text-foreground">
             ИИ сегодня
           </a>
         </nav>
