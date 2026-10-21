@@ -107,7 +107,7 @@ export function Header() {
 
         <nav className="hidden items-center gap-6 lg:flex" aria-label="Основная навигация">
           {nav.map((n) => (
-            <Link key={n.label} to={n.to} className="text-sm text-muted-foreground transition-colors hover:text-foreground" activeProps={{ className: "text-foreground" }} activeOptions={{ exact: true }}>
+            <Link key={n.label} to={n.to} onClick={n.to === "/" ? goHome : undefined} className="text-sm text-muted-foreground transition-colors hover:text-foreground" activeProps={{ className: "text-foreground" }} activeOptions={{ exact: true }}>
               {n.label}
             </Link>
           ))}
@@ -128,11 +128,17 @@ export function Header() {
       </div>
       {open && (
         <nav className="flex flex-col gap-1 border-t px-5 py-3 lg:hidden">
-          {nav.map((n) => (
-            <Link key={n.label} to={n.to} onClick={() => setOpen(false)} className="py-2 text-muted-foreground hover:text-foreground">
-              {n.label}
-            </Link>
-          ))}
+          {nav.map((n) =>
+            n.to === "/" ? (
+              <Link key={n.label} to={n.to} onClick={(e) => { setOpen(false); goHome(e); }} className="py-2 text-muted-foreground hover:text-foreground">
+                {n.label}
+              </Link>
+            ) : (
+              <Link key={n.label} to={n.to} onClick={() => setOpen(false)} className="py-2 text-muted-foreground hover:text-foreground">
+                {n.label}
+              </Link>
+            ),
+          )}
           <Link to={about.to} onClick={() => setOpen(false)} className="py-2 text-muted-foreground hover:text-foreground">
             {about.label}
           </Link>
