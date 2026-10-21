@@ -1,4 +1,4 @@
-import { cleanup, render, screen } from "@testing-library/react";
+import { cleanup, render, screen, within } from "@testing-library/react";
 import { QueryClient } from "@tanstack/react-query";
 import { createMemoryHistory, createRouter, RouterProvider } from "@tanstack/react-router";
 import { afterEach, describe, expect, it } from "vitest";
@@ -43,8 +43,7 @@ describe("Home page entry points", () => {
   it("puts «ИИ сегодня» before «Нейросети и ИИ-инструменты» in the menu", async () => {
     await renderAt("/");
 
-    const order = screen
-      .getByRole("navigation", { name: "Основная навигация" })
+    const order = within(screen.getByRole("navigation", { name: "Основная навигация" }))
       .getAllByRole("link")
       .map((link) => link.getAttribute("href"));
     expect(order).toEqual(["/", "/history", "/ai-today", "/tools", "/about"]);
