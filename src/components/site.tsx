@@ -12,8 +12,10 @@ const nav = [
   { to: "/", label: "Главная" },
   { to: "/history", label: "История ИИ" },
   { to: "/tools", label: "Нейросети и ИИ-инструменты" },
-  { to: "/about", label: "Об авторе" },
 ] as const;
+
+const about = { to: "/about", label: "Об авторе" } as const;
+
 
 export function smoothScrollTo(id: string, duration = 750) {
   const el = document.getElementById(id);
@@ -112,7 +114,11 @@ export function Header() {
           <a href="/#ai-today" onClick={goAiToday} className="text-sm text-muted-foreground transition-colors hover:text-foreground">
             ИИ сегодня
           </a>
+          <Link to={about.to} className="text-sm text-muted-foreground transition-colors hover:text-foreground" activeProps={{ className: "text-foreground" }} activeOptions={{ exact: true }}>
+            {about.label}
+          </Link>
         </nav>
+
         <div className="flex items-center gap-2">
           <a href="/#timeline" onClick={goTimeline} className="hidden rounded-full bg-gradient-accent px-5 py-2 text-sm font-semibold text-primary-foreground transition hover:opacity-90 sm:inline-flex">
             Начать путешествие
@@ -133,7 +139,11 @@ export function Header() {
           <a href="/#ai-today" onClick={(e) => { e.preventDefault(); setOpen(false); setTimeout(() => goAiToday(), 80); }} className="py-2 text-muted-foreground hover:text-foreground">
             ИИ сегодня
           </a>
+          <Link to={about.to} onClick={() => setOpen(false)} className="py-2 text-muted-foreground hover:text-foreground">
+            {about.label}
+          </Link>
         </nav>
+
       )}
     </header>
   );
