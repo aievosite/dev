@@ -1,4 +1,6 @@
 import { Link } from "@tanstack/react-router";
+import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { SectionTitle, pageWrap } from "@/components/site";
 import { JourneyBack } from "@/components/journey-back";
 
@@ -98,16 +100,18 @@ export function AiToday() {
           <p className="mt-6 border-t border-border/60 pt-6 text-base font-medium leading-relaxed text-foreground/90">
             Хотите попробовать современные ИИ-инструменты на практике? Посмотрите, какие нейросети помогают работать с текстом, изображениями, поиском информации и программированием.
           </p>
-          <Link
-            to="/tools"
-            target="_blank"
-            rel="noopener noreferrer"
-            title="Открыть каталог в новой вкладке"
-            className="group mt-3 inline-flex min-h-11 items-center gap-1.5 text-sm font-medium text-primary transition hover:text-violet"
-          >
-            Изучить нейросети и ИИ-инструменты
-            <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
-          </Link>
+          <Button asChild className="mt-5 h-auto min-h-13 max-w-full whitespace-normal rounded-full bg-gradient-accent px-8 py-4 text-base font-semibold text-primary-foreground shadow-glow transition hover:opacity-90">
+            <Link
+              to="/tools"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Открыть каталог в новой вкладке"
+              className="inline-flex items-center gap-2"
+            >
+              Изучить нейросети и ИИ-инструменты
+              <ArrowRight aria-hidden />
+            </Link>
+          </Button>
         </div>
       </div>
     </section>

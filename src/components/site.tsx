@@ -11,8 +11,8 @@ import { eraImages } from "@/lib/era-images";
 const nav = [
   { to: "/", label: "Главная" },
   { to: "/history", label: "История ИИ" },
-  { to: "/tools", label: "Нейросети и ИИ-инструменты" },
   { to: "/ai-today", label: "ИИ сегодня" },
+  { to: "/tools", label: "Нейросети и ИИ-инструменты" },
 ] as const;
 
 const about = { to: "/about", label: "Об авторе" } as const;

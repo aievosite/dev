@@ -1,4 +1,4 @@
-import { cleanup, render, screen } from "@testing-library/react";
+import { cleanup, render, screen, within } from "@testing-library/react";
 import { QueryClient } from "@tanstack/react-query";
 import { createMemoryHistory, createRouter, RouterProvider } from "@tanstack/react-router";
 import { afterEach, describe, expect, it } from "vitest";
@@ -38,6 +38,15 @@ describe("Home page entry points", () => {
     const item = screen.getByRole("link", { name: "ИИ сегодня" });
     expect(item.getAttribute("href")).toBe("/ai-today");
     expect(screen.queryByRole("heading", { name: /ИИ сегодня: возможности, ограничения и будущее/i })).toBeNull();
+  });
+
+  it("puts «ИИ сегодня» before «Нейросети и ИИ-инструменты» in the menu", async () => {
+    await renderAt("/");
+
+    const order = within(screen.getByRole("navigation", { name: "Основная навигация" }))
+      .getAllByRole("link")
+      .map((link) => link.getAttribute("href"));
+    expect(order).toEqual(["/", "/history", "/ai-today", "/tools", "/about"]);
   });
 });
 
