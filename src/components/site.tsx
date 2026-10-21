@@ -88,6 +88,7 @@ function ThemeToggle() {
 export function Header() {
   const [open, setOpen] = useState(false);
   const goTimeline = useGoToTimeline();
+  const goAiToday = useGoToHomeSection("ai-today");
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const navigate = useNavigate();
   const goHome = (e: { preventDefault: () => void }) => {
