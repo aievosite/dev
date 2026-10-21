@@ -14,4 +14,4 @@
 - Keep era-card image assets and verified provenance in a separate era-image map keyed by era period; render them only in the shared Eras section so event-dialog imagery and educational content remain independent.
 - Implement the ambient site background only through the existing body gradients, the fixed mobile `body::before` layer and theme tokens, with a reduced-motion override, so no content layers or interactions change.
 - Render historical dialogs in a body portal with dynamic viewport sizing, safe-area spacing and reversible page scroll locking, so mobile browser toolbars and ancestor styles cannot clip them.
-- Keep the existing catalog implementation in a shared ToolsCatalog component rendered only on its own /tools page, and the interactive quiz only on /quiz; the home page reaches each through a button or the header menu, never inline, so neither section exists twice.
+- Keep each major content section in one shared component rendered only on its own page (ToolsCatalog on /tools, AiToday on /ai-today), reached through the header menu or an in-page button, never inline on the home page, so no section exists twice.
