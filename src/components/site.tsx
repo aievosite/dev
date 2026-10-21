@@ -88,6 +88,7 @@ function ThemeToggle() {
 export function Header() {
   const [open, setOpen] = useState(false);
   const goTimeline = useGoToTimeline();
+  const goAiToday = useGoToHomeSection("ai-today");
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const navigate = useNavigate();
   const goHome = (e: { preventDefault: () => void }) => {
@@ -108,6 +109,9 @@ export function Header() {
               {n.label}
             </Link>
           ))}
+          <a href="/#ai-today" onClick={goAiToday} className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+            ИИ сегодня
+          </a>
         </nav>
         <div className="flex items-center gap-2">
           <a href="/#timeline" onClick={goTimeline} className="hidden rounded-full bg-gradient-accent px-5 py-2 text-sm font-semibold text-primary-foreground transition hover:opacity-90 sm:inline-flex">
@@ -126,6 +130,9 @@ export function Header() {
               {n.label}
             </Link>
           ))}
+          <a href="/#ai-today" onClick={(e) => { e.preventDefault(); setOpen(false); setTimeout(() => goAiToday(), 80); }} className="py-2 text-muted-foreground hover:text-foreground">
+            ИИ сегодня
+          </a>
         </nav>
       )}
     </header>
