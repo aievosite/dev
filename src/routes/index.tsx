@@ -29,7 +29,7 @@ function Index() {
           <p className="mt-6 max-w-lg text-lg text-muted-foreground">
             От первых алгоритмов до генеративных нейросетей. Десятилетия открытий и технологических прорывов.
           </p>
-          <Button asChild className="mt-8 h-auto rounded-full bg-gradient-accent px-7 py-3.5 text-base font-semibold text-primary-foreground shadow-glow transition hover:opacity-90">
+          <Button asChild className="mt-8 h-auto min-h-14 w-[266px] max-w-full whitespace-nowrap rounded-full bg-gradient-accent px-5 py-5 text-lg font-semibold text-primary-foreground shadow-glow transition hover:opacity-90">
             <Link to="/history">Исследовать историю</Link>
           </Button>
         </div>
