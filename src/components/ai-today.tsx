@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { SectionTitle, pageWrap } from "@/components/site";
+import { JourneyBack } from "@/components/journey-back";
 
 const applications = [
   { title: "Медицина", text: "Алгоритмы компьютерного зрения анализируют рентгеновские снимки и другие медицинские изображения, помогая специалистам замечать признаки возможных заболеваний. Такие системы используются как вспомогательный инструмент при обследовании пациентов." },
@@ -39,6 +40,7 @@ function BlockHeading({ children }: { children: string }) {
 export function AiToday() {
   return (
     <section id="ai-today" className={`${pageWrap} scroll-mt-24 py-12 md:py-16`}>
+      <JourneyBack to="/history">Назад: история развития ИИ</JourneyBack>
       <SectionTitle eyebrow="Современность" title="ИИ сегодня: возможности, ограничения и будущее" />
       <div className="space-y-14 md:space-y-16">
         <div>
@@ -86,19 +88,22 @@ export function AiToday() {
           </div>
           <p className="accent-panel mt-5 p-6 leading-relaxed text-foreground/90">Результаты ИИ следует проверять, особенно когда от точности зависят здоровье, безопасность, оценки или решения других людей. ИИ помогает в работе, но не снимает ответственности за её результат.</p>
         </div>
-        <div className="glass-card min-w-0 p-6 md:p-8">
+        <div id="ai-future" className="glass-card min-w-0 scroll-mt-24 p-6 md:p-8">
           <BlockHeading>Будущее ИИ: от помощника к агенту</BlockHeading>
           <div className="space-y-4">
             {future.map((text, i) => (
               <p key={i} className="leading-relaxed text-foreground/90">{text}</p>
             ))}
           </div>
-          <p className="mt-6 border-t border-border/60 pt-6 text-sm leading-relaxed text-muted-foreground">
+          <p className="mt-6 border-t border-border/60 pt-6 text-base font-medium leading-relaxed text-foreground/90">
             Хотите попробовать современные ИИ-инструменты на практике? Посмотрите, какие нейросети помогают работать с текстом, изображениями, поиском информации и программированием.
           </p>
           <Link
             to="/tools"
-            className="group mt-3 inline-flex min-h-11 items-center gap-1.5 font-medium text-primary transition hover:text-violet"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Открыть каталог в новой вкладке"
+            className="group mt-3 inline-flex min-h-11 items-center gap-1.5 text-sm font-medium text-primary transition hover:text-violet"
           >
             Изучить нейросети и ИИ-инструменты
             <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>

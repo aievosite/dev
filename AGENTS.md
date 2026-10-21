@@ -15,4 +15,5 @@
 - Implement the ambient site background only through the existing body gradients, the fixed mobile `body::before` layer and theme tokens, with a reduced-motion override, so no content layers or interactions change.
 - Render historical dialogs in a body portal with dynamic viewport sizing, safe-area spacing and reversible page scroll locking, so mobile browser toolbars and ancestor styles cannot clip them.
 - Keep each major content section in one shared component rendered only on its own page (ToolsCatalog on /tools, AiToday on /ai-today), reached through the header menu or an in-page button, never inline on the home page, so no section exists twice.
-- Keep the home route hero-only, hide its footer in the shared shell, use JourneyNext for sequential page links, and render Conclusion only after AiToday so the educational journey has one ending without duplicate content.
+- Keep the home route hero-only and its footer hidden; use JourneyNext for history → AiToday, render Conclusion only after AiToday, and keep timeline and eras together on /history so the main journey has one ending without duplicate content.
+- Use JourneyBack for return links; open the optional /tools link in the Future card in a separate tab and link the catalog back to /ai-today#ai-future so the practical detour preserves the reader's place without joining the main sequence.
