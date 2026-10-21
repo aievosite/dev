@@ -109,6 +109,9 @@ export function Header() {
               {n.label}
             </Link>
           ))}
+          <a href="/#ai-today" onClick={goAiToday} className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+            ИИ сегодня
+          </a>
         </nav>
         <div className="flex items-center gap-2">
           <a href="/#timeline" onClick={goTimeline} className="hidden rounded-full bg-gradient-accent px-5 py-2 text-sm font-semibold text-primary-foreground transition hover:opacity-90 sm:inline-flex">
@@ -127,6 +130,9 @@ export function Header() {
               {n.label}
             </Link>
           ))}
+          <a href="/#ai-today" onClick={(e) => { setOpen(false); goAiToday(e); }} className="py-2 text-muted-foreground hover:text-foreground">
+            ИИ сегодня
+          </a>
         </nav>
       )}
     </header>
