@@ -2,7 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import neural from "@/assets/neural.jpg";
 import { historyImages } from "@/lib/history-images";
 import { Approaches, Eras, SectionTitle, Timeline, pageWrap, useGoToTimeline } from "@/components/site";
-import { AiToday } from "@/components/ai-today";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -55,7 +54,6 @@ function Index() {
         <Eras />
       </section>
 
-      <AiToday />
 
       <section className={`${pageWrap} py-12 md:py-16`}>
         <div className="conclusion-card p-7 md:p-9">

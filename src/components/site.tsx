@@ -12,6 +12,7 @@ const nav = [
   { to: "/", label: "Главная" },
   { to: "/history", label: "История ИИ" },
   { to: "/tools", label: "Нейросети и ИИ-инструменты" },
+  { to: "/ai-today", label: "ИИ сегодня" },
 ] as const;
 
 const about = { to: "/about", label: "Об авторе" } as const;
@@ -90,7 +91,6 @@ function ThemeToggle() {
 export function Header() {
   const [open, setOpen] = useState(false);
   const goTimeline = useGoToTimeline();
-  const goAiToday = useGoToHomeSection("ai-today");
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const navigate = useNavigate();
   const goHome = (e: { preventDefault: () => void }) => {
@@ -111,9 +111,6 @@ export function Header() {
               {n.label}
             </Link>
           ))}
-          <a href="/#ai-today" onClick={goAiToday} className="text-sm text-muted-foreground transition-colors hover:text-foreground">
-            ИИ сегодня
-          </a>
           <Link to={about.to} className="text-sm text-muted-foreground transition-colors hover:text-foreground" activeProps={{ className: "text-foreground" }} activeOptions={{ exact: true }}>
             {about.label}
           </Link>
@@ -136,9 +133,6 @@ export function Header() {
               {n.label}
             </Link>
           ))}
-          <a href="/#ai-today" onClick={(e) => { e.preventDefault(); setOpen(false); setTimeout(() => goAiToday(), 80); }} className="py-2 text-muted-foreground hover:text-foreground">
-            ИИ сегодня
-          </a>
           <Link to={about.to} onClick={() => setOpen(false)} className="py-2 text-muted-foreground hover:text-foreground">
             {about.label}
           </Link>
