@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SectionTitle, pageWrap } from "@/components/site";
 import { ToolsCatalog } from "@/components/tools-catalog";
+import { JourneyNext } from "@/components/journey-next";
 
 export const Route = createFileRoute("/tools")({
   head: () => ({
@@ -17,6 +18,7 @@ export const Route = createFileRoute("/tools")({
     <div className={`${pageWrap} py-12 md:py-16`}>
       <SectionTitle eyebrow="Каталог" title="Нейросети и ИИ-инструменты" text="Двадцать один инструмент в шести категориях: ассистенты, поиск, программирование, изображения, видео и звук." />
       <ToolsCatalog />
+      <JourneyNext to="/ai-today">Далее: ИИ сегодня</JourneyNext>
     </div>
   ),
 });

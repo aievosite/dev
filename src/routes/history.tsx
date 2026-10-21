@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Approaches, Eras, SectionTitle, Timeline, pageWrap } from "@/components/site";
 import { historyImages } from "@/lib/history-images";
+import { JourneyNext } from "@/components/journey-next";
 
 export const Route = createFileRoute("/history")({
   head: () => ({
@@ -25,6 +26,7 @@ export const Route = createFileRoute("/history")({
         <SectionTitle eyebrow="Эпохи" title="Четыре эпохи развития" />
         <Eras />
       </div>
+      <JourneyNext to="/tools">Далее: нейросети и ИИ-инструменты</JourneyNext>
     </div>
   ),
 });

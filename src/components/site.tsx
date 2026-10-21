@@ -90,7 +90,6 @@ function ThemeToggle() {
 
 export function Header() {
   const [open, setOpen] = useState(false);
-  const goTimeline = useGoToTimeline();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const navigate = useNavigate();
   const goHome = (e: { preventDefault: () => void }) => {
@@ -117,9 +116,9 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <a href="/#timeline" onClick={goTimeline} className="hidden rounded-full bg-gradient-accent px-5 py-2 text-sm font-semibold text-primary-foreground transition hover:opacity-90 sm:inline-flex">
-            Начать путешествие
-          </a>
+          <Button asChild className="hidden h-auto rounded-full bg-gradient-accent px-5 py-2 text-sm font-semibold text-primary-foreground transition hover:opacity-90 sm:inline-flex">
+            <Link to="/history">Начать путешествие</Link>
+          </Button>
           <ThemeToggle />
           <button className="rounded-md border px-3 py-2 text-sm lg:hidden" onClick={() => setOpen(!open)} aria-expanded={open} aria-label="Меню">
             ☰
