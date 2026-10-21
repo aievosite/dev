@@ -1,4 +1,5 @@
 # Tasks
+- [x] Make the «Изучить нейросети и ИИ-инструменты» button open the catalog in the same tab and verify the flow on desktop and mobile.
 - [x] Correct unified history → AI today → conclusion navigation; make catalog optional, preserve reading position and verify desktop/mobile.
 - [x] Make home hero-only and connect history → tools → AI today → conclusion → author; verify both entry buttons and mobile navigation.
 - [x] Put every "ИИ сегодня" text block, including the takeaway, into theme-token cards or outlined panels; verify no horizontal overflow on desktop and mobile in both themes.
