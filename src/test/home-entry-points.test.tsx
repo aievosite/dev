@@ -39,6 +39,16 @@ describe("Home page entry points", () => {
     expect(item.getAttribute("href")).toBe("/ai-today");
     expect(screen.queryByRole("heading", { name: /ИИ сегодня: возможности, ограничения и будущее/i })).toBeNull();
   });
+
+  it("puts «ИИ сегодня» before «Нейросети и ИИ-инструменты» in the menu", async () => {
+    await renderAt("/");
+
+    const order = screen
+      .getByRole("navigation", { name: "Основная навигация" })
+      .getAllByRole("link")
+      .map((link) => link.getAttribute("href"));
+    expect(order).toEqual(["/", "/history", "/ai-today", "/tools", "/about"]);
+  });
 });
 
 describe("AI today page", () => {
