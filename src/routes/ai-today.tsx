@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { AiToday } from "@/components/ai-today";
+import { Conclusion } from "@/components/conclusion";
 
 export const Route = createFileRoute("/ai-today")({
   head: () => ({
@@ -12,5 +13,5 @@ export const Route = createFileRoute("/ai-today")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
-  component: AiToday,
+  component: () => <><AiToday /><Conclusion /></>,
 });
