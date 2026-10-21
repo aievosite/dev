@@ -101,13 +101,7 @@ export function AiToday() {
             Хотите попробовать современные ИИ-инструменты на практике? Посмотрите, какие нейросети помогают работать с текстом, изображениями, поиском информации и программированием.
           </p>
           <Button asChild className="mt-5 h-auto min-h-13 max-w-full whitespace-normal rounded-full bg-gradient-accent px-8 py-4 text-base font-semibold text-primary-foreground shadow-glow transition hover:opacity-90">
-            <Link
-              to="/tools"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="Открыть каталог в новой вкладке"
-              className="inline-flex items-center gap-2"
-            >
+            <Link to="/tools" className="inline-flex items-center gap-2">
               Изучить нейросети и ИИ-инструменты
               <ArrowRight aria-hidden />
             </Link>

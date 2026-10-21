@@ -38,12 +38,12 @@ describe("Educational journey", () => {
     expect(screen.getByRole("link", { name: "Назад: ИИ сегодня" })).toHaveAttribute("href", "/ai-today#ai-future");
     expect(screen.queryByRole("link", { name: /Далее:/ })).toBeNull();
   });
-  it("opens the optional catalog without replacing the reader's page", async () => {
+  it("opens the optional catalog in the same tab", async () => {
     await renderAt("/ai-today");
     const link = screen.getByRole("link", { name: /Изучить нейросети и ИИ-инструменты/ });
     expect(link).toHaveAttribute("href", "/tools");
-    expect(link).toHaveAttribute("target", "_blank");
-    expect(link).toHaveAttribute("rel", "noopener noreferrer");
+    expect(link).not.toHaveAttribute("target");
+    expect(link).not.toHaveAttribute("rel");
   });
   it("ends the educational journey with a link to the author", async () => {
     await renderAt("/ai-today");
