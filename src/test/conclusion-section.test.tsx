@@ -23,13 +23,27 @@ describe("Educational journey", () => {
     expect(screen.getByRole("link", { name: "Исследовать историю" })).toHaveAttribute("href", "/history");
     expect(screen.getByRole("link", { name: "Начать путешествие" })).toHaveAttribute("href", "/history");
   });
-  it("continues from history to the tools catalog", async () => {
+  it("continues directly from unified history to AI today", async () => {
     await renderAt("/history");
-    expect(screen.getByRole("link", { name: "Далее: нейросети и ИИ-инструменты" })).toHaveAttribute("href", "/tools");
-  });
-  it("continues from the tools catalog to AI today", async () => {
-    await renderAt("/tools");
     expect(screen.getByRole("link", { name: "Далее: ИИ сегодня" })).toHaveAttribute("href", "/ai-today");
+    expect(screen.getAllByRole("button", { name: "Подробнее" })).toHaveLength(9);
+    expect(screen.getByRole("heading", { name: "Четыре эпохи развития" })).toBeInTheDocument();
+  });
+  it("returns from AI today to unified history", async () => {
+    await renderAt("/ai-today");
+    expect(screen.getByRole("link", { name: "Назад: история развития ИИ" })).toHaveAttribute("href", "/history");
+  });
+  it("keeps the catalog optional and returns to the practical extension", async () => {
+    await renderAt("/tools");
+    expect(screen.getByRole("link", { name: "Назад: ИИ сегодня" })).toHaveAttribute("href", "/ai-today#ai-future");
+    expect(screen.queryByRole("link", { name: /Далее:/ })).toBeNull();
+  });
+  it("opens the optional catalog without replacing the reader's page", async () => {
+    await renderAt("/ai-today");
+    const link = screen.getByRole("link", { name: /Изучить нейросети и ИИ-инструменты/ });
+    expect(link).toHaveAttribute("href", "/tools");
+    expect(link).toHaveAttribute("target", "_blank");
+    expect(link).toHaveAttribute("rel", "noopener noreferrer");
   });
   it("ends the educational journey with a link to the author", async () => {
     await renderAt("/ai-today");
