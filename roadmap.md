@@ -1,4 +1,5 @@
 # Tasks
+- [ ] Make the home hero «Исследовать историю» button longer — same length as the journey «Далее» buttons (266px desktop), keeping the larger height; verify desktop and mobile.
 - [x] Set journey button width to exactly one era card of the eras grid (266px desktop, full width on phones), keeping the larger height; verify on desktop and mobile.
 - [x] Make the journey "Далее" / "Об авторе" buttons much larger and wider, matching the user's sketch; verify desktop and mobile.
 - [x] Make the «Изучить нейросети и ИИ-инструменты» button open the catalog in the same tab and verify the flow on desktop and mobile.
