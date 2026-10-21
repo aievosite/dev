@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as AiTodayRouteImport } from './routes/ai-today'
 import { Route as HistoryRouteImport } from './routes/history'
 import { Route as ToolsRouteImport } from './routes/tools'
 
@@ -22,6 +23,11 @@ const IndexRoute = IndexRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AiTodayRoute = AiTodayRouteImport.update({
+  id: '/ai-today',
+  path: '/ai-today',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HistoryRoute = HistoryRouteImport.update({
@@ -38,12 +44,14 @@ const ToolsRoute = ToolsRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/ai-today': typeof AiTodayRoute
   '/history': typeof HistoryRoute
   '/tools': typeof ToolsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/ai-today': typeof AiTodayRoute
   '/history': typeof HistoryRoute
   '/tools': typeof ToolsRoute
 }
@@ -51,20 +59,22 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/ai-today': typeof AiTodayRoute
   '/history': typeof HistoryRoute
   '/tools': typeof ToolsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/history' | '/tools'
+  fullPaths: '/' | '/about' | '/ai-today' | '/history' | '/tools'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/history' | '/tools'
-  id: '__root__' | '/' | '/about' | '/history' | '/tools'
+  to: '/' | '/about' | '/ai-today' | '/history' | '/tools'
+  id: '__root__' | '/' | '/about' | '/ai-today' | '/history' | '/tools'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AiTodayRoute: typeof AiTodayRoute
   HistoryRoute: typeof HistoryRoute
   ToolsRoute: typeof ToolsRoute
 }
@@ -83,6 +93,13 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ai-today': {
+      id: '/ai-today'
+      path: '/ai-today'
+      fullPath: '/ai-today'
+      preLoaderRoute: typeof AiTodayRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/history': {
@@ -105,6 +122,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AiTodayRoute: AiTodayRoute,
   HistoryRoute: HistoryRoute,
   ToolsRoute: ToolsRoute,
 }
