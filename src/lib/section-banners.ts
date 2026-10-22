@@ -14,10 +14,10 @@ export const sectionBanners = {
   today: {
     src: today.url,
     alt: "Футуристический офис с экраном, на котором показан светящийся цифровой мозг, и панелью с ИИ-сервисами",
-    position: "object-[50%_50%] sm:object-[center_50%]",
+    position: "object-[100%_50%] sm:object-[center_50%]",
     source: "Изображение предоставлено автором сайта",
     license: "Авторское изображение владельца проекта",
-    mobileAspect: "aspect-[3/1]",
+    mobileAspect: "aspect-[2/1]",
   },
   tools: {
     src: tools.url,
