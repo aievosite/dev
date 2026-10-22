@@ -23,3 +23,8 @@ export const sectionBanners = {
     src: tools.url,
     alt: "Тёмная лаборатория с неоновым экраном и стеклянной панелью со списком нейросетей: ChatGPT, Claude, Gemini и Midjourney",
     position: "object-[100%_50%] sm:object-[center_40%]",
+    source: "Изображение предоставлено автором сайта",
+    license: "Авторское изображение владельца проекта",
+    mobileAspect: "aspect-[2/1]",
+  },
+} as const;
