@@ -1,5 +1,5 @@
 import history from "@/assets/banners/history-eniac.jpg.asset.json";
-import today from "@/assets/banners/ai-today-neural-network.jpg.asset.json";
+import today from "@/assets/banners/ai-today-office.png.asset.json";
 import tools from "@/assets/banners/tools-workspace.jpg.asset.json";
 
 // Provenance is intentionally not rendered: all licenses allow use without visible credits.
@@ -13,10 +13,11 @@ export const sectionBanners = {
   },
   today: {
     src: today.url,
-    alt: "Робот касается рукой светящейся нейросети на тёмно-синем фоне",
-    position: "object-[55%_38%] sm:object-[center_40%]",
-    source: "https://www.pexels.com/photo/robot-pointing-on-a-wall-8386440/",
-    license: "Pexels License — no attribution required",
+    alt: "Футуристический офис с экраном, на котором показан светящийся цифровой мозг, и панелью с ИИ-сервисами",
+    position: "object-[100%_50%] sm:object-[center_50%]",
+    source: "Изображение предоставлено автором сайта",
+    license: "Авторское изображение владельца проекта",
+    mobileAspect: "aspect-[2/1]",
   },
   tools: {
     src: tools.url,

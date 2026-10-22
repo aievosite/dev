@@ -2,11 +2,17 @@ type SectionBannerProps = {
   src: string;
   alt: string;
   position?: string;
+  mobileAspect?: string;
 };
 
-export function SectionBanner({ src, alt, position = "object-center" }: SectionBannerProps) {
+export function SectionBanner({
+  src,
+  alt,
+  position = "object-center",
+  mobileAspect = "aspect-video",
+}: SectionBannerProps) {
   return (
-    <div className="aspect-video w-full overflow-hidden bg-muted sm:aspect-[3/1] lg:aspect-[4/1]">
+    <div className={`${mobileAspect} w-full overflow-hidden bg-muted sm:aspect-[3/1] lg:aspect-[4/1]`}>
       <img
         src={src}
         alt={alt}
