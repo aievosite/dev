@@ -17,6 +17,7 @@ export const sectionBanners = {
     position: "object-[50%_50%] sm:object-[center_50%]",
     source: "Изображение предоставлено автором сайта",
     license: "Авторское изображение владельца проекта",
+    mobileAspect: "aspect-[3/1]",
   },
   tools: {
     src: tools.url,
