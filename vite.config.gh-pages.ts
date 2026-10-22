@@ -19,7 +19,7 @@ function localAssetsPlugin(): Plugin {
       if (!id.endsWith(".asset.json")) return null;
       const data = JSON.parse(readFileSync(id, "utf8"));
       const local = `${base}lovable-assets/${data.asset_id}/${data.original_filename}`;
-      return `export default ${JSON.stringify({ ...data, url: local })};`;
+      return JSON.stringify({ ...data, url: local });
     },
   };
 }
