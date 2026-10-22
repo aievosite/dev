@@ -1,5 +1,5 @@
 import history from "@/assets/banners/history-eniac.jpg.asset.json";
-import today from "@/assets/banners/ai-today-chatbot.jpg.asset.json";
+import today from "@/assets/banners/ai-today-neural-network.jpg.asset.json";
 import tools from "@/assets/banners/tools-workspace.jpg.asset.json";
 
 // Provenance is intentionally not rendered: all licenses allow use without visible credits.
@@ -13,10 +13,10 @@ export const sectionBanners = {
   },
   today: {
     src: today.url,
-    alt: "Рука держит смартфон с ChatGPT на фоне тёмной микросхемы",
-    position: "object-[60%_35%] sm:object-[center_30%]",
-    source: "https://commons.wikimedia.org/wiki/File:Hand_holding_smartphone_with_ChatGPT_and_OpenAI_text_(52917312010).jpg",
-    license: "CC BY 2.0 — Jernej Furman, Flickr",
+    alt: "Робот касается рукой светящейся нейросети на тёмно-синем фоне",
+    position: "object-[55%_38%] sm:object-[center_40%]",
+    source: "https://www.pexels.com/photo/robot-pointing-on-a-wall-8386440/",
+    license: "Pexels License — no attribution required",
   },
   tools: {
     src: tools.url,
