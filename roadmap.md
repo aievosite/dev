@@ -1,4 +1,6 @@
 # Tasks
+- [x] Reposition the fixed «Далее: ИИ сегодня» button left and slightly up — aligned to the content column's right edge, ~64px above the bottom on desktop; keep it static while scrolling.
+- [x] Replace the «ИИ сегодня» banner with a fitting real photo (hand holding smartphone with ChatGPT, Wikimedia CC BY 2.0); verify desktop and mobile.
 - [x] Add three authentic full-viewport photographic banners above history, AI today and tools; preserve content and verify both themes on desktop/mobile.
 - [x] Make the home hero «Исследовать историю» button longer — same length as the journey «Далее» buttons (266px desktop), keeping the larger height; verify desktop and mobile.
 - [x] Set journey button width to exactly one era card of the eras grid (266px desktop, full width on phones), keeping the larger height; verify on desktop and mobile.
