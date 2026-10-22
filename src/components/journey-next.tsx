@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 export function JourneyNext({ to, children, floating = false }: { to: "/tools" | "/ai-today" | "/about"; children: string; floating?: boolean }) {
   const button = (
-    <Button asChild className="h-auto min-h-14 w-full max-w-full whitespace-normal rounded-full bg-gradient-accent px-5 py-5 text-lg font-semibold text-primary-foreground shadow-glow transition hover:opacity-90 sm:w-[266px] [&_svg]:size-5">
+    <Button asChild className="h-auto min-h-14 w-full max-w-full whitespace-normal rounded-full bg-gradient-accent px-5 py-5 text-lg font-semibold text-primary-foreground opacity-80 shadow-glow transition hover:opacity-100 sm:w-[266px] [&_svg]:size-5">
       <Link to={to}>{children}<ArrowRight aria-hidden /></Link>
     </Button>
   );
