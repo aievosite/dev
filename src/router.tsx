@@ -10,6 +10,9 @@ export const getRouter = () => {
     context: { queryClient },
     scrollRestoration: true,
     defaultPreloadStaleTime: 0,
+    // GitHub Pages build (subfolder base) serves /page/index.html, so keep "/page/"
+    // URLs instead of redirecting; the Lovable build (base "/") keeps the default.
+    ...(import.meta.env.BASE_URL !== "/" && { trailingSlash: "preserve" as const }),
   });
 
   return router;

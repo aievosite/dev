@@ -11,7 +11,8 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "build:gh-pages": "vite build --config vite.config.gh-pages.ts && node scripts/gh-pages-assets.mjs dist/client"
   },
   "overrides": {
     "rolldown": "1.2.1"
