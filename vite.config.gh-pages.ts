@@ -31,13 +31,11 @@ export default defineConfig({
   tanstackStart: {
     server: { entry: "server" },
     router: { basepath: base },
-    pages: [
-      { path: "/" },
-      { path: "/history" },
-      { path: "/ai-today" },
-      { path: "/tools" },
-      { path: "/about" },
-    ],
+    // Routes are requested under the subfolder, written at the output root.
+    pages: ["", "history", "ai-today", "tools", "about"].map((route) => ({
+      path: `${base}${route}`,
+      prerender: { enabled: true, outputPath: route ? `/${route}/index.html` : "/index.html" },
+    })),
     prerender: { enabled: true, autoStaticPathsDiscovery: false, crawlLinks: false },
   },
 });
