@@ -13,10 +13,10 @@ export const sectionBanners = {
   },
   today: {
     src: today.url,
-    alt: "Объёмные буквы AI среди переплетённых линий цифровой сети",
-    position: "object-[70%_50%]",
-    source: "https://unsplash.com/photos/a-computer-chip-with-the-letter-a-on-top-of-it-ZPOoDQc8yMw",
-    license: "Unsplash License — no attribution required",
+    alt: "Рука держит смартфон с ChatGPT на фоне тёмной микросхемы",
+    position: "object-[60%_35%] sm:object-[center_30%]",
+    source: "https://commons.wikimedia.org/wiki/File:Hand_holding_smartphone_with_ChatGPT_and_OpenAI_text_(52917312010).jpg",
+    license: "CC BY 2.0 — Jernej Furman, Flickr",
   },
   tools: {
     src: tools.url,
