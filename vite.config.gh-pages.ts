@@ -33,7 +33,7 @@ export default defineConfig({
     router: { basepath: base },
     // Routes are requested under the subfolder; scripts/gh-pages-assets.mjs
     // lifts the rendered <base>/... folder to the output root.
-    pages: ["", "history", "ai-today", "tools", "about"].map((route) => ({ path: `${base}${route}` })),
+    pages: ["", "history", "ai-today", "tools", "about"].map((route) => ({ path: route ? `${base}${route}/` : base })),
     prerender: { enabled: true, autoStaticPathsDiscovery: false, crawlLinks: false },
   },
 });
