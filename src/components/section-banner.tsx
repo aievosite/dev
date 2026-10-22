@@ -12,14 +12,16 @@ export function SectionBanner({
   mobileAspect = "aspect-video",
 }: SectionBannerProps) {
   return (
-    <div className={`${mobileAspect} w-full overflow-hidden bg-muted sm:aspect-[3/1] lg:aspect-[4/1]`}>
-      <img
-        src={src}
-        alt={alt}
-        fetchPriority="high"
-        decoding="async"
-        className={`h-full w-full object-cover ${position}`}
-      />
+    <div className="mx-auto w-full max-w-6xl px-5 pt-6">
+      <div className={`${mobileAspect} banner-tile overflow-hidden bg-muted sm:aspect-[3/1] lg:aspect-[7/2]`}>
+        <img
+          src={src}
+          alt={alt}
+          fetchPriority="high"
+          decoding="async"
+          className={`h-full w-full object-cover ${position}`}
+        />
+      </div>
     </div>
   );
 }

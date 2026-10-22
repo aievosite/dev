@@ -7,7 +7,7 @@ export const sectionBanners = {
   history: {
     src: history.url,
     alt: "Ретро-компьютер с монитором и клавиатурой на столе в светлом учебном кабинете: стопка книг по искусственному интеллекту и маркерная доска со схемой обучения модели",
-    position: "object-[0%_50%] sm:object-[center_65%]",
+    position: "object-[0%_50%] sm:object-[center_55%]",
     source: "Изображение предоставлено автором сайта",
     license: "Авторское изображение владельца проекта",
   },
@@ -22,7 +22,7 @@ export const sectionBanners = {
   tools: {
     src: tools.url,
     alt: "Тёмная лаборатория с неоновым экраном и стеклянной панелью со списком нейросетей: ChatGPT, Claude, Gemini и Midjourney",
-    position: "object-[100%_50%] sm:object-[center_50%]",
+    position: "object-[100%_50%] sm:object-[center_40%]",
     source: "Изображение предоставлено автором сайта",
     license: "Авторское изображение владельца проекта",
     mobileAspect: "aspect-[2/1]",
