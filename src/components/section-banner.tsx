@@ -13,7 +13,7 @@ export function SectionBanner({
 }: SectionBannerProps) {
   return (
     <div className="mx-auto w-full max-w-6xl px-5 pt-6">
-      <div className={`${mobileAspect} banner-tile overflow-hidden bg-muted sm:aspect-[3/1] lg:aspect-[4/1]`}>
+      <div className={`${mobileAspect} banner-tile overflow-hidden bg-muted sm:aspect-[3/1] lg:aspect-[7/2]`}>
         <img
           src={src}
           alt={alt}
