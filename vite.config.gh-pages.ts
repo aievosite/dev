@@ -31,9 +31,9 @@ export default defineConfig({
   tanstackStart: {
     server: { entry: "server" },
     router: { basepath: base },
-    // Routes are requested under the subfolder; scripts/gh-pages-assets.mjs
-    // lifts the rendered <base>/... folder to the output root.
-    pages: ["", "history", "ai-today", "tools", "about"].map((route) => ({ path: route ? `${base}${route}/` : base })),
+    // TanStack adds router.basepath when requesting these paths and strips it
+    // again when writing <route>/index.html at the output root.
+    pages: ["", "history", "ai-today", "tools", "about"].map((route) => ({ path: `/${route}` })),
     prerender: { enabled: true, autoStaticPathsDiscovery: false, crawlLinks: false },
   },
 });
