@@ -3,9 +3,10 @@
 // Usage: node scripts/gh-pages-assets.mjs <outDir>
 import { readdir, readFile, mkdir, writeFile, copyFile, stat, rename, rm } from "node:fs/promises";
 import { join, dirname } from "node:path";
+import { getPagesBase } from "./gh-pages-config.mjs";
 
 const outDir = process.argv[2] ?? "dist/client";
-const base = (process.env.GH_PAGES_BASE ?? "/ai-evolution-site/").replace(/^\/+|\/+$/g, "");
+const base = getPagesBase().replace(/^\/+|\/+$/g, "");
 const source = process.env.ASSET_SOURCE ?? "https://ai-evolution-site.lovable.app";
 
 async function walk(dir) {

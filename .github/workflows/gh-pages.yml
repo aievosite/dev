@@ -17,14 +17,19 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      GH_PAGES_BASE: /${{ github.event.repository.name }}/
     steps:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v2
-      - run: bun install
+      - uses: actions/configure-pages@v5
+      - run: bun install --frozen-lockfile
+      - name: Test Pages paths
+        run: bunx vitest run src/test/gh-pages.test.ts
       - name: Build static site
-        env:
-          GH_PAGES_BASE: /${{ github.event.repository.name }}/
         run: bun run build:gh-pages
+      - name: Verify all five pages and local resources
+        run: node scripts/gh-pages-verify.mjs dist/client
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist/client

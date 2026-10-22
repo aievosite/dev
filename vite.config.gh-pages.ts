@@ -4,9 +4,9 @@
 import { readFileSync } from "node:fs";
 import type { Plugin } from "vite";
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
+import { getPagesBase, publicPages } from "./scripts/gh-pages-config.mjs";
 
-const rawBase = process.env.GH_PAGES_BASE ?? "/ai-evolution-site/";
-const base = `/${rawBase.replace(/^\/+|\/+$/g, "")}/`.replace(/^\/\/$/, "/");
+const base = getPagesBase();
 
 // Lovable-hosted images (`*.asset.json`) point at /__l5e/assets-v1/... which only
 // exists on Lovable hosting. Rewrite them to local copies that
@@ -33,7 +33,7 @@ export default defineConfig({
     router: { basepath: base },
     // TanStack adds router.basepath when requesting these paths and strips it
     // again when writing <route>/index.html at the output root.
-    pages: ["", "history", "ai-today", "tools", "about"].map((route) => ({ path: `/${route}` })),
+    pages: publicPages.map((route) => ({ path: `/${route}` })),
     prerender: { enabled: true, autoStaticPathsDiscovery: false, crawlLinks: false },
   },
 });

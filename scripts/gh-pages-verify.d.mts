@@ -1,0 +1,1 @@
+export function verifyPages(outDir: string, base?: string): Promise<{ pages: number; checked: number; base: string }>;
