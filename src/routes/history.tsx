@@ -2,6 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Approaches, Eras, SectionTitle, Timeline, pageWrap } from "@/components/site";
 import { historyImages } from "@/lib/history-images";
 import { JourneyNext } from "@/components/journey-next";
+import { SectionBanner } from "@/components/section-banner";
+import { sectionBanners } from "@/lib/section-banners";
 
 export const Route = createFileRoute("/history")({
   head: () => ({
@@ -15,6 +17,8 @@ export const Route = createFileRoute("/history")({
     ],
   }),
   component: () => (
+    <>
+    <SectionBanner {...sectionBanners.history} />
     <div className={`${pageWrap} py-16`}>
       <SectionTitle eyebrow="История ИИ" title="Путешествие сквозь девять десятилетий" text="Каждая карточка раскрывается — нажмите «Подробнее»." />
       <Timeline images={historyImages} />
@@ -28,5 +32,6 @@ export const Route = createFileRoute("/history")({
       </div>
       <JourneyNext to="/ai-today">Далее: ИИ сегодня</JourneyNext>
     </div>
+    </>
   ),
 });
