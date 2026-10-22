@@ -1,5 +1,5 @@
 import history from "@/assets/banners/history-eniac.jpg.asset.json";
-import today from "@/assets/banners/ai-today-ai-render.jpg.asset.json";
+import today from "@/assets/banners/ai-today-chatbot.jpg.asset.json";
 import tools from "@/assets/banners/tools-workspace.jpg.asset.json";
 
 // Provenance is intentionally not rendered: all licenses allow use without visible credits.
