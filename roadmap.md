@@ -28,3 +28,4 @@
 - [x] Make all eight "Возможности"/"Ограничения" cards the same height on wide screens with text centred inside; keep natural heights on mobile; verify both themes.
 - [x] Put the home quiz call-to-action into an outlined accent panel with readable body text; verify both themes and mobile.
 - [x] Fill the four "Возможности" cards with fuller text so both columns match in text volume and stay even; verify desktop/mobile.
+- [x] Replace all three page banners with the authors own uploaded pictures (retro computer → history, modern office with «ИИ сегодня» panel → AI today, holographic assistant list → tools); tune desktop and phone cropping and verify both themes.
