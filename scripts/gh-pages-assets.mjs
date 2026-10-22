@@ -1,10 +1,11 @@
 // Post-build step for GitHub Pages: copies every Lovable-hosted image into the
 // static output so the site works without Lovable hosting.
 // Usage: node scripts/gh-pages-assets.mjs <outDir>
-import { readdir, readFile, mkdir, writeFile, copyFile, stat } from "node:fs/promises";
+import { readdir, readFile, mkdir, writeFile, copyFile, stat, rename, rm } from "node:fs/promises";
 import { join, dirname } from "node:path";
 
 const outDir = process.argv[2] ?? "dist/client";
+const base = (process.env.GH_PAGES_BASE ?? "/ai-evolution-site/").replace(/^\/+|\/+$/g, "");
 const source = process.env.ASSET_SOURCE ?? "https://ai-evolution-site.lovable.app";
 
 async function walk(dir) {
@@ -24,6 +25,18 @@ for (const file of pointers) {
   await mkdir(dirname(target), { recursive: true });
   await writeFile(target, Buffer.from(await res.arrayBuffer()));
   console.log("asset", target);
+}
+
+// Prerendered pages land in <outDir>/<base>/...; GitHub Pages already serves
+// <outDir> at /<base>/, so move them to the root.
+const nested = join(outDir, base);
+if (base && (await stat(nested).catch(() => null))) {
+  for (const f of await walk(nested)) {
+    const dest = join(outDir, f.slice(nested.length + 1));
+    await mkdir(dirname(dest), { recursive: true });
+    await rename(f, dest);
+  }
+  await rm(nested, { recursive: true, force: true });
 }
 
 // GitHub Pages: no Jekyll processing, and unknown URLs show the site's 404 page.
