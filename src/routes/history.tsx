@@ -30,7 +30,7 @@ export const Route = createFileRoute("/history")({
         <SectionTitle eyebrow="Эпохи" title="Четыре эпохи развития" />
         <Eras />
       </div>
-      <JourneyNext to="/ai-today">Далее: ИИ сегодня</JourneyNext>
+      <JourneyNext floating to="/ai-today">Далее: ИИ сегодня</JourneyNext>
     </div>
     </>
   ),
