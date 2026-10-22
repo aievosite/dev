@@ -1,5 +1,5 @@
 import history from "@/assets/banners/history-eniac.jpg.asset.json";
-import today from "@/assets/banners/ai-today-robonaut.jpg.asset.json";
+import today from "@/assets/banners/ai-today-ai-render.jpg.asset.json";
 import tools from "@/assets/banners/tools-workspace.jpg.asset.json";
 
 // Provenance is intentionally not rendered: all licenses allow use without visible credits.
@@ -13,10 +13,10 @@ export const sectionBanners = {
   },
   today: {
     src: today.url,
-    alt: "Робот Robonaut 2 и космический скафандр в лаборатории NASA",
-    position: "object-[center_20%]",
-    source: "https://images.nasa.gov/details/jsc2010e089924",
-    license: "NASA public-use imagery — JSC2010-E-089924",
+    alt: "Объёмные буквы AI среди переплетённых линий цифровой сети",
+    position: "object-[70%_50%]",
+    source: "https://unsplash.com/photos/a-computer-chip-with-the-letter-a-on-top-of-it-ZPOoDQc8yMw",
+    license: "Unsplash License — no attribution required",
   },
   tools: {
     src: tools.url,
