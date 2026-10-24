@@ -1,4 +1,5 @@
 # Tasks
+- [x] Clear the white haze out of the centre of the small header emblem — the enclosed opening is now fully transparent so it takes the page colour in both themes, outer glow untouched; verified by pixel sampling on the live page, tests and the Pages static build.
 - [x] Removed the large 3D ribbon emblem from /about again at the author's request — header markup restored, CDN asset deleted; the small 24px header emblem stays; verified both themes, mobile, tests and the Pages static build.
 - [x] Put the author's uploaded 3D ribbon emblem in the header left of «AI / ЭВОЛЮЦИЯ» at 24px, cut out on a transparent background; verify both themes, mobile and the Pages static build.
 - [x] Correct GitHub Pages /dev/ paths and add pre-deployment checks for all five pages and resources, preserving Lovable; tests pass and resolved bases are /dev/ for Pages and / for Lovable.
