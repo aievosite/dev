@@ -36,7 +36,7 @@ function About() {
           alt="Эмблема проекта AI / ЭВОЛЮЦИЯ"
           width={512}
           height={512}
-          className="w-40 shrink-0 sm:w-56 md:w-72"
+          className="w-36 shrink-0 sm:w-48 md:mr-14 md:w-64"
         />
       </div>
       <div className="mt-10 grid gap-5 md:grid-cols-2">
