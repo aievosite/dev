@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import logoLg from "@/assets/logo-lg.png.asset.json";
 
 const sections = [
   { h: "О проекте", p: "AI / ЭВОЛЮЦИЯ — образовательный веб-сайт, посвящённый истории развития искусственного интеллекта, современным нейросетям и ИИ-инструментам. Сайт объединяет исторические материалы, информацию о современных технологиях и интерактивные элементы, помогая пользователям познакомиться с развитием искусственного интеллекта." },
@@ -24,9 +25,20 @@ export const Route = createFileRoute("/about")({
 function About() {
   return (
     <div className="mx-auto max-w-5xl px-5 py-16">
-      <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-primary">Об авторе</p>
-      <h1 className="text-3xl font-semibold leading-tight md:text-4xl">Ефимов Никита</h1>
-      <p className="mt-3 text-muted-foreground">Ученик 11 «А» класса МБОУ СОШ № 72 г. Хабаровска</p>
+      <div className="flex flex-col items-center gap-6 sm:flex-row sm:items-center sm:justify-between sm:gap-10">
+        <div>
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-primary">Об авторе</p>
+          <h1 className="text-3xl font-semibold leading-tight md:text-4xl">Ефимов Никита</h1>
+          <p className="mt-3 text-muted-foreground">Ученик 11 «А» класса МБОУ СОШ № 72 г. Хабаровска</p>
+        </div>
+        <img
+          src={logoLg.url}
+          alt="Эмблема проекта AI / ЭВОЛЮЦИЯ"
+          width={512}
+          height={512}
+          className="w-36 shrink-0 sm:w-48 md:w-60"
+        />
+      </div>
       <div className="mt-10 grid gap-5 md:grid-cols-2">
         {sections.map((s) => (
           <section key={s.h} className="glass-card p-6 md:p-7">
