@@ -1,4 +1,5 @@
 # Tasks
+- [x] Put the author's large 3D ribbon emblem on /about right of «Ефимов Никита» (288px desktop, 160px phone, transparent cut-out); verify both themes, mobile and the Pages static build.
 - [x] Put the author's uploaded 3D ribbon emblem in the header left of «AI / ЭВОЛЮЦИЯ» at 24px, cut out on a transparent background; verify both themes, mobile and the Pages static build.
 - [x] Correct GitHub Pages /dev/ paths and add pre-deployment checks for all five pages and resources, preserving Lovable; tests pass and resolved bases are /dev/ for Pages and / for Lovable.
 - [ ] Verify newly deployed GitHub Pages artifact at https://aievosite.github.io/dev/ — blocked by unavailable Git sync/Actions status and deployment controls; live site still serves the previous /ai-evolution-site/ HTML.
