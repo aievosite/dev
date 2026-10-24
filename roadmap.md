@@ -1,4 +1,5 @@
 # Tasks
+- [x] Put the author's uploaded 3D ribbon emblem in the header left of «AI / ЭВОЛЮЦИЯ» at 24px, cut out on a transparent background; verify both themes, mobile and the Pages static build.
 - [x] Correct GitHub Pages /dev/ paths and add pre-deployment checks for all five pages and resources, preserving Lovable; tests pass and resolved bases are /dev/ for Pages and / for Lovable.
 - [ ] Verify newly deployed GitHub Pages artifact at https://aievosite.github.io/dev/ — blocked by unavailable Git sync/Actions status and deployment controls; live site still serves the previous /ai-evolution-site/ HTML.
 - [x] Put the author's own uploaded picture (dark office with brain screen + AI services panel) in the «ИИ сегодня» banner; frame it taller and cropped right on phones so the panel stays readable; verify desktop and mobile.

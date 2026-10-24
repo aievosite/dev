@@ -7,6 +7,7 @@ import { milestones, periods, eras, approaches, type Milestone } from "@/lib/con
 import { EventImage, type HistoricalImage } from "@/components/event-image";
 import { EraImage } from "@/components/era-image";
 import { eraImages } from "@/lib/era-images";
+import logo from "@/assets/logo.png.asset.json";
 
 const nav = [
   { to: "/", label: "Главная" },
@@ -100,8 +101,9 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4">
-        <Link to="/" aria-label="На главную страницу" onClick={goHome} className="font-display text-sm font-semibold tracking-widest">
-          AI <span className="text-gradient">/ ЭВОЛЮЦИЯ</span>
+        <Link to="/" aria-label="На главную страницу" onClick={goHome} className="flex items-center gap-2.5 font-display text-sm font-semibold tracking-widest">
+          <img src={logo.url} alt="" width={24} height={24} className="h-6 w-6 shrink-0" />
+          <span className="whitespace-nowrap">AI <span className="text-gradient">/ ЭВОЛЮЦИЯ</span></span>
         </Link>
 
         <nav className="hidden items-center gap-6 lg:flex" aria-label="Основная навигация">
