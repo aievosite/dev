@@ -1,0 +1,48 @@
+name: Transfer approved V2
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: write
+jobs:
+  transfer:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Copy approved version preserving history
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import os,json,urllib.request,tarfile,io,base64,concurrent.futures
+          token=os.environ['GH_TOKEN']
+          root='https://api.github.com/repos/aievosite/dev'
+          def api(path,data=None,method=None):
+              req=urllib.request.Request(root+path,data=None if data is None else json.dumps(data).encode(),headers={'Authorization':'Bearer '+token,'Accept':'application/vnd.github+json','Content-Type':'application/json'},method=method)
+              with urllib.request.urlopen(req,timeout=120) as r:
+                  raw=r.read()
+                  return json.loads(raw) if raw else None
+          old=api('/git/ref/heads/main')['object']['sha']
+          url='https://codeload.github.com/aievosite/ai-evolution-site-v2/tar.gz/107cebfda574483e4dd155b246f6ec55c01c8cc9'
+          with urllib.request.urlopen(url,timeout=120) as r: archive=r.read()
+          files=[]
+          with tarfile.open(fileobj=io.BytesIO(archive),mode='r:gz') as tar:
+              for m in tar.getmembers():
+                  if not m.isfile(): continue
+                  path=m.name.split('/',1)[1]
+                  parts=path.split('/')
+                  if any(p in ('.git','node_modules','dist') or p.startswith('.env') for p in parts): continue
+                  f=tar.extractfile(m)
+                  if f is None: continue
+                  files.append((path,f.read(),'100755' if m.mode & 0o111 else '100644'))
+          assert len(files)>100
+          def upload(item):
+              path,data,mode=item
+              blob=api('/git/blobs',{'content':base64.b64encode(data).decode(),'encoding':'base64'})
+              return {'path':path,'mode':mode,'type':'blob','sha':blob['sha']}
+          with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool: tree=list(pool.map(upload,files))
+          newtree=api('/git/trees',{'tree':tree})['sha']
+          commit=api('/git/commits',{'message':'Replace site with approved AI Evolution V2; preserve previous history','tree':newtree,'parents':[old]})['sha']
+          api('/git/refs/heads/main',{'sha':commit,'force':False},'PATCH')
+          api('/actions/workflows/gh-pages.yml/dispatches',{'ref':'main'})
+          print('Transferred',len(files),'files. Commit:',commit)
+          PY
