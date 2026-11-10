@@ -1,5 +1,5 @@
 import history from "@/assets/banners/history-retro-classroom.jpg.asset.json";
-import today from "@/assets/banners/ai-today-office-panel.webp.asset.json";
+import today from "@/assets/banners/ai-today-earth-wide.png.asset.json";
 import tools from "@/assets/banners/tools-ai-assistants.webp.asset.json";
 
 // Provenance is intentionally not rendered: these are the site owner's own images.
@@ -13,7 +13,7 @@ export const sectionBanners = {
   },
   today: {
     src: today.url,
-    alt: "Современный офис с панорамным окном и парящей панелью «ИИ сегодня»: образование, бизнес, медицина и наука",
+    alt: "Светящийся сине-фиолетовый горизонт Земли и микрочип AI с линиями цифровых связей",
     position: "object-[100%_50%] sm:object-[center_50%]",
     source: "Изображение предоставлено автором сайта",
     license: "Авторское изображение владельца проекта",

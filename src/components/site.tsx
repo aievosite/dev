@@ -1,5 +1,5 @@
 import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Button } from "@/components/ui/button";
 import { useModalPageLock } from "@/hooks/use-modal-page-lock";
@@ -181,12 +181,22 @@ export function SectionTitle({ eyebrow, title, text }: { eyebrow: string; title:
 
 function Article({ m, image, showImage, onClose }: { m: Milestone; image?: HistoricalImage | undefined; showImage?: boolean; onClose: () => void }) {
   useModalPageLock();
+  const [closing, setClosing] = useState(false);
+  const close = useCallback(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) onClose();
+    else setClosing(true);
+  }, [onClose]);
+  useEffect(() => {
+    if (!closing) return;
+    const timer = window.setTimeout(onClose, 180);
+    return () => window.clearTimeout(timer);
+  }, [closing, onClose]);
   const dialogRef = useRef<HTMLElement>(null);
   useEffect(() => {
     const previousFocus = document.activeElement;
     dialogRef.current?.focus({ preventScroll: true });
     const k = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") close();
       if (e.key !== "Tab") return;
       const dialog = dialogRef.current;
       if (!dialog) return;
@@ -204,12 +214,12 @@ function Article({ m, image, showImage, onClose }: { m: Milestone; image?: Histo
       document.removeEventListener("keydown", k);
       if (previousFocus instanceof HTMLElement) previousFocus.focus({ preventScroll: true });
     };
-  }, [onClose]);
+  }, [close]);
   return createPortal(
-    <div className="event-modal-overlay fixed inset-x-0 top-0 z-50 flex items-end justify-center bg-background/80 backdrop-blur-sm animate-in fade-in sm:items-center" onClick={onClose}>
+    <div data-closing={closing} className="event-modal-overlay fixed inset-x-0 top-0 z-50 flex items-end justify-center bg-background/80 backdrop-blur-sm sm:items-center" onClick={close}>
       <article ref={dialogRef} tabIndex={-1} role="dialog" aria-modal="true" aria-labelledby="art-title" onClick={(e) => e.stopPropagation()} className="glass-card event-modal article-scroll min-h-0 w-full max-w-2xl overflow-y-auto rounded-b-none p-6 text-left outline-none sm:rounded-b-xl md:p-10">
         <div className="sticky top-0 z-10 flex h-0 justify-end">
-          <Button variant="ghost" onClick={onClose} aria-label="Закрыть" className="event-modal-close size-[36px] shrink-0 rounded-full border p-0 text-sm leading-none text-muted-foreground hover:text-foreground">✕</Button>
+          <Button variant="ghost" onClick={close} aria-label="Закрыть" className="event-modal-close size-[36px] shrink-0 rounded-full border p-0 text-sm leading-none text-muted-foreground hover:text-foreground">✕</Button>
         </div>
         <div className="min-w-0 pr-14">
           <p className="font-display text-2xl font-semibold text-gradient">{m.year}</p>
@@ -236,15 +246,16 @@ function Article({ m, image, showImage, onClose }: { m: Milestone; image?: Histo
 
 function TimelineItem({ m, images }: { m: Milestone; images?: Record<string, HistoricalImage> | undefined }) {
   const [open, setOpen] = useState(false);
+  const close = useCallback(() => setOpen(false), []);
   return (
     <li>
-      <article className="glass-card flex h-full flex-col border-l-2 border-l-primary/60 p-5 transition hover:shadow-glow">
+      <article className="glass-card interactive-card flex h-full flex-col border-l-2 border-l-primary/60 p-5">
         <p className="font-display text-xl font-semibold text-gradient">{m.year}</p>
         <h4 className="mt-1.5 font-medium">{m.title}</h4>
         <p className="mt-1.5 flex-1 text-sm text-muted-foreground">{m.short}</p>
-        <button onClick={() => setOpen(true)} className="mt-3 self-start text-sm font-semibold text-primary hover:underline">Подробнее</button>
+        <Button variant="ghost" onClick={() => setOpen(true)} className="mt-3 h-auto self-start p-0 text-sm font-semibold text-primary hover:underline">Подробнее</Button>
       </article>
-      {open && <Article m={m} image={images?.[m.year]} showImage={images !== undefined} onClose={() => setOpen(false)} />}
+      {open && <Article m={m} image={images?.[m.year]} showImage={images !== undefined} onClose={close} />}
     </li>
   );
 }
@@ -259,10 +270,10 @@ export function Timeline({ images }: { images?: Record<string, HistoricalImage> 
           </a>
         ))}
       </nav>
-      <div className="space-y-12">
+      <div data-timeline-progress className="timeline-progression space-y-12">
         {periods.map((p, i) => (
           <section key={p.id} id={`period-${p.id}`} className="scroll-mt-40 md:grid md:grid-cols-[200px_1fr] md:gap-8">
-            <header className="mb-4 md:mb-0">
+            <header data-motion-static className="mb-4 md:mb-0">
               <p className="font-display text-sm text-muted-foreground/50">0{i + 1}</p>
               <h3 className="mt-1 text-lg font-semibold">{p.label}</h3>
               <p className="text-sm text-primary">{p.range}</p>

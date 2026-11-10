@@ -26,7 +26,7 @@ export function ToolsCatalog() {
           ))}
         </div>
         <div className="flex items-center justify-between text-sm text-muted-foreground">
-          <span>Найдено: {list.length}</span>
+          <span role="status" aria-live="polite">Найдено: {list.length}</span>
           {(query || cat) && <Button variant="ghost" onClick={reset} className="h-auto p-0 font-semibold text-primary hover:underline">Сбросить фильтры</Button>}
         </div>
       </div>
@@ -38,9 +38,9 @@ export function ToolsCatalog() {
           <Button variant="ghost" onClick={reset} className="mt-5 rounded-full bg-gradient-accent px-5 py-2 text-sm font-semibold text-primary-foreground">Показать все инструменты</Button>
         </div>
       ) : (
-        <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div key={cat ?? "all"} className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {list.map((t) => (
-            <article key={t.name} className="glass-card flex flex-col p-6 transition hover:shadow-glow">
+            <article key={t.name} className="glass-card interactive-card flex flex-col p-6">
               <p className="text-xs font-semibold uppercase tracking-widest text-primary">{t.category}</p>
               <div className="mt-3 flex items-center gap-3"><ToolLogo t={t} /><h3 className="text-xl font-semibold">{t.name}</h3></div>
               <p className="mt-1 text-xs text-muted-foreground">{t.kind}</p>

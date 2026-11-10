@@ -3,6 +3,7 @@ import { AiToday } from "@/components/ai-today";
 import { Conclusion } from "@/components/conclusion";
 import { SectionBanner } from "@/components/section-banner";
 import { sectionBanners } from "@/lib/section-banners";
+import { ContentMotion } from "@/components/content-motion";
 
 export const Route = createFileRoute("/ai-today")({
   head: () => ({
@@ -15,5 +16,5 @@ export const Route = createFileRoute("/ai-today")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
-  component: () => <><SectionBanner {...sectionBanners.today} /><AiToday /><Conclusion /></>,
+  component: () => <ContentMotion><SectionBanner {...sectionBanners.today} /><AiToday /><Conclusion /></ContentMotion>,
 });

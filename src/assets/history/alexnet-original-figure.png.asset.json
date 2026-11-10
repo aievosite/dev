@@ -1,11 +1,11 @@
 {
-  "version": 1,
   "asset_id": "9d78075e-d2e0-4a11-8c8b-ae46dfa55ffb",
-  "project_id": "dec35dd5-fe40-4430-a64d-5d4d0f7e0b87",
-  "url": "/__l5e/assets-v1/9d78075e-d2e0-4a11-8c8b-ae46dfa55ffb/alexnet-original-figure.png",
-  "r2_key": "a/v1/dec35dd5-fe40-4430-a64d-5d4d0f7e0b87/9d78075e-d2e0-4a11-8c8b-ae46dfa55ffb/alexnet-original-figure.png",
-  "original_filename": "alexnet-original-figure.png",
-  "size": 94660,
   "content_type": "image/png",
-  "created_at": "2026-10-18T04:49:49Z"
+  "created_at": "2026-10-18T04:49:49Z",
+  "original_filename": "alexnet-original-figure.png",
+  "project_id": "925bdfb1-c7b0-48d6-9509-10fc5fb22d5b",
+  "r2_key": "a/v1/925bdfb1-c7b0-48d6-9509-10fc5fb22d5b/9d78075e-d2e0-4a11-8c8b-ae46dfa55ffb/alexnet-original-figure.png",
+  "size": 94660,
+  "url": "/__l5e/assets-v1/9d78075e-d2e0-4a11-8c8b-ae46dfa55ffb/alexnet-original-figure.png",
+  "version": 1
 }

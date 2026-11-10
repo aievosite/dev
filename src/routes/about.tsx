@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { ContentMotion } from "@/components/content-motion";
 
 const sections = [
   { h: "О проекте", p: "AI / ЭВОЛЮЦИЯ — образовательный веб-сайт, посвящённый истории развития искусственного интеллекта, современным нейросетям и ИИ-инструментам. Сайт объединяет исторические материалы, информацию о современных технологиях и интерактивные элементы, помогая пользователям познакомиться с развитием искусственного интеллекта." },
@@ -23,6 +24,7 @@ export const Route = createFileRoute("/about")({
 
 function About() {
   return (
+    <ContentMotion calm>
     <div className="mx-auto max-w-5xl px-5 py-16">
       <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-primary">Об авторе</p>
       <h1 className="text-3xl font-semibold leading-tight md:text-4xl">Ефимов Никита</h1>
@@ -40,5 +42,6 @@ function About() {
         </section>
       </div>
     </div>
+    </ContentMotion>
   );
 }

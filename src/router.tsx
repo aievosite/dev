@@ -9,6 +9,8 @@ export const getRouter = () => {
     routeTree,
     context: { queryClient },
     scrollRestoration: true,
+    scrollRestorationBehavior: "instant",
+    defaultHashScrollIntoView: { behavior: "instant" },
     defaultPreloadStaleTime: 0,
     // GitHub Pages build (subfolder base) serves /page/index.html, so keep "/page/"
     // URLs instead of redirecting; the Lovable build (base "/") keeps the default.

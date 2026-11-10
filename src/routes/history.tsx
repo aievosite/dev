@@ -4,6 +4,7 @@ import { historyImages } from "@/lib/history-images";
 import { JourneyNext } from "@/components/journey-next";
 import { SectionBanner } from "@/components/section-banner";
 import { sectionBanners } from "@/lib/section-banners";
+import { ContentMotion } from "@/components/content-motion";
 
 export const Route = createFileRoute("/history")({
   head: () => ({
@@ -17,10 +18,12 @@ export const Route = createFileRoute("/history")({
     ],
   }),
   component: () => (
-    <>
+    <ContentMotion>
     <SectionBanner {...sectionBanners.history} />
     <div className={`${pageWrap} py-16`}>
-      <SectionTitle eyebrow="История ИИ" title="Путешествие сквозь девять десятилетий" text="Каждая карточка раскрывается — нажмите «Подробнее»." />
+      <div data-motion-static>
+        <SectionTitle eyebrow="История ИИ" title="Путешествие сквозь девять десятилетий" text="Каждая карточка раскрывается — нажмите «Подробнее»." />
+      </div>
       <Timeline images={historyImages} />
       <div className="mt-24">
         <SectionTitle eyebrow="Как развивался ИИ" title="Шесть этапов развития ИИ" />
@@ -32,6 +35,6 @@ export const Route = createFileRoute("/history")({
       </div>
       <JourneyNext floating to="/ai-today">Далее: ИИ сегодня</JourneyNext>
     </div>
-    </>
+    </ContentMotion>
   ),
 });

@@ -56,6 +56,24 @@
   --ring: oklch(0.68 0.17 250);
   --gradient-accent: linear-gradient(120deg, var(--primary), var(--violet));
   --shadow-glow: 0 0 60px -15px color-mix(in oklab, var(--primary) 50%, transparent);
+  --hero-glow: linear-gradient(120deg, color-mix(in oklab, var(--primary) 18%, transparent), color-mix(in oklab, var(--violet) 16%, transparent));
+  --network-line-opacity: 0.55;
+  --network-node: oklch(0.88 0.08 240);
+  --network-halo: color-mix(in oklab, var(--primary) 12%, transparent);
+  --network-shadow: color-mix(in oklab, var(--primary) 45%, transparent);
+  --cube-glow: color-mix(in oklab, var(--primary) 28%, transparent);
+  --cube-core-light: oklch(0.92 0.065 215);
+  --cube-core-opacity: 0.48;
+  --cube-image-filter: none;
+  --hero-corner-glow: color-mix(in oklab, var(--violet) 55%, transparent);
+  --hero-arc: color-mix(in oklab, var(--violet) 55%, transparent);
+  --cube-glass-tint: #4925bb;
+  --cube-edge-tint: #363fb4;
+  --cube-core-tint: #9bcfff;
+  --cube-violet-tint: #7444d3;
+  --cube-reflection-tint: #e1ecf5;
+  --cube-atmosphere-blue: color-mix(in oklab, var(--primary) 22%, transparent);
+  --cube-atmosphere-violet: color-mix(in oklab, var(--violet) 30%, transparent);
   --background-glow-violet: color-mix(in oklab, var(--violet) 35%, transparent);
   --background-glow-blue: color-mix(in oklab, var(--primary) 25%, transparent);
   --scroll-track: #0B0F1A;
@@ -86,6 +104,24 @@
   --input: oklch(0.2 0.03 265 / 15%);
   --ring: oklch(0.55 0.19 255);
   --shadow-glow: 0 10px 40px -15px color-mix(in oklab, var(--primary) 40%, transparent);
+  --hero-glow: linear-gradient(120deg, color-mix(in oklab, var(--primary) 9%, transparent), color-mix(in oklab, var(--violet) 7%, transparent));
+  --network-line-opacity: 0.65;
+  --network-node: oklch(0.43 0.17 255);
+  --network-halo: color-mix(in oklab, var(--primary) 8%, transparent);
+  --network-shadow: color-mix(in oklab, var(--primary) 18%, transparent);
+  --cube-glow: color-mix(in oklab, var(--primary) 10%, transparent);
+  --cube-core-light: oklch(0.65 0.13 230);
+  --cube-core-opacity: 0.28;
+  --cube-image-filter: none;
+  --hero-corner-glow: color-mix(in oklab, var(--violet) 22%, transparent);
+  --hero-arc: color-mix(in oklab, var(--violet) 42%, transparent);
+  --cube-glass-tint: #5938c1;
+  --cube-edge-tint: #4145ae;
+  --cube-core-tint: #4f8bdb;
+  --cube-violet-tint: #8861db;
+  --cube-reflection-tint: #d9e4f1;
+  --cube-atmosphere-blue: color-mix(in oklab, var(--primary) 14%, transparent);
+  --cube-atmosphere-violet: color-mix(in oklab, var(--violet) 14%, transparent);
   --background-glow-violet: color-mix(in oklab, var(--violet) 20%, transparent);
   --background-glow-blue: color-mix(in oklab, var(--primary) 16%, transparent);
   --scroll-track: oklch(0.95 0.01 260);
@@ -229,6 +265,132 @@
 @keyframes float-slow { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-12px) } }
 @utility animate-float { animation: float-slow 7s ease-in-out infinite; }
 
+/* ---- Cinematic homepage hero ---- */
+
+/* Staggered entrance: each block rises and fades in once. */
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(26px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero-enter { animation: hero-rise 0.85s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
+.hero-d1 { animation-delay: 0.05s; }
+.hero-d2 { animation-delay: 0.18s; }
+.hero-d3 { animation-delay: 0.34s; }
+.hero-d4 { animation-delay: 0.5s; }
+
+/* Home-only generated glass image; the transparent-ended glow stays independent. */
+.glass-cube { width: 100%; aspect-ratio: 1; position: relative; isolation: isolate; overflow: visible; }
+.glass-cube::before {
+  content: "";
+  position: absolute;
+  inset: -30% 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(ellipse closest-side at 50% 50%, var(--cube-atmosphere-violet) 0%, var(--cube-atmosphere-blue) 36%, transparent 100%);
+  animation: cube-glow-in 1.5s ease-out 0.3s both;
+}
+/* Cube rises from below with the copy, then keeps its slow float. */
+.glass-cube-enter {
+  position: absolute;
+  inset: 0;
+  animation: cube-rise 1.15s cubic-bezier(0.22, 0.61, 0.36, 1) 0.22s both;
+}
+@keyframes cube-rise {
+  from { opacity: 0; transform: translateY(96px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes cube-glow-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.glass-cube-object {
+  position: absolute;
+  inset: 0;
+  animation: crystal-hover 8s ease-in-out infinite;
+}
+@keyframes crystal-hover {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .glass-cube-object { animation: none; transform: none; }
+  .glass-cube-enter { animation: none; }
+  .glass-cube::before { animation: none; }
+}
+.glass-cube-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: var(--cube-image-filter) drop-shadow(0 0 16px var(--cube-glow));
+}
+
+/* Home-only open network: fixed geometry, one assembly, sparse travelling signals. */
+.neural-network { display: block; width: 100%; aspect-ratio: 1; overflow: hidden; }
+.network-blue { stop-color: var(--primary); }
+.network-violet { stop-color: var(--violet); }
+.network-line {
+  stroke-width: 1.25;
+  opacity: var(--network-line-opacity);
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+  animation: network-draw 1.6s ease-out 0.3s both;
+}
+.network-line:nth-child(3n + 1) { animation-delay: 0.45s; }
+.network-line:nth-child(3n + 2) { animation-delay: 0.65s; }
+.network-line:nth-child(5n) { stroke-width: 1.8; }
+.network-node { animation: network-appear 0.65s ease-out 0.55s both; }
+.network-node:nth-child(3n + 1) { animation-delay: 0.85s; }
+.network-node:nth-child(3n + 2) { animation-delay: 1.2s; }
+.network-node-halo { fill: var(--network-halo); }
+.network-node-ring { fill: var(--background); stroke: var(--primary); stroke-width: 1.2; }
+.network-node:nth-child(even) .network-node-ring { stroke: var(--violet); }
+.network-node-core { fill: var(--network-node); filter: drop-shadow(0 0 3px var(--network-shadow)); }
+.network-signal {
+  stroke: var(--network-node);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-dasharray: 0.07 1;
+  opacity: 0;
+  animation: network-signal 10s linear 2.4s infinite;
+}
+.network-signal:nth-child(2) { animation-delay: 5.6s; }
+.network-signal:nth-child(3) { animation-delay: 8.8s; }
+@keyframes network-draw { from { stroke-dashoffset: 1; opacity: 0; } to { stroke-dashoffset: 0; opacity: var(--network-line-opacity); } }
+@keyframes network-appear { from { opacity: 0; } to { opacity: 1; } }
+@keyframes network-signal {
+  0% { stroke-dashoffset: 0.08; opacity: 0; }
+  3% { opacity: 0.85; }
+  20% { stroke-dashoffset: -1; opacity: 0; }
+  100% { stroke-dashoffset: -1; opacity: 0; }
+}
+@media (max-width: 767px) { .network-signal:nth-child(3) { display: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .network-line, .network-node { animation: none; }
+  .network-signal { display: none; animation: none; }
+}
+
+/* Polished hover / keyboard-focus for the primary hero button. */
+.hero-cta {
+  transition: opacity 250ms ease, transform 250ms ease, box-shadow 250ms ease;
+}
+.hero-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 70px -12px color-mix(in oklab, var(--primary) 65%, transparent);
+}
+.hero-cta:active { transform: translateY(0); }
+.hero-cta:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 4px;
+  box-shadow: 0 0 70px -12px color-mix(in oklab, var(--primary) 65%, transparent);
+}
+
+/* Reduced motion: keep every text block visible without entrance or hover movement. */
+@media (prefers-reduced-motion: reduce) {
+  .hero-enter { animation: none; }
+  .hero-cta, .hero-cta:hover, .hero-cta:active { transform: none; transition: none; }
+}
+
 * { scrollbar-width: thin; scrollbar-color: var(--scroll-thumb) var(--scroll-track); }
 *::-webkit-scrollbar { width: 8px; height: 6px; }
 *::-webkit-scrollbar-track { background: var(--scroll-track); }
@@ -238,3 +400,79 @@
 body, .glass-card, header, nav, button, input, a { transition: background-color 250ms ease, color 250ms ease, border-color 250ms ease; }
 .hero-blend { mix-blend-mode: screen; }
 .light .hero-blend { mix-blend-mode: normal; }
+
+.hero-corner-glow {
+  position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(38vw 42vh at 100% 0%, var(--hero-corner-glow), transparent 70%);
+}
+
+/* Thin fading arc framing the cube; it sweeps like a loader, the soft glow stays in ::before.
+   The sweep rotates the mask angle, never the element box, so it cannot widen the page. */
+@property --arc-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+.glass-cube::after {
+  content: ""; position: absolute; inset: -4%; z-index: -1; border-radius: 9999px; pointer-events: none;
+  border: 1.5px solid var(--hero-arc);
+  filter: drop-shadow(0 0 6px var(--cube-glow));
+  -webkit-mask: conic-gradient(from calc(-75deg + var(--arc-angle)), transparent 0deg, #000 60deg, #000 150deg, transparent 215deg, transparent 360deg);
+  mask: conic-gradient(from calc(-75deg + var(--arc-angle)), transparent 0deg, #000 60deg, #000 150deg, transparent 215deg, transparent 360deg);
+  animation: cube-glow-in 1.5s ease-out 0.3s both, cube-arc-spin 5s linear 0.3s infinite;
+}
+@keyframes cube-arc-spin {
+  from { --arc-angle: 0deg; }
+  to { --arc-angle: 360deg; }
+}
+@media (prefers-reduced-motion: reduce) { .glass-cube::after { animation: none; } }
+
+/* Content-page motion is opt-in; the approved homepage never enters this scope. */
+.content-motion { --content-ease: cubic-bezier(0.22, 0.61, 0.36, 1); --reveal-distance: 22px; animation: page-arrive 360ms ease-out; }
+/* Opacity only: no transforms that could move fixed journey buttons or scroll positions. */
+@keyframes page-arrive { from { opacity: 0.3; } to { opacity: 1; } }
+.content-motion-calm { --reveal-distance: 12px; }
+@keyframes content-reveal {
+  from { opacity: 0.25; translate: 0 var(--reveal-distance); }
+  to { opacity: 1; translate: 0 0; }
+}
+.content-motion [data-motion="revealing"] {
+  animation: content-reveal 560ms var(--content-ease) var(--reveal-delay, 0ms) both;
+}
+.content-motion :is(a, button, input):focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 4px;
+}
+.content-motion .interactive-card {
+  transition: transform 220ms var(--content-ease), border-color 220ms ease, box-shadow 220ms ease;
+}
+.content-motion .interactive-card:focus-within {
+  border-color: color-mix(in oklab, var(--primary) 65%, var(--border));
+  box-shadow: var(--shadow-glow);
+}
+@media (hover: hover) {
+  .content-motion .interactive-card:hover { transform: translateY(-3px); border-color: color-mix(in oklab, var(--primary) 50%, var(--border)); box-shadow: var(--shadow-glow); }
+}
+.timeline-progression { position: relative; }
+.timeline-progression::before, .timeline-progression::after {
+  content: ""; position: absolute; top: 0; bottom: 0; left: -11px; width: 2px; pointer-events: none;
+  border-radius: 2px;
+}
+.timeline-progression::before { background: color-mix(in oklab, var(--primary) 12%, transparent); }
+.timeline-progression::after {
+  background: var(--gradient-accent); opacity: 0.6;
+  transform: scaleY(var(--timeline-progress, 1)); transform-origin: top;
+}
+@keyframes event-backdrop-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes event-panel-in { from { opacity: 0; transform: translateY(18px) scale(0.985); } to { opacity: 1; transform: none; } }
+@keyframes event-backdrop-out { to { opacity: 0; } }
+@keyframes event-panel-out { to { opacity: 0; transform: translateY(10px) scale(0.99); } }
+.event-modal-overlay { animation: event-backdrop-in 200ms ease-out both; }
+.event-modal { animation: event-panel-in 280ms cubic-bezier(0.22, 0.61, 0.36, 1) both; }
+.event-modal-overlay[data-closing="true"] { animation: event-backdrop-out 180ms ease-in both; }
+.event-modal-overlay[data-closing="true"] .event-modal { animation: event-panel-out 180ms ease-in both; }
+@media (prefers-reduced-motion: reduce) {
+  .content-motion, .content-motion [data-motion="revealing"], .event-modal-overlay, .event-modal { animation: none !important; }
+  .content-motion .interactive-card, .content-motion .interactive-card:hover { transform: none; transition: none; }
+  .timeline-progression::after { transform: none; }
+}

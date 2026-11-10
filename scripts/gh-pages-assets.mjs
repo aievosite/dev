@@ -7,7 +7,7 @@ import { getPagesBase } from "./gh-pages-config.mjs";
 
 const outDir = process.argv[2] ?? "dist/client";
 const base = getPagesBase().replace(/^\/+|\/+$/g, "");
-const source = process.env.ASSET_SOURCE ?? "https://ai-evolution-site.lovable.app";
+const source = process.env.ASSET_SOURCE ?? "https://id-preview--925bdfb1-c7b0-48d6-9509-10fc5fb22d5b.lovable.app";
 
 async function walk(dir) {
   const items = await readdir(dir, { withFileTypes: true });
